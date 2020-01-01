@@ -51,16 +51,12 @@ const CfSelect = ({
         }
         setFieldValue(field.name, option.value)
       }}
-      onBlur={option => {
-        if (onSelectChange) {
-          onSelectChange(field.name, option.value)
-        }
-        setFieldValue(field.name, option.value)
-      }}
       isDisabled={!(options && options.length > 0)}
     />
     {touched[field.name] && errors[field.name] && (
-      <div className="form-text text-danger">{errors[field.name]}</div>
+      <div className="form-text text-danger" style={{ marginTop: '10px' }}>
+        {errors[field.name]}
+      </div>
     )}
   </>
 )

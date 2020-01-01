@@ -61,14 +61,14 @@ export const signUp = rowData => async dispatch => {
   }
 }
 
-export const changePass = (rowData, _id) => async dispatch => {
+export const changePass = (rowData, id) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: CHANGE_PASSWORD_LOADING, isLoading: true })
     // Call API
-    const resChangePass = await Service.changePassword(rowData, _id)
+    const resChangePass = await Service.changePassword(rowData, id)
     dispatch({ type: CHANGE_PASSWORD_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'
@@ -107,14 +107,14 @@ export const forgotPass = rowData => async dispatch => {
   }
 }
 
-export const resetPass = (rowData, _id) => async dispatch => {
+export const resetPass = (rowData, id) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: RESET_PASSWORD_LOADING, isLoading: true })
     // Call API
-    const resResetPass = await Service.resetPassword(rowData, _id)
+    const resResetPass = await Service.resetPassword(rowData, id)
     dispatch({ type: RESET_PASSWORD_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'

@@ -37,14 +37,14 @@ export const createRole = rowData => async dispatch => {
   }
 }
 
-export const updateRole = (rowData, _id) => async dispatch => {
+export const updateRole = (rowData, id) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: ADMIN_UPDATE_ROLE_LOADING, isLoading: true })
     // Call API
-    const res = await Service.updateRole(rowData, _id)
+    const res = await Service.updateRole(rowData, id)
     dispatch({ type: ADMIN_UPDATE_ROLE_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'
@@ -62,14 +62,14 @@ export const updateRole = (rowData, _id) => async dispatch => {
   }
 }
 
-export const deleteRole = _id => async dispatch => {
+export const deleteRole = id => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: ADMIN_DELETE_ROLE_LOADING, isLoading: true })
     // Call API
-    const res = await Service.deleteRole(_id)
+    const res = await Service.deleteRole(id)
     dispatch({ type: ADMIN_DELETE_ROLE_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'

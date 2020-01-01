@@ -37,14 +37,14 @@ export const createPosition = rowData => async dispatch => {
   }
 }
 
-export const updatePosition = (rowData, _id) => async dispatch => {
+export const updatePosition = (rowData, id) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: ADMIN_UPDATE_POSITION_LOADING, isLoading: true })
     // Call API
-    const res = await Service.updateMasterPosition(rowData, _id)
+    const res = await Service.updateMasterPosition(rowData, id)
     dispatch({ type: ADMIN_UPDATE_POSITION_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'
@@ -62,14 +62,14 @@ export const updatePosition = (rowData, _id) => async dispatch => {
   }
 }
 
-export const deletePosition = _id => async dispatch => {
+export const deletePosition = id => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: ADMIN_DELETE_POSITION_LOADING, isLoading: true })
     // Call API
-    const res = await Service.deleteMasterPosition(_id)
+    const res = await Service.deleteMasterPosition(id)
     dispatch({ type: ADMIN_DELETE_POSITION_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'

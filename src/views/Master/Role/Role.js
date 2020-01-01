@@ -13,6 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
   Spinner,
+  FormGroup,
 } from 'reactstrap'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
@@ -44,7 +45,7 @@ class Role extends Component {
 
   initialValues = {
     roleName: '',
-    _id: '',
+    id: '',
   }
 
   fetchDataTable = state => {
@@ -74,7 +75,7 @@ class Role extends Component {
 
     this.initialValues = {
       roleName: state.roleName,
-      _id: state._id,
+      id: state.id,
     }
   }
 
@@ -86,10 +87,10 @@ class Role extends Component {
   }
 
   handleSaveChanges = values => {
-    const { _id } = values
+    const { id } = values
     const { createRole, updateRole } = this.props
-    if (!invalidValues.includes(_id)) {
-      updateRole(values, _id)
+    if (!invalidValues.includes(id)) {
+      updateRole(values, id)
     } else {
       createRole(values)
     }
@@ -98,14 +99,14 @@ class Role extends Component {
   handleDelete = (e, state) => {
     e.preventDefault()
 
-    const { _id } = state
+    const { id } = state
     const { deleteRole } = this.props
 
     AlertMessage.warning()
       .then(result => {
         if (result.value) {
-          console.log('delete object', _id)
-          deleteRole(_id)
+          console.log('delete object', id)
+          deleteRole(id)
         } else {
           const paramsResponse = {
             title: 'Huff',
@@ -222,17 +223,19 @@ class Role extends Component {
                   <Form>
                     <ModalHeader toggle={this.toggle}>Form Role</ModalHeader>
                     <ModalBody>
-                      <Label>
-                        <b>Nama Role</b>
-                        &nbsp;
-                        {requireLabel()}
-                      </Label>
-                      <Field
-                        type="text"
-                        name="roleName"
-                        placeholder="Masukkan nama role"
-                        component={CfInput}
-                      />
+                      <FormGroup>
+                        <Label>
+                          <b>Nama Role</b>
+                          &nbsp;
+                          {requireLabel()}
+                        </Label>
+                        <Field
+                          type="text"
+                          name="roleName"
+                          placeholder="Masukkan nama role"
+                          component={CfInput}
+                        />
+                      </FormGroup>
                       {ErrorMessage(message)}
                     </ModalBody>
                     <ModalFooter>

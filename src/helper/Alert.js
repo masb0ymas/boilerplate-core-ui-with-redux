@@ -17,7 +17,7 @@ class AlertMessage {
     return Swal.fire({
       title: !invalidValues.includes(title) ? title : defaultMessage.title,
       text: !invalidValues.includes(text) ? text : defaultMessage.text,
-      type: 'success',
+      icon: 'success',
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
@@ -29,7 +29,7 @@ class AlertMessage {
     return Swal.fire({
       title: params.title,
       text: params.text,
-      type: 'info',
+      icon: 'info',
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
@@ -48,7 +48,7 @@ class AlertMessage {
     return Swal.fire({
       title: 'Oops!',
       text: pesanError,
-      type: 'error',
+      icon: 'error',
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
@@ -68,7 +68,7 @@ class AlertMessage {
     return Swal.fire({
       title: !invalidValues.includes(title) ? title : defaultMessage.title,
       text: !invalidValues.includes(text) ? text : defaultMessage.text,
-      type: 'warning',
+      icon: 'warning',
       showCancelButton: true,
       allowOutsideClick: false,
       allowEscapeKey: false,
