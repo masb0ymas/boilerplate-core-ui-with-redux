@@ -1,14 +1,20 @@
-import { CfInput, CfInputGroup, CfSelect } from './Form'
-import { AlertMessage, ErrorMessage, requireLabel } from './Alert'
-import { userData, formDataFilterByKeys } from './Common'
+import { AlertMessage, ErrorMessage } from './Alert'
+import {
+  userData,
+  formDataFilterByKeys,
+  fileUploadPreview,
+  requireLabel,
+  badgeSizeDokumen,
+  badgeTypeDokumen,
+} from './Common'
 
 export {
-  CfInput,
-  CfInputGroup,
-  CfSelect,
   AlertMessage,
   ErrorMessage,
   requireLabel,
   userData,
   formDataFilterByKeys,
+  fileUploadPreview,
+  badgeSizeDokumen,
+  badgeTypeDokumen,
 }

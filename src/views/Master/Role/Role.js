@@ -23,7 +23,8 @@ import { Redirect } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Service from '../../../config/services'
-import { CfInput, requireLabel, AlertMessage, ErrorMessage } from '../../../helper'
+import { CfInput } from '../../../components'
+import { requireLabel, AlertMessage, ErrorMessage } from '../../../helper'
 import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
 
 const invalidValues = [undefined, null, '', false]
@@ -84,6 +85,11 @@ class Role extends Component {
     this.setState({
       modal: !modal,
     })
+
+    this.initialValues = {
+      roleName: '',
+      id: '',
+    }
   }
 
   handleSaveChanges = values => {

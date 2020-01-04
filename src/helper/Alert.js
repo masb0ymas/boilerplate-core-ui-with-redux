@@ -82,6 +82,25 @@ class AlertMessage {
         : defaultMessage.cancelButtonText,
     }).then(result => result)
   }
+
+  // Custom Response
+  static custom(params = {}) {
+    const { title, text, icon } = params
+    const defaultMessage = {
+      title: 'Success',
+      text: 'Data berhasil ditambahkan!',
+      icon: 'success',
+    }
+
+    return Swal.fire({
+      title: !invalidValues.includes(title) ? title : defaultMessage.title,
+      text: !invalidValues.includes(text) ? text : defaultMessage.text,
+      icon: !invalidValues.includes(icon) ? icon : defaultMessage.icon,
+      confirmButtonColor: '#20a8d8',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+    })
+  }
 }
 
 const ErrorMessage = message => {
@@ -90,10 +109,4 @@ const ErrorMessage = message => {
   }
 }
 
-const requireLabel = () => (
-  <span className="text-danger" style={{ paddingLeft: '1px' }}>
-    *
-  </span>
-)
-
-export { AlertMessage, ErrorMessage, requireLabel }
+export { AlertMessage, ErrorMessage }

@@ -25,7 +25,8 @@ import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react'
 import { signOut, changePass } from '../../modules/auth/actions'
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
-import { userData, CfInput, requireLabel } from '../../helper'
+import { CfInput } from '../../components'
+import { userData, requireLabel } from '../../helper'
 
 const initialValues = {
   currentPassword: '',
@@ -140,7 +141,7 @@ class DefaultHeader extends Component {
           >
             {({ isSubmitting }) => (
               <Form>
-                <ModalHeader toggle={this.toggle}>Change Password</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Form Change Password</ModalHeader>
                 <ModalBody>
                   <Label>
                     <b>Password saat ini</b>
@@ -150,18 +151,23 @@ class DefaultHeader extends Component {
                   <Field
                     type="password"
                     name="currentPassword"
-                    placeholder="*****"
+                    placeholder="*******"
                     component={CfInput}
                   />
 
-                  <Label style={{ paddingTop: '10px' }}>
+                  <Label style={{ paddingTop: '5px' }}>
                     <b>Password</b>
                     &nbsp;
                     {requireLabel()}
                   </Label>
-                  <Field type="password" name="password" placeholder="*****" component={CfInput} />
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="*******"
+                    component={CfInput}
+                  />
 
-                  <Label style={{ paddingTop: '10px' }}>
+                  <Label style={{ paddingTop: '5px' }}>
                     <b>Ulangi Password</b>
                     &nbsp;
                     {requireLabel()}
@@ -169,7 +175,7 @@ class DefaultHeader extends Component {
                   <Field
                     type="password"
                     name="confirmPassword"
-                    placeholder="*****"
+                    placeholder="*******"
                     component={CfInput}
                   />
                 </ModalBody>
@@ -187,12 +193,11 @@ class DefaultHeader extends Component {
                     {isSubmitting || isLoading ? (
                       <>
                         <Spinner size="sm" color="light" />
-                        &nbsp;
+                        &nbsp;Loading...
                       </>
                     ) : (
-                      <></>
+                      'Save Changes'
                     )}
-                    {isSubmitting || isLoading ? 'Loading...' : 'Save Changes'}
                   </Button>
                 </ModalFooter>
               </Form>

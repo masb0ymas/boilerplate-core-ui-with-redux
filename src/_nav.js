@@ -11,7 +11,7 @@ export default {
     },
     {
       title: true,
-      name: 'Theme',
+      name: 'F I T U R',
       wrapper: {
         element: '', // required valid HTML5 element tag
         attributes: {}, // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
@@ -36,15 +36,27 @@ export default {
       },
     },
     {
+      name: 'Account',
+      url: '/akun',
+      icon: 'icon-people',
+      children: [
+        {
+          name: 'Role',
+          url: '/akun/role',
+          icon: 'fa fa-angle-double-right',
+        },
+        {
+          name: 'User',
+          url: '/akun/user',
+          icon: 'fa fa-angle-double-right',
+        },
+      ],
+    },
+    {
       name: 'Data Master',
       url: '/master',
       icon: 'fa fa-tasks',
       children: [
-        {
-          name: 'Role',
-          url: '/master/role',
-          icon: 'fa fa-angle-double-right',
-        },
         {
           name: 'Position',
           url: '/master/position',
