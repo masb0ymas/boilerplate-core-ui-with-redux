@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
 import jwt from 'jsonwebtoken'
-import ROLE from './constans'
+import ConstRole from '../constant'
 import rootReducer from '../modules'
 import { AUTHENTICATED, UNAUTHENTICATED } from '../modules/auth/types'
 
@@ -24,7 +24,7 @@ if (!invalidValues.includes(token)) {
 
 jwt.verify(getToken, jwtPass, (err, data) => {
   // console.log(err, data);
-  if (!invalidValues.includes(data) && rid !== ROLE.UMUM) {
+  if (!invalidValues.includes(data) && rid !== ConstRole.ID_UMUM) {
     configStore.dispatch({ type: AUTHENTICATED })
   } else {
     configStore.dispatch({ type: UNAUTHENTICATED })

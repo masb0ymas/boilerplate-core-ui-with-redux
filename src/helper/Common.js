@@ -1,4 +1,8 @@
+import React from 'react'
 import jwt from 'jsonwebtoken'
+import { Button } from 'reactstrap'
+
+const invalidValues = [undefined, null, '']
 
 const userData = () => {
   const token = localStorage.getItem('token')
@@ -29,4 +33,94 @@ const formDataFilterByKeys = objFormData => {
   return formData
 }
 
-export { userData, formDataFilterByKeys }
+const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
+  let filterFileSize = ''
+  if (Math.ceil(fileSize / 1024) > 1024) {
+    filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`
+  } else {
+    filterFileSize = `${Math.ceil(fileSize / 1024)} Kb`
+  }
+  return (
+    <>
+      <Button type="button" size="sm" color="secondary" disabled>
+        <b>{filePreviewUrl}</b>
+      </Button>
+      &nbsp;&nbsp;
+      {fileType !== undefined ? (
+        <Button type="button" size="sm" color="info" disabled>
+          <b>{fileType}</b>
+        </Button>
+      ) : (
+        <span>&nbsp;</span>
+      )}
+      &nbsp;&nbsp;
+      {fileSize !== undefined ? (
+        <Button type="button" size="sm" color="warning" disabled>
+          <b>{filterFileSize}</b>
+        </Button>
+      ) : (
+        <span>&nbsp;</span>
+      )}
+    </>
+  )
+}
+
+const badgeSizeDokumen = fileSize => {
+  let filterFileSize = ''
+  if (Math.ceil(fileSize / 1024) > 1024) {
+    filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`
+  } else {
+    filterFileSize = `${Math.ceil(fileSize / 1024)} Kb`
+  }
+
+  return (
+    <>
+      {!invalidValues.includes(fileSize) && (
+        <Button type="button" size="sm" color="warning" disabled>
+          <b>{filterFileSize}</b>
+        </Button>
+      )}
+    </>
+  )
+}
+
+const badgeTypeDokumen = fileType => {
+  const typeImage = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/svg+xml']
+  const typeDok = ['application/pdf']
+
+  if (typeImage.includes(fileType)) {
+    return (
+      <Button type="button" size="sm" color="success" disabled>
+        <b>{fileType}</b>
+      </Button>
+    )
+  }
+
+  if (typeDok.includes(fileType)) {
+    return (
+      <Button type="button" size="sm" color="danger" disabled>
+        <b>{fileType}</b>
+      </Button>
+    )
+  }
+}
+
+const placeholderInputFile = () => (
+  <span style={{ color: 'rgba(54, 54, 54, 0.3)' }}>File belum diupload...</span>
+)
+
+const requireLabel = () => (
+  <span className="text-danger" style={{ paddingLeft: '1px' }}>
+    *
+  </span>
+)
+
+export {
+  userData,
+  formDataFilterByKeys,
+  fileUploadPreview,
+  placeholderInputFile,
+  requireLabel,
+  badgeSizeDokumen,
+  badgeTypeDokumen,
+}

@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { signIn } from '../../../modules/auth/actions'
-import { CfInputGroup } from '../../../helper'
+import { CfInputGroup } from '../../../components'
 
 const initialValues = {
   email: '',
