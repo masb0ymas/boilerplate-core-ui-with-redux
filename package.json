@@ -1,6 +1,6 @@
 {
   "name": "@coreui/coreui-free-react-admin-template",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "CoreUI React Open Source Bootstrap 4 Admin Template",
   "author": "Łukasz Holeczek",
   "homepage": "https://coreui.io",
@@ -69,7 +69,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-production-js": "GENERATE_SOURCEMAP=false REACT_APP_BUILD_ENV=production react-scripts build",
+    "build-staging-js": "GENERATE_SOURCEMAP=false REACT_APP_BUILD_ENV=staging react-scripts build",
+    "build-production-windows": "SET REACT_APP_BUILD_ENV=production&&react-scripts build",
+    "deploy:production": "npm run build-production-js && cp .htaccess build/ && scp -r build/ root@your_ip_ssh:/var/www/your_project/",
+    "deploy:staging": "npm run build-staging-js && cp .htaccess build/ && scp -r build/ root@your_ip_ssh:/var/www/your_project/",
+    "deploy:production-windows": "npm run build-production-windows && cp .htaccess build/ && scp -r build/ root@your_ip_ssh:/var/www/your_project/",
     "test": "react-scripts test",
     "test:cov": "npm test -- --coverage --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand",
