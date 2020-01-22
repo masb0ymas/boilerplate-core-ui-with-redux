@@ -6,6 +6,7 @@ import {
   requireLabel,
   badgeSizeDokumen,
   badgeTypeDokumen,
+  checkFilePreview,
 } from './Common'
 
 export {
@@ -17,4 +18,5 @@ export {
   fileUploadPreview,
   badgeSizeDokumen,
   badgeTypeDokumen,
+  checkFilePreview,
 }

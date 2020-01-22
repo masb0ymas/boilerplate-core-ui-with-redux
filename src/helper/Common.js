@@ -105,6 +105,12 @@ const badgeTypeDokumen = fileType => {
   }
 }
 
+const checkFilePreview = paramsURL => (
+  <a href={paramsURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
+    Lihat File
+  </a>
+)
+
 const placeholderInputFile = () => (
   <span style={{ color: 'rgba(54, 54, 54, 0.3)' }}>File belum diupload...</span>
 )
@@ -123,4 +129,5 @@ export {
   requireLabel,
   badgeSizeDokumen,
   badgeTypeDokumen,
+  checkFilePreview,
 }
