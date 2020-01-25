@@ -46,7 +46,7 @@ const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
         <b>{filePreviewUrl}</b>
       </Button>
       &nbsp;&nbsp;
-      {fileType !== undefined ? (
+      {!invalidValues.includes(fileType) ? (
         <Button type="button" size="sm" color="info" disabled>
           <b>{fileType}</b>
         </Button>
@@ -54,7 +54,7 @@ const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
         <span>&nbsp;</span>
       )}
       &nbsp;&nbsp;
-      {fileSize !== undefined ? (
+      {!invalidValues.includes(fileSize) ? (
         <Button type="button" size="sm" color="warning" disabled>
           <b>{filterFileSize}</b>
         </Button>

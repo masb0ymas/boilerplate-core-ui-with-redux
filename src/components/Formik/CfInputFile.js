@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Input } from 'reactstrap'
-import { fileUploadPreview, checkFilePreview } from '../../helper'
+import { Input, Label } from 'reactstrap'
+import { fileUploadPreview, checkFilePreview, requireLabel } from '../../helpers'
 import { API_FILE } from '../../config/apiConfig'
 
 const invalidValues = [undefined, null, '']
 
 const CfInputFile = ({
+  label,
+  isRequired,
   field,
   isHide,
   form: { touched, errors, setFieldValue, setFieldTouched },
@@ -33,6 +35,11 @@ const CfInputFile = ({
 
   return (
     <>
+      <Label>
+        <b>{label}</b>
+        &nbsp;
+        {isRequired && requireLabel()}
+      </Label>
       <Input
         {...props}
         id={field.name}
@@ -43,7 +50,9 @@ const CfInputFile = ({
         style={isHide ? { display: 'none' } : { marginBottom: '10px' }}
       />
       {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger">{errors[field.name]}</span>
+        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
+          {errors[field.name]}
+        </span>
       )}
 
       {filePreview && fileUploadPreview(filePreview, fileType, fileSize)}
@@ -60,6 +69,20 @@ const CfInputFile = ({
 }
 
 CfInputFile.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   field: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

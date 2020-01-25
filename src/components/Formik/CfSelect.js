@@ -2,8 +2,12 @@ import React from 'react'
 import Select from 'react-select'
 import Async from 'react-select/async'
 import PropTypes from 'prop-types'
+import { Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
 
 const CfSelect = ({
+  label,
+  isRequired,
   options,
   isMulti,
   isDisabled,
@@ -43,6 +47,11 @@ const CfSelect = ({
 
   return (
     <>
+      <Label>
+        <b>{label}</b>
+        &nbsp;
+        {isRequired && requireLabel()}
+      </Label>
       <Select
         {...field}
         {...props}
@@ -56,15 +65,17 @@ const CfSelect = ({
         isDisabled={!(options && options.length > 0) || isDisabled}
       />
       {touched[field.name] && errors[field.name] && (
-        <div className="form-text text-danger" style={{ marginTop: '10px' }}>
+        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
           {errors[field.name]}
-        </div>
+        </span>
       )}
     </>
   )
 }
 
 const CfAsyncSelect = ({
+  label,
+  isRequired,
   options,
   isMulti,
   isDisabled,
@@ -104,6 +115,11 @@ const CfAsyncSelect = ({
 
   return (
     <>
+      <Label>
+        <b>{label}</b>
+        &nbsp;
+        {isRequired && requireLabel()}
+      </Label>
       <Async
         {...field}
         {...props}
@@ -117,15 +133,29 @@ const CfAsyncSelect = ({
         isDisabled={!(options && options.length > 0) || isDisabled}
       />
       {touched[field.name] && errors[field.name] && (
-        <div className="form-text text-danger" style={{ marginTop: '10px' }}>
+        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
           {errors[field.name]}
-        </div>
+        </span>
       )}
     </>
   )
 }
 
 CfSelect.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   options: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
@@ -171,6 +201,20 @@ CfSelect.propTypes = {
 }
 
 CfAsyncSelect.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   options: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

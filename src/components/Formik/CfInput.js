@@ -1,17 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input } from 'reactstrap'
+import { Input, Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
 
-const CfInput = ({ field, form: { touched, errors }, ...props }) => (
+const CfInput = ({ label, isRequired, field, form: { touched, errors }, ...props }) => (
   <>
+    <Label>
+      <b>{label}</b>
+      &nbsp;
+      {isRequired && requireLabel()}
+    </Label>
     <Input {...field} {...props} style={{ marginBottom: '10px' }} />
     {touched[field.name] && errors[field.name] && (
-      <span className="form-text text-danger">{errors[field.name]}</span>
+      <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
+        {errors[field.name]}
+      </span>
     )}
   </>
 )
 
 CfInput.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   field: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

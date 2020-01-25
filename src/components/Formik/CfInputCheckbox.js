@@ -14,7 +14,9 @@ const CfInputCheckbox = ({ label, field, form: { touched, errors }, ...props }) 
     {label}
 
     {touched[field.name] && errors[field.name] && (
-      <span className="form-text text-danger">{errors[field.name]}</span>
+      <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
+        {errors[field.name]}
+      </span>
     )}
   </>
 )
