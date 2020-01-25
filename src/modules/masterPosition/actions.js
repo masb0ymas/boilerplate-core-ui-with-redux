@@ -1,5 +1,5 @@
 import Service from '../../config/services'
-import { AlertMessage } from '../../helper'
+import { AlertMessage } from '../../helpers'
 import {
   ADMIN_CREATE_POSITION_LOADING,
   ADMIN_CREATE_POSITION_SUCCESS,

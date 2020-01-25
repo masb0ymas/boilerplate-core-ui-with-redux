@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { Input } from 'reactstrap'
+import { Input, Label } from 'reactstrap'
 import moment from 'moment'
 import 'moment/locale/id'
+import { requireLabel } from '../../helpers'
 
 moment.locale('id')
 
@@ -18,6 +19,8 @@ const DateCustomInput = ({ value, onClick, ...props }) => (
 )
 
 const CfInputDate = ({
+  label,
+  isRequired,
   field,
   form: { touched, errors, setFieldValue, setFieldTouched },
   placeholder,
@@ -25,6 +28,11 @@ const CfInputDate = ({
 }) => {
   return (
     <>
+      <Label>
+        <b>{label}</b>
+        &nbsp;
+        {isRequired && requireLabel()}
+      </Label>
       <DatePicker
         dateFormat="MM/dd/yyyy"
         dropdownMode="select"
@@ -37,13 +45,29 @@ const CfInputDate = ({
         customInput={<DateCustomInput {...field} {...props} />}
       />
       {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger">{errors[field.name]}</span>
+        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
+          {errors[field.name]}
+        </span>
       )}
     </>
   )
 }
 
 CfInputDate.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   placeholder: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

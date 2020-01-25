@@ -1,5 +1,5 @@
 import Service from '../../config/services'
-import { AlertMessage } from '../../helper'
+import { AlertMessage } from '../../helpers'
 import {
   ADMIN_CREATE_ROLE_LOADING,
   ADMIN_CREATE_ROLE_SUCCESS,

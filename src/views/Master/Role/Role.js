@@ -24,20 +24,19 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Service from '../../../config/services'
 import { CfInput } from '../../../components'
-import { requireLabel, AlertMessage, ErrorMessage } from '../../../helper'
+import { requireLabel, AlertMessage, ErrorMessage } from '../../../helpers'
 import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
 
 const invalidValues = [undefined, null, '', false]
 
 const roleSchema = Yup.object().shape({
-  roleName: Yup.string().required('nama role belum diisi'),
+  nama: Yup.string().required('nama role belum diisi'),
 })
 
 class Role extends Component {
   state = {
     modal: false,
     listRole: [],
-    roleName: '',
     loading: true,
     pages: null,
     currentPage: 1,
@@ -45,7 +44,7 @@ class Role extends Component {
   }
 
   initialValues = {
-    roleName: '',
+    nama: '',
     id: '',
   }
 
@@ -75,7 +74,7 @@ class Role extends Component {
     })
 
     this.initialValues = {
-      roleName: state.roleName,
+      nama: state.nama,
       id: state.id,
     }
   }
@@ -87,7 +86,7 @@ class Role extends Component {
     })
 
     this.initialValues = {
-      roleName: '',
+      nama: '',
       id: '',
     }
   }
@@ -136,7 +135,7 @@ class Role extends Component {
       },
       {
         Header: 'Role',
-        accessor: 'roleName',
+        accessor: 'nama',
       },
       {
         Header: 'Edit',
@@ -237,7 +236,7 @@ class Role extends Component {
                         </Label>
                         <Field
                           type="text"
-                          name="roleName"
+                          name="nama"
                           placeholder="Masukkan nama role"
                           component={CfInput}
                         />

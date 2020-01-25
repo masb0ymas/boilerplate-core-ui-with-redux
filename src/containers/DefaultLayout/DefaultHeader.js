@@ -8,7 +8,6 @@ import {
   DropdownToggle,
   Nav,
   NavItem,
-  Label,
   Button,
   Modal,
   ModalHeader,
@@ -26,7 +25,7 @@ import { signOut, changePass } from '../../modules/auth/actions'
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import { CfInput } from '../../components'
-import { userData, requireLabel } from '../../helper'
+import { userData } from '../../helpers'
 
 const initialValues = {
   currentPassword: '',
@@ -143,36 +142,27 @@ class DefaultHeader extends Component {
               <Form>
                 <ModalHeader toggle={this.toggle}>Form Change Password</ModalHeader>
                 <ModalBody>
-                  <Label>
-                    <b>Password saat ini</b>
-                    &nbsp;
-                    {requireLabel()}
-                  </Label>
                   <Field
+                    label="Password saat ini"
+                    isRequired
                     type="password"
                     name="currentPassword"
                     placeholder="*******"
                     component={CfInput}
                   />
 
-                  <Label style={{ paddingTop: '5px' }}>
-                    <b>Password</b>
-                    &nbsp;
-                    {requireLabel()}
-                  </Label>
                   <Field
+                    label="Password"
+                    isRequired
                     type="password"
                     name="password"
                     placeholder="*******"
                     component={CfInput}
                   />
 
-                  <Label style={{ paddingTop: '5px' }}>
-                    <b>Ulangi Password</b>
-                    &nbsp;
-                    {requireLabel()}
-                  </Label>
                   <Field
+                    label="Ulangi Password"
+                    isRequired
                     type="password"
                     name="confirmPassword"
                     placeholder="*******"

@@ -46,7 +46,7 @@ const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
         <b>{filePreviewUrl}</b>
       </Button>
       &nbsp;&nbsp;
-      {fileType !== undefined ? (
+      {!invalidValues.includes(fileType) ? (
         <Button type="button" size="sm" color="info" disabled>
           <b>{fileType}</b>
         </Button>
@@ -54,7 +54,7 @@ const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
         <span>&nbsp;</span>
       )}
       &nbsp;&nbsp;
-      {fileSize !== undefined ? (
+      {!invalidValues.includes(fileSize) ? (
         <Button type="button" size="sm" color="warning" disabled>
           <b>{filterFileSize}</b>
         </Button>
@@ -105,6 +105,12 @@ const badgeTypeDokumen = fileType => {
   }
 }
 
+const checkFilePreview = paramsURL => (
+  <a href={paramsURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
+    Lihat File
+  </a>
+)
+
 const placeholderInputFile = () => (
   <span style={{ color: 'rgba(54, 54, 54, 0.3)' }}>File belum diupload...</span>
 )
@@ -123,4 +129,5 @@ export {
   requireLabel,
   badgeSizeDokumen,
   badgeTypeDokumen,
+  checkFilePreview,
 }

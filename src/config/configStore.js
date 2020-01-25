@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
 import jwt from 'jsonwebtoken'
-import ConstRole from '../constant'
+import { ConstRole, ConstUtils } from '../constant'
 import rootReducer from '../modules'
 import { AUTHENTICATED, UNAUTHENTICATED } from '../modules/auth/types'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
 const configStore = createStoreWithMiddleware(rootReducer)
 
-const jwtPass = 'yoursecretjwtpass'
+const { JWT_SECRET } = ConstUtils
 const token = localStorage.getItem('token')
 const rid = localStorage.getItem('rid')
 
@@ -22,7 +22,7 @@ if (!invalidValues.includes(token)) {
   }
 }
 
-jwt.verify(getToken, jwtPass, (err, data) => {
+jwt.verify(getToken, JWT_SECRET, (err, data) => {
   // console.log(err, data);
   if (!invalidValues.includes(data) && rid !== ConstRole.ID_UMUM) {
     configStore.dispatch({ type: AUTHENTICATED })

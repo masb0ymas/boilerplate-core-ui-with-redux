@@ -1,9 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap'
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
 
-const CfInputGroup = ({ classGroup, classIcon, field, form: { touched, errors }, ...props }) => (
+const CfInputGroup = ({
+  label,
+  isRequired,
+  classGroup,
+  classIcon,
+  field,
+  form: { touched, errors },
+  ...props
+}) => (
   <>
+    {label && (
+      <Label>
+        <b>{label}</b>
+        &nbsp;
+        {isRequired && requireLabel()}
+      </Label>
+    )}
     <InputGroup className={classGroup}>
       <InputGroupAddon addonType="prepend">
         <InputGroupText>
@@ -21,6 +37,20 @@ const CfInputGroup = ({ classGroup, classIcon, field, form: { touched, errors },
 )
 
 CfInputGroup.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   classGroup: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

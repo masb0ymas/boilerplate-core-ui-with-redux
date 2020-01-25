@@ -2,8 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
 
 const CfTextQuil = ({
+  label,
+  isRequired,
   field,
   form: { touched, errors, setFieldValue, setFieldTouched },
   ...props
@@ -42,6 +46,11 @@ const CfTextQuil = ({
 
   return (
     <>
+      <Label>
+        <b>Nama Role</b>
+        &nbsp;
+        {isRequired && requireLabel()}
+      </Label>
       <ReactQuill
         {...props}
         modules={TextQuilModules}
@@ -52,7 +61,7 @@ const CfTextQuil = ({
       />
 
       {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger" style={{ paddingTop: '7px' }}>
+        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
           {errors[field.name]}
         </span>
       )}
@@ -61,6 +70,20 @@ const CfTextQuil = ({
 }
 
 CfTextQuil.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  isRequired: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   field: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
