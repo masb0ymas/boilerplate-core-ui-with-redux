@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalFooter,
   Spinner,
+  FormGroup,
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -127,7 +128,7 @@ class DefaultHeader extends Component {
         {/* <AppAsideToggler className="d-md-down-none" /> */}
         {/* <AppAsideToggler className="d-lg-none" mobile /> */}
 
-        <Modal isOpen={modal} toggle={this.toggle} className={className}>
+        <Modal isOpen={modal} toggle={this.toggle} backdrop="static" className={className}>
           <Formik
             initialValues={initialValues}
             validationSchema={changePassSchema}
@@ -142,32 +143,38 @@ class DefaultHeader extends Component {
               <Form>
                 <ModalHeader toggle={this.toggle}>Form Change Password</ModalHeader>
                 <ModalBody>
-                  <Field
-                    label="Password saat ini"
-                    isRequired
-                    type="password"
-                    name="currentPassword"
-                    placeholder="*******"
-                    component={CfInput}
-                  />
+                  <FormGroup>
+                    <Field
+                      label="Password saat ini"
+                      isRequired
+                      type="password"
+                      name="currentPassword"
+                      placeholder="*******"
+                      component={CfInput}
+                    />
+                  </FormGroup>
 
-                  <Field
-                    label="Password"
-                    isRequired
-                    type="password"
-                    name="password"
-                    placeholder="*******"
-                    component={CfInput}
-                  />
+                  <FormGroup>
+                    <Field
+                      label="Password"
+                      isRequired
+                      type="password"
+                      name="password"
+                      placeholder="*******"
+                      component={CfInput}
+                    />
+                  </FormGroup>
 
-                  <Field
-                    label="Ulangi Password"
-                    isRequired
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="*******"
-                    component={CfInput}
-                  />
+                  <FormGroup>
+                    <Field
+                      label="Ulangi Password"
+                      isRequired
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="*******"
+                      component={CfInput}
+                    />
+                  </FormGroup>
                 </ModalBody>
                 <ModalFooter>
                   <Button type="button" color="secondary" onClick={this.toggle}>

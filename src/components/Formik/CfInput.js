@@ -2,20 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Input, Label } from 'reactstrap'
 import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
-const CfInput = ({ label, isRequired, field, form: { touched, errors }, ...props }) => (
+const CfInput = ({ label, isRequired, field, form, ...props }) => (
   <>
     <Label>
       <b>{label}</b>
       &nbsp;
       {isRequired && requireLabel()}
     </Label>
-    <Input {...field} {...props} style={{ marginBottom: '10px' }} />
-    {touched[field.name] && errors[field.name] && (
-      <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-        {errors[field.name]}
-      </span>
-    )}
+    <Input {...field} {...props} />
+    <ErrorView name={field.name} />
   </>
 )
 

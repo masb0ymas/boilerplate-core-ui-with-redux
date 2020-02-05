@@ -4,6 +4,7 @@ import Async from 'react-select/async'
 import PropTypes from 'prop-types'
 import { Label } from 'reactstrap'
 import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
 const CfSelect = ({
   label,
@@ -12,7 +13,7 @@ const CfSelect = ({
   isMulti,
   isDisabled,
   field,
-  form: { touched, errors, setFieldValue, setFieldTouched },
+  form: { setFieldValue, setFieldTouched },
   onSelectChange,
   ...props
 }) => {
@@ -64,11 +65,7 @@ const CfSelect = ({
         onChange={option => handleChangeSelect(option)}
         isDisabled={!(options && options.length > 0) || isDisabled}
       />
-      {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-          {errors[field.name]}
-        </span>
-      )}
+      <ErrorView name={field.name} />
     </>
   )
 }
@@ -80,7 +77,7 @@ const CfAsyncSelect = ({
   isMulti,
   isDisabled,
   field,
-  form: { touched, errors, setFieldValue, setFieldTouched },
+  form: { setFieldValue, setFieldTouched },
   onSelectChange,
   ...props
 }) => {
@@ -132,11 +129,7 @@ const CfAsyncSelect = ({
         onChange={option => handleChangeSelect(option)}
         isDisabled={!(options && options.length > 0) || isDisabled}
       />
-      {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-          {errors[field.name]}
-        </span>
-      )}
+      <ErrorView name={field.name} />
     </>
   )
 }
