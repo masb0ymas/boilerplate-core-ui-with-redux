@@ -6,7 +6,6 @@ import {
   CardBody,
   CardHeader,
   Col,
-  Label,
   Row,
   Modal,
   ModalBody,
@@ -24,7 +23,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Service from '../../../config/services'
 import { CfInput } from '../../../components'
-import { requireLabel, AlertMessage, ErrorMessage } from '../../../helpers'
+import { AlertMessage, ErrorMessage } from '../../../helpers'
 import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
 
 const invalidValues = [undefined, null, '', false]
@@ -213,7 +212,7 @@ class Role extends Component {
               </CardBody>
             </Card>
 
-            <Modal isOpen={modal} toggle={this.toggle} className={className}>
+            <Modal isOpen={modal} toggle={this.toggle} backdrop="static" className={className}>
               <Formik
                 initialValues={this.initialValues}
                 validationSchema={roleSchema}
@@ -229,14 +228,11 @@ class Role extends Component {
                     <ModalHeader toggle={this.toggle}>Form Role</ModalHeader>
                     <ModalBody>
                       <FormGroup>
-                        <Label>
-                          <b>Nama Role</b>
-                          &nbsp;
-                          {requireLabel()}
-                        </Label>
                         <Field
+                          label="Nama Role"
                           type="text"
                           name="nama"
+                          isRequired
                           placeholder="Masukkan nama role"
                           component={CfInput}
                         />

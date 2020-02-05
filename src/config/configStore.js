@@ -9,6 +9,7 @@ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
 const configStore = createStoreWithMiddleware(rootReducer)
 
 const { JWT_SECRET } = ConstUtils
+const { ID_UMUM } = ConstRole
 const token = localStorage.getItem('token')
 const rid = localStorage.getItem('rid')
 
@@ -24,7 +25,7 @@ if (!invalidValues.includes(token)) {
 
 jwt.verify(getToken, JWT_SECRET, (err, data) => {
   // console.log(err, data);
-  if (!invalidValues.includes(data) && rid !== ConstRole.ID_UMUM) {
+  if (!invalidValues.includes(data) && rid !== ID_UMUM) {
     configStore.dispatch({ type: AUTHENTICATED })
   } else {
     configStore.dispatch({ type: UNAUTHENTICATED })

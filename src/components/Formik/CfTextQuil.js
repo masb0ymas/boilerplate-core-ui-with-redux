@@ -4,12 +4,13 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Label } from 'reactstrap'
 import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
 const CfTextQuil = ({
   label,
   isRequired,
   field,
-  form: { touched, errors, setFieldValue, setFieldTouched },
+  form: { setFieldValue, setFieldTouched },
   ...props
 }) => {
   const TextQuilFormats = [
@@ -47,7 +48,7 @@ const CfTextQuil = ({
   return (
     <>
       <Label>
-        <b>Nama Role</b>
+        <b>{label}</b>
         &nbsp;
         {isRequired && requireLabel()}
       </Label>
@@ -60,11 +61,7 @@ const CfTextQuil = ({
         value={field.value ? field.value : ''}
       />
 
-      {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-          {errors[field.name]}
-        </span>
-      )}
+      <ErrorView name={field.name} />
     </>
   )
 }

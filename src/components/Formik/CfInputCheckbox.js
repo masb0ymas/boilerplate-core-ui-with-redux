@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Input } from 'reactstrap'
+import ErrorView from './ErrorView'
 
-const CfInputCheckbox = ({ label, field, form: { touched, errors }, ...props }) => (
+const CfInputCheckbox = ({ label, field, form, ...props }) => (
   <>
     <Input
       {...field}
@@ -13,11 +14,7 @@ const CfInputCheckbox = ({ label, field, form: { touched, errors }, ...props }) 
     />
     {label}
 
-    {touched[field.name] && errors[field.name] && (
-      <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-        {errors[field.name]}
-      </span>
-    )}
+    <ErrorView name={field.name} />
   </>
 )
 

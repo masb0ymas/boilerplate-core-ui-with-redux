@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Input, Label } from 'reactstrap'
 import { fileUploadPreview, checkFilePreview, requireLabel } from '../../helpers'
 import { API_FILE } from '../../config/apiConfig'
+import ErrorView from './ErrorView'
 
 const invalidValues = [undefined, null, '']
 
@@ -11,7 +12,7 @@ const CfInputFile = ({
   isRequired,
   field,
   isHide,
-  form: { touched, errors, setFieldValue, setFieldTouched },
+  form: { setFieldValue, setFieldTouched },
   ...props
 }) => {
   const [filePreview, setfilePreview] = useState()
@@ -49,11 +50,7 @@ const CfInputFile = ({
         onChange={e => handleChangeImage(e)}
         style={isHide ? { display: 'none' } : { marginBottom: '10px' }}
       />
-      {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-          {errors[field.name]}
-        </span>
-      )}
+      <ErrorView name={field.name} />
 
       {filePreview && fileUploadPreview(filePreview, fileType, fileSize)}
 

@@ -6,6 +6,7 @@ import { Input, Label } from 'reactstrap'
 import moment from 'moment'
 import 'moment/locale/id'
 import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
 moment.locale('id')
 
@@ -14,7 +15,7 @@ const DateCustomInput = ({ value, onClick, ...props }) => (
     {...props}
     value={value ? moment(value).format('DD MMMM YYYY') : undefined}
     onClick={onClick}
-    style={{ marginBottom: '10px', display: 'block' }}
+    // style={{ marginBottom: '10px', display: 'block' }}
   />
 )
 
@@ -22,7 +23,7 @@ const CfInputDate = ({
   label,
   isRequired,
   field,
-  form: { touched, errors, setFieldValue, setFieldTouched },
+  form: { setFieldValue, setFieldTouched },
   placeholder,
   ...props
 }) => {
@@ -44,11 +45,7 @@ const CfInputDate = ({
         placeholderText={placeholder}
         customInput={<DateCustomInput {...field} {...props} />}
       />
-      {touched[field.name] && errors[field.name] && (
-        <span className="form-text text-danger" style={{ paddingBottom: '10px' }}>
-          {errors[field.name]}
-        </span>
-      )}
+      <ErrorView name={field.name} />
     </>
   )
 }
