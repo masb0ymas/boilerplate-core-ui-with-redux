@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   Badge,
   UncontrolledDropdown,
@@ -15,24 +15,24 @@ import {
   ModalFooter,
   Spinner,
   FormGroup,
-} from 'reactstrap'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
+} from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
-import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react'
-import { signOut, changePass } from '../../modules/auth/actions'
-import logo from '../../assets/img/brand/logo.svg'
-import sygnet from '../../assets/img/brand/sygnet.svg'
-import { CfInput } from '../../components'
-import { userData } from '../../helpers'
+import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
+import { signOut, changePass } from '../../modules/auth/actions';
+import logo from '../../assets/img/brand/logo.svg';
+import sygnet from '../../assets/img/brand/sygnet.svg';
+import { CfInput } from '../../components';
+import { userData } from '../../helpers';
 
 const initialValues = {
   currentPassword: '',
   password: '',
   confirmPassword: '',
-}
+};
 
 const changePassSchema = Yup.object().shape({
   currentPassword: Yup.string().required('password saat ini belum diisi'),
@@ -40,29 +40,29 @@ const changePassSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'ulangi password tidak cocok')
     .required('ulangi password belum diisi'),
-})
+});
 
 class DefaultHeader extends Component {
   state = {
     modal: false,
-  }
+  };
 
   toggle = () => {
-    const { modal } = this.state
+    const { modal } = this.state;
     this.setState({
       modal: !modal,
-    })
-  }
+    });
+  };
 
   handleChangePassword = values => {
-    const { changePass } = this.props
-    const { _id } = userData()
-    console.log('Change Password', values)
-    changePass(values, _id)
-  }
+    const { changePass } = this.props;
+    const { _id } = userData();
+    console.log('Change Password', values);
+    changePass(values, _id);
+  };
 
   render() {
-    const { modal } = this.state
+    const { modal } = this.state;
     // eslint-disable-next-line
     const { isLoading, signOut, className, children, ...attributes } = this.props
 
@@ -134,9 +134,9 @@ class DefaultHeader extends Component {
             validationSchema={changePassSchema}
             onSubmit={(values, actions) => {
               setTimeout(() => {
-                this.handleChangePassword(values)
-                actions.setSubmitting(false)
-              }, 1000)
+                this.handleChangePassword(values);
+                actions.setSubmitting(false);
+              }, 1000);
             }}
           >
             {({ isSubmitting }) => (
@@ -202,25 +202,25 @@ class DefaultHeader extends Component {
           </Formik>
         </Modal>
       </>
-    )
+    );
   }
 }
 
 DefaultHeader.propTypes = {
   children: PropTypes.node,
   changePass: PropTypes.func,
-}
+};
 
 const mapStateToProps = state => ({
   auth: state.auth.authenticated,
   message: state.auth.message,
   success: state.auth.success,
   isLoading: state.auth.isLoading,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   changePass: (rowData, id) => dispatch(changePass(rowData, id)),
   signOut: () => dispatch(signOut()),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultHeader);

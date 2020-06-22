@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import moment from 'moment'
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
-import { Modal, ModalHeader, ModalBody } from 'reactstrap'
-import { Done } from '@material-ui/icons'
-import 'moment/locale/id'
-import './style.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Done } from '@material-ui/icons';
+import 'moment/locale/id';
+import './style.css';
 
-moment.locale('id')
+moment.locale('id');
 
 function Timeline({ isModal, handleModal, classModal, HistoryPermohonan }) {
   return (
@@ -60,7 +60,7 @@ function Timeline({ isModal, handleModal, classModal, HistoryPermohonan }) {
         </VerticalTimeline>
       </ModalBody>
     </Modal>
-  )
+  );
 }
 
 Timeline.propTypes = {
@@ -68,6 +68,6 @@ Timeline.propTypes = {
   HistoryPermohonan: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   isModal: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object]),
   handleModal: PropTypes.oneOfType([PropTypes.func, PropTypes.bool, PropTypes.node]),
-}
+};
 
-export default Timeline
+export default Timeline;

@@ -1,17 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Label } from 'reactstrap';
-import { requireLabel } from '../../helpers';
 import ErrorView from './ErrorView';
 
-const CfInput = ({
-  label,
-  onInputChange,
-  isRequired,
-  field,
-  form: { setFieldValue },
-  ...props
-}) => {
+const CfInputRadio = ({ label, onInputChange, id, field, form: { setFieldValue }, ...props }) => {
   const handleChangeInput = e => {
     const { value } = e.currentTarget;
 
@@ -24,18 +16,27 @@ const CfInput = ({
 
   return (
     <>
-      <Label>
-        <b>{label}</b>
-        &nbsp;
-        {isRequired && requireLabel()}
+      <Label check>
+        <Input
+          {...props}
+          id={id}
+          name={field.name}
+          type="radio"
+          onChange={e => handleChangeInput(e)}
+          onBlur={field.onBlur}
+          value={id}
+          checked={id === field.value}
+          style={{ marginBottom: '10px' }}
+        />
+        {label}
       </Label>
-      <Input {...field} {...props} onChange={e => handleChangeInput(e)} />
+
       <ErrorView name={field.name} />
     </>
   );
 };
 
-CfInput.propTypes = {
+CfInputRadio.propTypes = {
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
@@ -50,7 +51,7 @@ CfInput.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-  isRequired: PropTypes.oneOfType([
+  id: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
     PropTypes.array,
@@ -73,4 +74,4 @@ CfInput.propTypes = {
   ]),
 };
 
-export default CfInput;
+export default CfInputRadio;

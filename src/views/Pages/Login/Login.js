@@ -1,35 +1,35 @@
 /* eslint-disable no-return-assign */
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Button, Card, CardBody, CardGroup, Col, Container, Row, Spinner } from 'reactstrap'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
-import { signIn } from '../../../modules/auth/actions'
-import { CfInputGroup } from '../../../components'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Card, CardBody, CardGroup, Col, Container, Row, Spinner } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { signIn } from '../../../modules/auth/actions';
+import { CfInputGroup } from '../../../components';
 
 const initialValues = {
   email: '',
   password: '',
-}
+};
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
     .email('gunakan email yang valid')
     .required('email belum diisi'),
   password: Yup.string().required('password belum diisi'),
-})
+});
 
 class Login extends Component {
   handleLogin = values => {
-    const { signIn } = this.props
-    signIn(values)
-  }
+    const { signIn } = this.props;
+    signIn(values);
+  };
 
   render() {
-    const { auth, isLoading, message } = this.props
-    if (auth) return (window.location.href = '/')
+    const { auth, isLoading, message } = this.props;
+    if (auth) return (window.location.href = '/');
 
     return (
       <div className="app flex-row align-items-center">
@@ -44,9 +44,9 @@ class Login extends Component {
                       validationSchema={loginSchema}
                       onSubmit={(values, actions) => {
                         setTimeout(() => {
-                          this.handleLogin(values)
-                          actions.setSubmitting(false)
-                        }, 1000)
+                          this.handleLogin(values);
+                          actions.setSubmitting(false);
+                        }, 1000);
                       }}
                     >
                       {({ isSubmitting }) => (
@@ -131,7 +131,7 @@ class Login extends Component {
           </Row>
         </Container>
       </div>
-    )
+    );
   }
 }
 
@@ -140,16 +140,16 @@ Login.propTypes = {
   isLoading: PropTypes.bool,
   message: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   signIn: PropTypes.func,
-}
+};
 
 const mapStateToProps = state => ({
   auth: state.auth.authenticated,
   message: state.auth.message,
   isLoading: state.auth.isLoading,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   signIn: credentials => dispatch(signIn(credentials)),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -27,17 +27,28 @@ const defaultProps = {
 
 class Widget01 extends Component {
   render() {
-    const { className, cssModule, header, mainText, smallText, color, value, children, variant, ...attributes } = this.props;
+    const {
+      className,
+      cssModule,
+      header,
+      mainText,
+      smallText,
+      color,
+      value,
+      children,
+      variant,
+      ...attributes
+    } = this.props;
 
     // demo purposes only
-    const progress = { style: '', color: color, value: value };
+    const progress = { style: '', color, value };
     const card = { style: '', bgColor: '' };
 
     if (variant === 'inverse') {
       progress.style = 'progress-white';
       progress.color = '';
       card.style = 'text-white';
-      card.bgColor = 'bg-' + color;
+      card.bgColor = `bg-${color}`;
     }
 
     const classes = mapToCssModules(classNames(className, card.style, card.bgColor), cssModule);

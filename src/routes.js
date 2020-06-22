@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Dashboard = React.lazy(() => import('./views/Dashboard'))
-const Role = React.lazy(() => import('./views/Master/Role'))
+const Dashboard = React.lazy(() => import('./views/Dashboard'));
+const Role = React.lazy(() => import('./views/Master/Role'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -21,6 +21,6 @@ const routes = [
     name: 'Role',
     component: Role,
   },
-]
+];
 
-export default routes
+export default routes;

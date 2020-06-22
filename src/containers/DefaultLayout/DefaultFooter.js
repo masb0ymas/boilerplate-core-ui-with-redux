@@ -1,14 +1,14 @@
-import React from 'react'
-import moment from 'moment'
-import PropTypes from 'prop-types'
-import 'moment/locale/id'
+import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import 'moment/locale/id';
 
-moment.locale('id')
+moment.locale('id');
 
 const DefaultFooter = props => {
   // eslint-disable-next-line
   const { children, ...attributes } = props
-  const Year = moment().format('YYYY')
+  const Year = moment().format('YYYY');
 
   return (
     <>
@@ -23,11 +23,11 @@ const DefaultFooter = props => {
         <a href="https://coreui.io/react">CoreUI for React</a>
       </span>
     </>
-  )
-}
+  );
+};
 
 DefaultFooter.propTypes = {
   children: PropTypes.node,
-}
+};
 
-export default DefaultFooter
+export default DefaultFooter;

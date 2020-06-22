@@ -1,35 +1,27 @@
-import { createStore, applyMiddleware } from 'redux'
-import reduxThunk from 'redux-thunk'
-import jwt from 'jsonwebtoken'
-import { ConstRole, ConstUtils } from '../constant'
-import rootReducer from '../modules'
-import { AUTHENTICATED, UNAUTHENTICATED } from '../modules/auth/types'
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import rootReducer from '../modules';
+import { AUTHENTICATED, UNAUTHENTICATED, VERIFYING } from '../modules/auth/types';
+import Service from './services';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore)
-const configStore = createStoreWithMiddleware(rootReducer)
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const configStore = createStoreWithMiddleware(rootReducer);
 
-const { JWT_SECRET } = ConstUtils
-const { ID_UMUM } = ConstRole
-const token = localStorage.getItem('token')
-const rid = localStorage.getItem('rid')
+async function jwtVerify() {
+  configStore.dispatch({ type: VERIFYING });
 
-const invalidValues = [undefined, null, '']
-
-let getToken = ''
-if (!invalidValues.includes(token)) {
-  const splitToken = token.split(' ')
-  if (splitToken.length === 2) {
-    ;[, getToken] = splitToken
+  try {
+    await Service.verifyToken();
+    configStore.dispatch({ type: AUTHENTICATED });
+  } catch (e) {
+    console.log(e);
+    localStorage.removeItem('token');
+    localStorage.removeItem('uid');
+    localStorage.removeItem('rid');
+    configStore.dispatch({ type: UNAUTHENTICATED });
   }
 }
 
-jwt.verify(getToken, JWT_SECRET, (err, data) => {
-  // console.log(err, data);
-  if (!invalidValues.includes(data) && rid !== ID_UMUM) {
-    configStore.dispatch({ type: AUTHENTICATED })
-  } else {
-    configStore.dispatch({ type: UNAUTHENTICATED })
-  }
-})
+jwtVerify();
 
-export default configStore
+export default configStore;

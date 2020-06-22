@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Nav,
   NavItem,
@@ -8,25 +8,25 @@ import {
   TabPane,
   ListGroup,
   ListGroupItem,
-} from 'reactstrap'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { AppSwitch } from '@coreui/react'
+} from 'reactstrap';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { AppSwitch } from '@coreui/react';
 
 const propTypes = {
   children: PropTypes.node,
-}
+};
 
-const defaultProps = {}
+const defaultProps = {};
 
 class DefaultAside extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.toggle = this.toggle.bind(this)
+    this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
-    }
+    };
   }
 
   toggle(tab) {
@@ -34,14 +34,14 @@ class DefaultAside extends Component {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab,
-      })
+      });
     }
   }
 
   render() {
     // eslint-disable-next-line
     const { children, ...attributes } = this.props
-    const { activeTab } = this.state
+    const { activeTab } = this.state;
 
     return (
       <>
@@ -50,7 +50,7 @@ class DefaultAside extends Component {
             <NavLink
               className={classNames({ active: activeTab === '1' })}
               onClick={() => {
-                this.toggle('1')
+                this.toggle('1');
               }}
             >
               <i className="icon-list" />
@@ -60,7 +60,7 @@ class DefaultAside extends Component {
             <NavLink
               className={classNames({ active: activeTab === '2' })}
               onClick={() => {
-                this.toggle('2')
+                this.toggle('2');
               }}
             >
               <i className="icon-speech" />
@@ -70,7 +70,7 @@ class DefaultAside extends Component {
             <NavLink
               className={classNames({ active: activeTab === '3' })}
               onClick={() => {
-                this.toggle('3')
+                this.toggle('3');
               }}
             >
               <i className="icon-settings" />
@@ -509,11 +509,11 @@ class DefaultAside extends Component {
           </TabPane>
         </TabContent>
       </>
-    )
+    );
   }
 }
 
-DefaultAside.propTypes = propTypes
-DefaultAside.defaultProps = defaultProps
+DefaultAside.propTypes = propTypes;
+DefaultAside.defaultProps = defaultProps;
 
-export default DefaultAside
+export default DefaultAside;

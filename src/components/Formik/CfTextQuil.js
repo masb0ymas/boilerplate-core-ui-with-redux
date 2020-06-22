@@ -1,13 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
-import { Label } from 'reactstrap'
-import { requireLabel } from '../../helpers'
-import ErrorView from './ErrorView'
+import React from 'react';
+import PropTypes from 'prop-types';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { Label } from 'reactstrap';
+import { requireLabel } from '../../helpers';
+import ErrorView from './ErrorView';
 
 const CfTextQuil = ({
   label,
+  QuilModules,
+  QuilFormats,
   isRequired,
   field,
   form: { setFieldValue, setFieldTouched },
@@ -16,7 +18,6 @@ const CfTextQuil = ({
   const TextQuilFormats = [
     'header',
     'font',
-    'size',
     'bold',
     'italic',
     'underline',
@@ -25,25 +26,21 @@ const CfTextQuil = ({
     'list',
     'bullet',
     'indent',
-    'link',
-    'image',
-    'video',
-  ]
+    'script',
+  ];
 
   const TextQuilModules = {
     toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ size: [] }],
+      [{ header: [] }, { font: [] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-      ['link', 'image', 'video'],
-      ['clean'],
+      [{ script: 'sub' }, { script: 'super' }],
     ],
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
     },
-  }
+  };
 
   return (
     <>
@@ -54,8 +51,8 @@ const CfTextQuil = ({
       </Label>
       <ReactQuill
         {...props}
-        modules={TextQuilModules}
-        formats={TextQuilFormats}
+        modules={TextQuilModules || QuilModules}
+        formats={TextQuilFormats || QuilFormats}
         onBlur={() => setFieldTouched(field.name, true)}
         onChange={value => setFieldValue(field.name, value)}
         value={field.value ? field.value : ''}
@@ -63,11 +60,25 @@ const CfTextQuil = ({
 
       <ErrorView name={field.name} />
     </>
-  )
-}
+  );
+};
 
 CfTextQuil.propTypes = {
   label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  QuilModules: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  QuilFormats: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
     PropTypes.array,
@@ -95,6 +106,6 @@ CfTextQuil.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-}
+};
 
-export default CfTextQuil
+export default CfTextQuil;

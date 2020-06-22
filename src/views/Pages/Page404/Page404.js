@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Button,
   Col,
@@ -8,7 +8,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
-} from 'reactstrap'
+} from 'reactstrap';
 
 const Page404 = () => {
   return (
@@ -36,7 +36,7 @@ const Page404 = () => {
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Page404
+export default Page404;

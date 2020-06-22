@@ -1,4 +1,4 @@
-const { toString } = Object.prototype
+const { toString } = Object.prototype;
 
 /**
  * Gets the `toStringTag` of `value`.
@@ -9,9 +9,9 @@ const { toString } = Object.prototype
  */
 function getTag(value) {
   if (value == null) {
-    return value === undefined ? '[object Undefined]' : '[object Null]'
+    return value === undefined ? '[object Undefined]' : '[object Null]';
   }
-  return toString.call(value)
+  return toString.call(value);
 }
 
 /**
@@ -30,15 +30,15 @@ function getTag(value) {
  * // => false
  */
 function isSymbol(value) {
-  const type = typeof value
+  const type = typeof value;
   return (
     type === 'symbol' || (type === 'object' && value != null && getTag(value) === '[object Symbol]')
-  )
+  );
 }
 
 /** Used to match property names within property paths. */
-const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/
-const reIsPlainProp = /^\w*$/
+const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
+const reIsPlainProp = /^\w*$/;
 
 /**
  * Checks if `value` is a property name and not a property path.
@@ -50,17 +50,17 @@ const reIsPlainProp = /^\w*$/
  */
 function isKey(value, object) {
   if (Array.isArray(value)) {
-    return false
+    return false;
   }
-  const type = typeof value
+  const type = typeof value;
   if (type === 'number' || type === 'boolean' || value == null || isSymbol(value)) {
-    return true
+    return true;
   }
   return (
     reIsPlainProp.test(value) ||
     !reIsDeepProp.test(value) ||
     (object != null && value in Object(object))
-  )
+  );
 }
 
 /**
@@ -107,27 +107,27 @@ function isKey(value, object) {
  */
 function memoize(func, resolver) {
   if (typeof func !== 'function' || (resolver != null && typeof resolver !== 'function')) {
-    throw new TypeError('Expected a function')
+    throw new TypeError('Expected a function');
   }
   const memoized = function(...args) {
-    const key = resolver ? resolver.apply(this, args) : args[0]
-    const { cache } = memoized
+    const key = resolver ? resolver.apply(this, args) : args[0];
+    const { cache } = memoized;
 
     if (cache.has(key)) {
-      return cache.get(key)
+      return cache.get(key);
     }
-    const result = func.apply(this, args)
-    memoized.cache = cache.set(key, result) || cache
-    return result
-  }
-  memoized.cache = new (memoize.Cache || Map)()
-  return memoized
+    const result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || Map)();
+  return memoized;
 }
 
-memoize.Cache = Map
+memoize.Cache = Map;
 
 /** Used as the maximum memoize cache size. */
-const MAX_MEMOIZE_SIZE = 500
+const MAX_MEMOIZE_SIZE = 500;
 
 /**
  * A specialized version of `memoize` which clears the memoized function's
@@ -139,18 +139,18 @@ const MAX_MEMOIZE_SIZE = 500
  */
 function memoizeCapped(func) {
   const result = memoize(func, key => {
-    const { cache } = result
+    const { cache } = result;
     if (cache.size === MAX_MEMOIZE_SIZE) {
-      cache.clear()
+      cache.clear();
     }
-    return key
-  })
+    return key;
+  });
 
-  return result
+  return result;
 }
 
-const charCodeOfDot = '.'.charCodeAt(0)
-const reEscapeChar = /\\(\\)?/g
+const charCodeOfDot = '.'.charCodeAt(0);
+const reEscapeChar = /\\(\\)?/g;
 const rePropName = RegExp(
   // Match anything that isn't a dot or bracket.
   '[^.[\\]]+' +
@@ -167,7 +167,7 @@ const rePropName = RegExp(
     // Or match "" as the space between consecutive dots or empty brackets.
     '(?=(?:\\.|\\[\\])(?:\\.|\\[\\]|$))',
   'g'
-)
+);
 
 /**
  * Converts `string` to a property path array.
@@ -177,21 +177,21 @@ const rePropName = RegExp(
  * @returns {Array} Returns the property path array.
  */
 const stringToPath = memoizeCapped(string => {
-  const result = []
+  const result = [];
   if (string.charCodeAt(0) === charCodeOfDot) {
-    result.push('')
+    result.push('');
   }
   string.replace(rePropName, (match, expression, quote, subString) => {
-    let key = match
+    let key = match;
     if (quote) {
-      key = subString.replace(reEscapeChar, '$1')
+      key = subString.replace(reEscapeChar, '$1');
     } else if (expression) {
-      key = expression.trim()
+      key = expression.trim();
     }
-    result.push(key)
-  })
-  return result
-})
+    result.push(key);
+  });
+  return result;
+});
 
 /**
  * Casts `value` to a path array if it's not one.
@@ -203,12 +203,12 @@ const stringToPath = memoizeCapped(string => {
  */
 function castPath(value, object) {
   if (Array.isArray(value)) {
-    return value
+    return value;
   }
-  return isKey(value, object) ? [value] : stringToPath(value)
+  return isKey(value, object) ? [value] : stringToPath(value);
 }
 
 export default {
   castPath,
   stringToPath,
-}
+};

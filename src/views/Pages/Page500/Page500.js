@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Button,
   Col,
@@ -8,7 +8,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
-} from 'reactstrap'
+} from 'reactstrap';
 
 const Page500 = () => {
   return (
@@ -38,7 +38,7 @@ const Page500 = () => {
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Page500
+export default Page500;

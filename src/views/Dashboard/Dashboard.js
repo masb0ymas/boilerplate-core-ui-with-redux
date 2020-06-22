@@ -1,6 +1,6 @@
 /* eslint-disable prefer-spread */
-import React, { Component, lazy, Suspense } from 'react'
-import { Bar, Line } from 'react-chartjs-2'
+import React, { Component, lazy, Suspense } from 'react';
+import { Bar, Line } from 'react-chartjs-2';
 import {
   Badge,
   Button,
@@ -19,21 +19,21 @@ import {
   DropdownToggle,
   Progress,
   Row,
-  Table
-} from 'reactstrap'
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips'
-import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
+  Table,
+} from 'reactstrap';
+import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Widget03 = lazy(() => import('../Widgets/Widget03'))
+const Widget03 = lazy(() => import('../Widgets/Widget03'));
 
-const brandPrimary = getStyle('--primary')
-const brandSuccess = getStyle('--success')
-const brandInfo = getStyle('--info')
-const brandWarning = getStyle('--warning')
-const brandDanger = getStyle('--danger')
+const brandPrimary = getStyle('--primary');
+const brandSuccess = getStyle('--success');
+const brandInfo = getStyle('--info');
+const brandWarning = getStyle('--warning');
+const brandDanger = getStyle('--danger');
 
 // Card Chart 1
 const cardChartData1 = {
@@ -43,32 +43,32 @@ const cardChartData1 = {
       label: 'My First dataset',
       backgroundColor: brandPrimary,
       borderColor: 'rgba(255,255,255,.55)',
-      data: [65, 59, 84, 84, 51, 55, 40]
-    }
-  ]
-}
+      data: [65, 59, 84, 84, 51, 55, 40],
+    },
+  ],
+};
 
 const cardChartOpts1 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
-    display: false
+    display: false,
   },
   scales: {
     xAxes: [
       {
         gridLines: {
           color: 'transparent',
-          zeroLineColor: 'transparent'
+          zeroLineColor: 'transparent',
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent'
-        }
-      }
+          fontColor: 'transparent',
+        },
+      },
     ],
     yAxes: [
       {
@@ -76,22 +76,22 @@ const cardChartOpts1 = {
         ticks: {
           display: false,
           min: Math.min.apply(Math, cardChartData1.datasets[0].data) - 5,
-          max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5
-        }
-      }
-    ]
+          max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5,
+        },
+      },
+    ],
   },
   elements: {
     line: {
-      borderWidth: 1
+      borderWidth: 1,
     },
     point: {
       radius: 4,
       hitRadius: 10,
-      hoverRadius: 4
-    }
-  }
-}
+      hoverRadius: 4,
+    },
+  },
+};
 
 // Card Chart 2
 const cardChartData2 = {
@@ -101,32 +101,32 @@ const cardChartData2 = {
       label: 'My First dataset',
       backgroundColor: brandInfo,
       borderColor: 'rgba(255,255,255,.55)',
-      data: [1, 18, 9, 17, 34, 22, 11]
-    }
-  ]
-}
+      data: [1, 18, 9, 17, 34, 22, 11],
+    },
+  ],
+};
 
 const cardChartOpts2 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
-    display: false
+    display: false,
   },
   scales: {
     xAxes: [
       {
         gridLines: {
           color: 'transparent',
-          zeroLineColor: 'transparent'
+          zeroLineColor: 'transparent',
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent'
-        }
-      }
+          fontColor: 'transparent',
+        },
+      },
     ],
     yAxes: [
       {
@@ -134,23 +134,23 @@ const cardChartOpts2 = {
         ticks: {
           display: false,
           min: Math.min.apply(Math, cardChartData2.datasets[0].data) - 5,
-          max: Math.max.apply(Math, cardChartData2.datasets[0].data) + 5
-        }
-      }
-    ]
+          max: Math.max.apply(Math, cardChartData2.datasets[0].data) + 5,
+        },
+      },
+    ],
   },
   elements: {
     line: {
       tension: 0.00001,
-      borderWidth: 1
+      borderWidth: 1,
     },
     point: {
       radius: 4,
       hitRadius: 10,
-      hoverRadius: 4
-    }
-  }
-}
+      hoverRadius: 4,
+    },
+  },
+};
 
 // Card Chart 3
 const cardChartData3 = {
@@ -160,43 +160,43 @@ const cardChartData3 = {
       label: 'My First dataset',
       backgroundColor: 'rgba(255,255,255,.2)',
       borderColor: 'rgba(255,255,255,.55)',
-      data: [78, 81, 80, 45, 34, 12, 40]
-    }
-  ]
-}
+      data: [78, 81, 80, 45, 34, 12, 40],
+    },
+  ],
+};
 
 const cardChartOpts3 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
-    display: false
+    display: false,
   },
   scales: {
     xAxes: [
       {
-        display: false
-      }
+        display: false,
+      },
     ],
     yAxes: [
       {
-        display: false
-      }
-    ]
+        display: false,
+      },
+    ],
   },
   elements: {
     line: {
-      borderWidth: 2
+      borderWidth: 2,
     },
     point: {
       radius: 0,
       hitRadius: 10,
-      hoverRadius: 4
-    }
-  }
-}
+      hoverRadius: 4,
+    },
+  },
+};
 
 // Card Chart 4
 const cardChartData4 = {
@@ -206,45 +206,45 @@ const cardChartData4 = {
       label: 'My First dataset',
       backgroundColor: 'rgba(255,255,255,.3)',
       borderColor: 'transparent',
-      data: [78, 81, 80, 45, 34, 12, 40, 75, 34, 89, 32, 68, 54, 72, 18, 98]
-    }
-  ]
-}
+      data: [78, 81, 80, 45, 34, 12, 40, 75, 34, 89, 32, 68, 54, 72, 18, 98],
+    },
+  ],
+};
 
 const cardChartOpts4 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
-    display: false
+    display: false,
   },
   scales: {
     xAxes: [
       {
         display: false,
-        barPercentage: 0.6
-      }
+        barPercentage: 0.6,
+      },
     ],
     yAxes: [
       {
-        display: false
-      }
-    ]
-  }
-}
+        display: false,
+      },
+    ],
+  },
+};
 
 // Social Box Chart
 const socialBoxData = [
   { data: [65, 59, 84, 84, 51, 55, 40], label: 'facebook' },
   { data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter' },
   { data: [78, 81, 80, 45, 34, 12, 40], label: 'linkedin' },
-  { data: [35, 23, 56, 22, 97, 23, 64], label: 'google' }
-]
+  { data: [35, 23, 56, 22, 97, 23, 64], label: 'google' },
+];
 
 const makeSocialBoxData = dataSetNo => {
-  const dataset = socialBoxData[dataSetNo]
+  const dataset = socialBoxData[dataSetNo];
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -254,75 +254,75 @@ const makeSocialBoxData = dataSetNo => {
         pointHoverBackgroundColor: '#fff',
         borderWidth: 2,
         data: dataset.data,
-        label: dataset.label
-      }
-    ]
-  }
-  return () => data
-}
+        label: dataset.label,
+      },
+    ],
+  };
+  return () => data;
+};
 
 const socialChartOpts = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   responsive: true,
   maintainAspectRatio: false,
   legend: {
-    display: false
+    display: false,
   },
   scales: {
     xAxes: [
       {
-        display: false
-      }
+        display: false,
+      },
     ],
     yAxes: [
       {
-        display: false
-      }
-    ]
+        display: false,
+      },
+    ],
   },
   elements: {
     point: {
       radius: 0,
       hitRadius: 10,
       hoverRadius: 4,
-      hoverBorderWidth: 3
-    }
-  }
-}
+      hoverBorderWidth: 3,
+    },
+  },
+};
 
 // sparkline charts
 const sparkLineChartData = [
   {
     data: [35, 23, 56, 22, 97, 23, 64],
-    label: 'New Clients'
+    label: 'New Clients',
   },
   {
     data: [65, 59, 84, 84, 51, 55, 40],
-    label: 'Recurring Clients'
+    label: 'Recurring Clients',
   },
   {
     data: [35, 23, 56, 22, 97, 23, 64],
-    label: 'Pageviews'
+    label: 'Pageviews',
   },
   {
     data: [65, 59, 84, 84, 51, 55, 40],
-    label: 'Organic'
+    label: 'Organic',
   },
   {
     data: [78, 81, 80, 45, 34, 12, 40],
-    label: 'CTR'
+    label: 'CTR',
   },
   {
     data: [1, 13, 9, 17, 34, 41, 38],
-    label: 'Bounce Rate'
-  }
-]
+    label: 'Bounce Rate',
+  },
+];
 
 const makeSparkLineData = (dataSetNo, variant) => {
-  const dataset = sparkLineChartData[dataSetNo]
+  const dataset = sparkLineChartData[dataSetNo];
   const data = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     datasets: [
@@ -330,64 +330,64 @@ const makeSparkLineData = (dataSetNo, variant) => {
         backgroundColor: 'transparent',
         borderColor: variant || '#c2cfd6',
         data: dataset.data,
-        label: dataset.label
-      }
-    ]
-  }
-  return () => data
-}
+        label: dataset.label,
+      },
+    ],
+  };
+  return () => data;
+};
 
 const sparklineChartOpts = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   responsive: true,
   maintainAspectRatio: true,
   scales: {
     xAxes: [
       {
-        display: false
-      }
+        display: false,
+      },
     ],
     yAxes: [
       {
-        display: false
-      }
-    ]
+        display: false,
+      },
+    ],
   },
   elements: {
     line: {
-      borderWidth: 2
+      borderWidth: 2,
     },
     point: {
       radius: 0,
       hitRadius: 10,
       hoverRadius: 4,
-      hoverBorderWidth: 3
-    }
+      hoverBorderWidth: 3,
+    },
   },
   legend: {
-    display: false
-  }
-}
+    display: false,
+  },
+};
 
 // Main Chart
 
 // Random Numbers
 function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const elements = 27
-const data1 = []
-const data2 = []
-const data3 = []
+const elements = 27;
+const data1 = [];
+const data2 = [];
+const data3 = [];
 
 for (let i = 0; i <= elements; i += 1) {
-  data1.push(random(50, 200))
-  data2.push(random(80, 100))
-  data3.push(65)
+  data1.push(random(50, 200));
+  data2.push(random(80, 100));
+  data3.push(65);
 }
 
 const mainChart = {
@@ -419,7 +419,7 @@ const mainChart = {
     'Th',
     'Fr',
     'Sa',
-    'Su'
+    'Su',
   ],
   datasets: [
     {
@@ -428,7 +428,7 @@ const mainChart = {
       borderColor: brandInfo,
       pointHoverBackgroundColor: '#fff',
       borderWidth: 2,
-      data: data1
+      data: data1,
     },
     {
       label: 'My Second dataset',
@@ -436,7 +436,7 @@ const mainChart = {
       borderColor: brandSuccess,
       pointHoverBackgroundColor: '#fff',
       borderWidth: 2,
-      data: data2
+      data: data2,
     },
     {
       label: 'My Third dataset',
@@ -445,10 +445,10 @@ const mainChart = {
       pointHoverBackgroundColor: '#fff',
       borderWidth: 1,
       borderDash: [8, 5],
-      data: data3
-    }
-  ]
-}
+      data: data3,
+    },
+  ],
+};
 
 const mainChartOpts = {
   tooltips: {
@@ -459,21 +459,21 @@ const mainChartOpts = {
     position: 'nearest',
     callbacks: {
       labelColor(tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
-      }
-    }
+        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+      },
+    },
   },
   maintainAspectRatio: false,
   legend: {
-    display: false
+    display: false,
   },
   scales: {
     xAxes: [
       {
         gridLines: {
-          drawOnChartArea: false
-        }
-      }
+          drawOnChartArea: false,
+        },
+      },
     ],
     yAxes: [
       {
@@ -481,53 +481,53 @@ const mainChartOpts = {
           beginAtZero: true,
           maxTicksLimit: 5,
           stepSize: Math.ceil(250 / 5),
-          max: 250
-        }
-      }
-    ]
+          max: 250,
+        },
+      },
+    ],
   },
   elements: {
     point: {
       radius: 0,
       hitRadius: 10,
       hoverRadius: 4,
-      hoverBorderWidth: 3
-    }
-  }
-}
+      hoverBorderWidth: 3,
+    },
+  },
+};
 
 class Dashboard extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.toggle = this.toggle.bind(this)
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
+    this.toggle = this.toggle.bind(this);
+    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
 
     this.state = {
       dropdownOpen: false,
-      radioSelected: 2
-    }
+      radioSelected: 2,
+    };
   }
 
   onRadioBtnClick(radioSelected) {
     this.setState({
-      radioSelected
-    })
+      radioSelected,
+    });
   }
 
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
 
   toggle() {
-    const { dropdownOpen } = this.state
+    const { dropdownOpen } = this.state;
     this.setState({
-      dropdownOpen: !dropdownOpen
-    })
+      dropdownOpen: !dropdownOpen,
+    });
   }
 
   render() {
-    const { card1, card2, card3, card4, radioSelected } = this.state
-    const { auth } = this.props
-    if (!auth) return <Redirect to="/login" />
+    const { card1, card2, card3, card4, radioSelected } = this.state;
+    const { auth } = this.props;
+    if (!auth) return <Redirect to="/login" />;
 
     return (
       <div className="animated fadeIn">
@@ -540,7 +540,7 @@ class Dashboard extends Component {
                     id="card1"
                     isOpen={card1}
                     toggle={() => {
-                      this.setState({ card1: !card1 })
+                      this.setState({ card1: !card1 });
                     }}
                   >
                     <DropdownToggle caret className="p-0" color="transparent">
@@ -571,7 +571,7 @@ class Dashboard extends Component {
                     id="card2"
                     isOpen={card2}
                     toggle={() => {
-                      this.setState({ card2: !card2 })
+                      this.setState({ card2: !card2 });
                     }}
                   >
                     <DropdownToggle className="p-0" color="transparent">
@@ -601,7 +601,7 @@ class Dashboard extends Component {
                     id="card3"
                     isOpen={card3}
                     toggle={() => {
-                      this.setState({ card3: !card3 })
+                      this.setState({ card3: !card3 });
                     }}
                   >
                     <DropdownToggle caret className="p-0" color="transparent">
@@ -631,7 +631,7 @@ class Dashboard extends Component {
                     id="card4"
                     isOpen={card4}
                     toggle={() => {
-                      this.setState({ card4: !card4 })
+                      this.setState({ card4: !card4 });
                     }}
                   >
                     <DropdownToggle caret className="p-0" color="transparent">
@@ -1281,16 +1281,16 @@ class Dashboard extends Component {
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }
 
 Dashboard.propTypes = {
-  auth: PropTypes.bool
-}
+  auth: PropTypes.bool,
+};
 
 const mapStateToProps = state => ({
-  auth: state.auth.authenticated
-})
+  auth: state.auth.authenticated,
+});
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Dashboard);

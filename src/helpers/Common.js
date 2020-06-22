@@ -1,44 +1,44 @@
-import React from 'react'
-import jwt from 'jsonwebtoken'
-import { Button } from 'reactstrap'
+import React from 'react';
+import jwt from 'jsonwebtoken';
+import { Button } from 'reactstrap';
 
-const invalidValues = [undefined, null, '']
+const invalidValues = [undefined, null, ''];
 
 const userData = () => {
-  const token = localStorage.getItem('token')
-  let User = ''
+  const token = localStorage.getItem('token');
+  let User = '';
 
   if (token) {
-    let getToken = ''
-    const splitToken = token.split(' ')
+    let getToken = '';
+    const splitToken = token.split(' ');
     if (splitToken.length === 2) {
-      ;[, getToken] = splitToken
+      [, getToken] = splitToken;
     }
 
-    User = jwt.decode(getToken)
+    User = jwt.decode(getToken);
   }
-  return User
-}
+  return User;
+};
 
 const formDataFilterByKeys = objFormData => {
-  const formData = new FormData()
-  const ObjKeys = Object.keys(objFormData)
+  const formData = new FormData();
+  const ObjKeys = Object.keys(objFormData);
 
   for (let i = 0; i < ObjKeys.length; i += 1) {
-    const dataItems = ObjKeys[i]
+    const dataItems = ObjKeys[i];
     if (objFormData[dataItems]) {
-      formData.append(dataItems, objFormData[dataItems])
+      formData.append(dataItems, objFormData[dataItems]);
     }
   }
-  return formData
-}
+  return formData;
+};
 
 const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
-  let filterFileSize = ''
+  let filterFileSize = '';
   if (Math.ceil(fileSize / 1024) > 1024) {
-    filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`
+    filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`;
   } else {
-    filterFileSize = `${Math.ceil(fileSize / 1024)} Kb`
+    filterFileSize = `${Math.ceil(fileSize / 1024)} Kb`;
   }
   return (
     <>
@@ -62,15 +62,15 @@ const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
         <span>&nbsp;</span>
       )}
     </>
-  )
-}
+  );
+};
 
 const badgeSizeDokumen = fileSize => {
-  let filterFileSize = ''
+  let filterFileSize = '';
   if (Math.ceil(fileSize / 1024) > 1024) {
-    filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`
+    filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`;
   } else {
-    filterFileSize = `${Math.ceil(fileSize / 1024)} Kb`
+    filterFileSize = `${Math.ceil(fileSize / 1024)} Kb`;
   }
 
   return (
@@ -81,19 +81,19 @@ const badgeSizeDokumen = fileSize => {
         </Button>
       )}
     </>
-  )
-}
+  );
+};
 
 const badgeTypeDokumen = fileType => {
-  const typeImage = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/svg+xml']
-  const typeDok = ['application/pdf']
+  const typeImage = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/svg+xml'];
+  const typeDok = ['application/pdf'];
 
   if (typeImage.includes(fileType)) {
     return (
       <Button type="button" size="sm" color="success" disabled>
         <b>{fileType}</b>
       </Button>
-    )
+    );
   }
 
   if (typeDok.includes(fileType)) {
@@ -101,25 +101,25 @@ const badgeTypeDokumen = fileType => {
       <Button type="button" size="sm" color="danger" disabled>
         <b>{fileType}</b>
       </Button>
-    )
+    );
   }
-}
+};
 
 const checkFilePreview = paramsURL => (
   <a href={paramsURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
     Lihat File
   </a>
-)
+);
 
 const placeholderInputFile = () => (
   <span style={{ color: 'rgba(54, 54, 54, 0.3)' }}>File belum diupload...</span>
-)
+);
 
 const requireLabel = () => (
   <span className="text-danger" style={{ paddingLeft: '1px' }}>
     *
   </span>
-)
+);
 
 export {
   userData,
@@ -130,4 +130,4 @@ export {
   badgeSizeDokumen,
   badgeTypeDokumen,
   checkFilePreview,
-}
+};

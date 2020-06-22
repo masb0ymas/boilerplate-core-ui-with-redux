@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Button,
   Card,
@@ -12,7 +12,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
-} from 'reactstrap'
+} from 'reactstrap';
 
 const Register = () => {
   return (
@@ -83,7 +83,7 @@ const Register = () => {
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

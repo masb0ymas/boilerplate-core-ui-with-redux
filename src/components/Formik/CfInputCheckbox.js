@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Input } from 'reactstrap'
-import ErrorView from './ErrorView'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Input } from 'reactstrap';
+import ErrorView from './ErrorView';
 
 const CfInputCheckbox = ({ label, field, form, ...props }) => (
   <>
@@ -16,7 +16,7 @@ const CfInputCheckbox = ({ label, field, form, ...props }) => (
 
     <ErrorView name={field.name} />
   </>
-)
+);
 
 CfInputCheckbox.propTypes = {
   label: PropTypes.oneOfType([
@@ -40,6 +40,6 @@ CfInputCheckbox.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-}
+};
 
-export default CfInputCheckbox
+export default CfInputCheckbox;

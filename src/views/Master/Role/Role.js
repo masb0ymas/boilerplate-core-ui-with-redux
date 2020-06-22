@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unused-state */
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Button,
   Card,
@@ -13,24 +13,24 @@ import {
   ModalHeader,
   Spinner,
   FormGroup,
-} from 'reactstrap'
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
-import Service from '../../../config/services'
-import { CfInput } from '../../../components'
-import { AlertMessage, ErrorMessage } from '../../../helpers'
-import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
+} from 'reactstrap';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import Service from '../../../config/services';
+import { CfInput } from '../../../components';
+import { AlertMessage, ErrorMessage } from '../../../helpers';
+import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions';
 
-const invalidValues = [undefined, null, '', false]
+const invalidValues = [undefined, null, '', false];
 
 const roleSchema = Yup.object().shape({
   nama: Yup.string().required('nama role belum diisi'),
-})
+});
 
 class Role extends Component {
   state = {
@@ -40,19 +40,19 @@ class Role extends Component {
     pages: null,
     currentPage: 1,
     perPage: 10,
-  }
+  };
 
   initialValues = {
     nama: '',
     id: '',
-  }
+  };
 
   fetchDataTable = state => {
-    const { page, pageSize, filtered, sorted } = state
-    const filterString = JSON.stringify(filtered)
-    const sortString = JSON.stringify(sorted)
-    const params = `?page=${page}&pageSize=${pageSize}&sorted=${sortString}&filtered=${filterString}`
-    const paramsEncode = encodeURI(params)
+    const { page, pageSize, filtered, sorted } = state;
+    const filterString = JSON.stringify(filtered);
+    const sortString = JSON.stringify(sorted);
+    const params = `?page=${page}&pageSize=${pageSize}&sorted=${sortString}&filtered=${filterString}`;
+    const paramsEncode = encodeURI(params);
 
     Service.getRoles(paramsEncode).then(res => {
       this.setState({
@@ -62,67 +62,67 @@ class Role extends Component {
         pages:
           parseInt(res.data.totalRow / pageSize, 10) + (res.data.totalRow % pageSize > 0 ? 1 : 0),
         loading: false,
-      })
-    })
-  }
+      });
+    });
+  };
 
   handleShow = (e, state) => {
-    const { modal } = this.state
+    const { modal } = this.state;
     this.setState({
       modal: !modal,
-    })
+    });
 
     this.initialValues = {
       nama: state.nama,
       id: state.id,
-    }
-  }
+    };
+  };
 
   toggle = () => {
-    const { modal } = this.state
+    const { modal } = this.state;
     this.setState({
       modal: !modal,
-    })
+    });
 
     this.initialValues = {
       nama: '',
       id: '',
-    }
-  }
+    };
+  };
 
   handleSaveChanges = values => {
-    const { id } = values
-    const { createRole, updateRole } = this.props
+    const { id } = values;
+    const { createRole, updateRole } = this.props;
     if (!invalidValues.includes(id)) {
-      updateRole(values, id)
+      updateRole(values, id);
     } else {
-      createRole(values)
+      createRole(values);
     }
-  }
+  };
 
   handleDelete = (e, state) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const { id } = state
-    const { deleteRole } = this.props
+    const { id } = state;
+    const { deleteRole } = this.props;
 
     AlertMessage.warning()
       .then(result => {
         if (result.value) {
-          console.log('delete object', id)
-          deleteRole(id)
+          console.log('delete object', id);
+          deleteRole(id);
         } else {
           const paramsResponse = {
             title: 'Huff',
             text: 'Hampir saja kamu kehilangan data ini',
-          }
-          AlertMessage.info(paramsResponse)
+          };
+          AlertMessage.info(paramsResponse);
         }
       })
       .catch(err => {
-        AlertMessage.error(err) // Internal Server Error
-      })
-  }
+        AlertMessage.error(err); // Internal Server Error
+      });
+  };
 
   render() {
     const columns = [
@@ -166,14 +166,14 @@ class Role extends Component {
           </Button>
         ),
       },
-    ]
+    ];
 
-    const pageName = 'Role'
-    const { listRole, modal, pages, loading } = this.state
-    const { message, isLoading, auth, className } = this.props
-    const isIcon = { paddingRight: '7px' }
+    const pageName = 'Role';
+    const { listRole, modal, pages, loading } = this.state;
+    const { message, isLoading, auth, className } = this.props;
+    const isIcon = { paddingRight: '7px' };
 
-    if (!auth) return <Redirect to="/login" />
+    if (!auth) return <Redirect to="/login" />;
 
     return (
       <div className="animated fadeIn">
@@ -218,9 +218,9 @@ class Role extends Component {
                 validationSchema={roleSchema}
                 onSubmit={(values, actions) => {
                   setTimeout(() => {
-                    this.handleSaveChanges(values)
-                    actions.setSubmitting(false)
-                  }, 1000)
+                    this.handleSaveChanges(values);
+                    actions.setSubmitting(false);
+                  }, 1000);
                 }}
               >
                 {({ isSubmitting }) => (
@@ -267,7 +267,7 @@ class Role extends Component {
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }
 
@@ -279,18 +279,18 @@ Role.propTypes = {
   createRole: PropTypes.func.isRequired,
   updateRole: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   auth: state.auth.authenticated,
   isLoading: state.role.isLoading,
   message: state.role.message,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   createRole: rowData => dispatch(createRole(rowData)),
   updateRole: (rowData, id) => dispatch(updateRole(rowData, id)),
   deleteRole: id => dispatch(deleteRole(id)),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Role)
+export default connect(mapStateToProps, mapDispatchToProps)(Role);
