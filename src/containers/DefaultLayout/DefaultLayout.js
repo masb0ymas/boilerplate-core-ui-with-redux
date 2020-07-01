@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-duplicates */
-import React, { Component, Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import * as router from 'react-router-dom';
-import { Container } from 'reactstrap';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component, Suspense } from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import * as router from 'react-router-dom'
+import { Container } from 'reactstrap'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import {
   AppAside,
@@ -18,33 +18,33 @@ import {
   AppSidebarMinimizer,
   AppBreadcrumb2 as AppBreadcrumb,
   AppSidebarNav2 as AppSidebarNav,
-} from '@coreui/react';
+} from '@coreui/react'
 // sidebar nav config
-import navigation from '../../_nav';
+import navigation from '../../_nav'
 // routes config
-import routes from '../../routes';
+import routes from '../../routes'
 
-const DefaultAside = React.lazy(() => import('./DefaultAside'));
-const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
-const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
+const DefaultAside = React.lazy(() => import('./DefaultAside'))
+const DefaultFooter = React.lazy(() => import('./DefaultFooter'))
+const DefaultHeader = React.lazy(() => import('./DefaultHeader'))
 
 class DefaultLayout extends Component {
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>;
+  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
-    e.preventDefault();
-    const { history } = this.props;
-    history.push('/login');
+    e.preventDefault()
+    const { history } = this.props
+    history.push('/login')
   }
 
   render() {
-    const { isVerify, auth } = this.props;
+    const { isVerify, auth } = this.props
     if (isVerify) {
-      console.log('verifying');
-      return 'verifying...';
+      console.log('verifying')
+      return 'verifying...'
     }
 
-    if (!auth) return <Redirect to="/login" />;
+    if (!auth) return <Redirect to="/login" />
 
     return (
       <div className="app">
@@ -77,7 +77,7 @@ class DefaultLayout extends Component {
                         name={route.name}
                         render={props => <route.component {...props} />}
                       />
-                    ) : null;
+                    ) : null
                   })}
                   <Redirect from="/" to="/dashboard" />
                 </Switch>
@@ -96,7 +96,7 @@ class DefaultLayout extends Component {
           </Suspense>
         </AppFooter>
       </div>
-    );
+    )
   }
 }
 
@@ -106,11 +106,11 @@ DefaultLayout.propTypes = {
   }),
   isVerify: PropTypes.bool,
   auth: PropTypes.bool,
-};
+}
 
 const mapStateToProps = state => ({
   auth: state.auth.authenticated,
   isVerify: state.auth.isVerify,
-});
+})
 
-export default connect(mapStateToProps)(DefaultLayout);
+export default connect(mapStateToProps)(DefaultLayout)

@@ -1,5 +1,5 @@
-import Service from '../../config/services';
-import { AlertMessage } from '../../helpers';
+import Service from '../../config/services'
+import { AlertMessage } from '../../helpers'
 
 import {
   SIGNIN_LOADING,
@@ -18,120 +18,120 @@ import {
   RESET_PASSWORD_LOADING,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_ERROR,
-} from './types';
+} from './types'
 
 export const signIn = credentials => async dispatch => {
   try {
-    dispatch({ type: SIGNIN_LOADING, isLoading: true });
+    dispatch({ type: SIGNIN_LOADING, isLoading: true })
     // Call API
-    const res = await Service.signIn(credentials);
-    localStorage.setItem('token', res.data.token);
-    localStorage.setItem('uid', res.data.uid);
-    localStorage.setItem('rid', res.data.rid);
-    dispatch({ type: AUTHENTICATED, isLoading: false });
+    const res = await Service.signIn(credentials)
+    localStorage.setItem('token', res.data.token)
+    localStorage.setItem('uid', res.data.uid)
+    localStorage.setItem('rid', res.data.rid)
+    dispatch({ type: AUTHENTICATED, isLoading: false })
   } catch (err) {
-    const errMsg = err.response ? err.response.data.message : 'Internal Server Error';
+    const errMsg = err.response ? err.response.data.message : 'Internal Server Error'
 
     dispatch({
       type: AUTHENTICATION_ERROR,
       payload: errMsg,
       isLoading: false,
-    });
+    })
   }
-};
+}
 
 export const signUp = rowData => async dispatch => {
-  let ObjError = '';
-  const paramsResponse = {};
+  let ObjError = ''
+  const paramsResponse = {}
 
   try {
-    dispatch({ type: SIGNUP_LOADING, isLoading: true });
+    dispatch({ type: SIGNUP_LOADING, isLoading: true })
     // Call API
-    const res = await Service.signUp(rowData);
-    dispatch({ type: SIGNUP_SUCCESS, isLoading: false });
+    const res = await Service.signUp(rowData)
+    dispatch({ type: SIGNUP_SUCCESS, isLoading: false })
 
-    paramsResponse.title = 'Success';
-    paramsResponse.text = res.data.message;
-    AlertMessage.success(paramsResponse).then(() => window.location.reload());
+    paramsResponse.title = 'Success'
+    paramsResponse.text = res.data.message
+    AlertMessage.success(paramsResponse).then(() => window.location.reload())
   } catch (err) {
-    ObjError = err.response.data;
+    ObjError = err.response.data
 
-    dispatch({ type: SIGNUP_ERROR, payload: ObjError, isLoading: false });
-    AlertMessage.error(err);
+    dispatch({ type: SIGNUP_ERROR, payload: ObjError, isLoading: false })
+    AlertMessage.error(err)
   }
-};
+}
 
 export const changePass = (rowData, id) => async dispatch => {
-  let ObjError = '';
-  const paramsResponse = {};
+  let ObjError = ''
+  const paramsResponse = {}
 
   try {
-    dispatch({ type: CHANGE_PASSWORD_LOADING, isLoading: true });
+    dispatch({ type: CHANGE_PASSWORD_LOADING, isLoading: true })
     // Call API
-    const resChangePass = await Service.changePassword(rowData, id);
-    dispatch({ type: CHANGE_PASSWORD_SUCCESS, isLoading: false });
+    const resChangePass = await Service.changePassword(rowData, id)
+    dispatch({ type: CHANGE_PASSWORD_SUCCESS, isLoading: false })
 
-    paramsResponse.title = 'Success';
-    paramsResponse.text = resChangePass.data.message;
-    AlertMessage.success(paramsResponse).then(() => window.location.reload());
+    paramsResponse.title = 'Success'
+    paramsResponse.text = resChangePass.data.message
+    AlertMessage.success(paramsResponse).then(() => window.location.reload())
   } catch (err) {
-    ObjError = err.response && err.response.data.message;
+    ObjError = err.response && err.response.data.message
 
-    dispatch({ type: CHANGE_PASSWORD_ERROR, payload: ObjError, isLoading: false });
-    AlertMessage.error(err);
+    dispatch({ type: CHANGE_PASSWORD_ERROR, payload: ObjError, isLoading: false })
+    AlertMessage.error(err)
   }
-};
+}
 
 export const forgotPass = rowData => async dispatch => {
-  let ObjError = '';
-  const paramsResponse = {};
+  let ObjError = ''
+  const paramsResponse = {}
 
   try {
-    dispatch({ type: FORGOT_PASSWORD_LOADING, isLoading: true });
+    dispatch({ type: FORGOT_PASSWORD_LOADING, isLoading: true })
     // Call API
-    const res = await Service.forgotPassword(rowData);
-    dispatch({ type: FORGOT_PASSWORD_SUCCESS, isLoading: false });
+    const res = await Service.forgotPassword(rowData)
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, isLoading: false })
 
-    paramsResponse.title = 'Success';
-    paramsResponse.text = res.data.message;
-    AlertMessage.success(paramsResponse).then(() => window.location.reload());
+    paramsResponse.title = 'Success'
+    paramsResponse.text = res.data.message
+    AlertMessage.success(paramsResponse).then(() => window.location.reload())
   } catch (err) {
-    ObjError = err.response && err.response.data.message;
+    ObjError = err.response && err.response.data.message
 
     dispatch({
       type: FORGOT_PASSWORD_ERROR,
       payload: ObjError,
       isLoading: false,
-    });
-    AlertMessage.error(err);
+    })
+    AlertMessage.error(err)
   }
-};
+}
 
 export const resetPass = (rowData, id) => async dispatch => {
-  let ObjError = '';
-  const paramsResponse = {};
+  let ObjError = ''
+  const paramsResponse = {}
 
   try {
-    dispatch({ type: RESET_PASSWORD_LOADING, isLoading: true });
+    dispatch({ type: RESET_PASSWORD_LOADING, isLoading: true })
     // Call API
-    const resResetPass = await Service.resetPassword(rowData, id);
-    dispatch({ type: RESET_PASSWORD_SUCCESS, isLoading: false });
+    const resResetPass = await Service.resetPassword(rowData, id)
+    dispatch({ type: RESET_PASSWORD_SUCCESS, isLoading: false })
 
-    paramsResponse.title = 'Success';
-    paramsResponse.text = resResetPass.data.message;
-    AlertMessage.success(paramsResponse).then(() => window.location.reload());
+    paramsResponse.title = 'Success'
+    paramsResponse.text = resResetPass.data.message
+    AlertMessage.success(paramsResponse).then(() => window.location.reload())
   } catch (err) {
-    ObjError = err.response && err.response.data.message;
+    ObjError = err.response && err.response.data.message
 
-    dispatch({ type: RESET_PASSWORD_ERROR, payload: ObjError, isLoading: false });
-    AlertMessage.error(err);
+    dispatch({ type: RESET_PASSWORD_ERROR, payload: ObjError, isLoading: false })
+    AlertMessage.error(err)
   }
-};
+}
 
 export const signOut = () => dispatch => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('uid');
-  localStorage.removeItem('rid');
-  dispatch({ type: UNAUTHENTICATED });
-  window.location.href = '/#/login';
-};
+  localStorage.removeItem('token')
+  localStorage.removeItem('uid')
+  localStorage.removeItem('rid')
+  dispatch({ type: UNAUTHENTICATED })
+  window.location.href = '/#/login'
+}

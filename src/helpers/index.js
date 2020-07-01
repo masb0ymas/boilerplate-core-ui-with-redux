@@ -1,4 +1,4 @@
-import { AlertMessage, ErrorMessage } from './Alert';
+import { AlertMessage, ErrorMessage } from './Alert'
 import {
   userData,
   formDataFilterByKeys,
@@ -7,7 +7,7 @@ import {
   badgeSizeDokumen,
   badgeTypeDokumen,
   checkFilePreview,
-} from './Common';
+} from './Common'
 
 export {
   AlertMessage,
@@ -19,4 +19,4 @@ export {
   badgeSizeDokumen,
   badgeTypeDokumen,
   checkFilePreview,
-};
+}

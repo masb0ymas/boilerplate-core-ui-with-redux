@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Label } from 'reactstrap';
-import { requireLabel } from '../../helpers';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
 
 const CfInputGroup = ({
   label,
@@ -14,14 +14,14 @@ const CfInputGroup = ({
   ...props
 }) => {
   const handleChangeInput = e => {
-    const { value } = e.currentTarget;
+    const { value } = e.currentTarget
 
     if (onInputChange) {
-      onInputChange(field.name, value);
+      onInputChange(field.name, value)
     }
 
-    setFieldValue(field.name, value);
-  };
+    setFieldValue(field.name, value)
+  }
 
   return (
     <>
@@ -45,8 +45,8 @@ const CfInputGroup = ({
         <span className="form-text text-danger">{errors[field.name]}</span>
       )}
     </>
-  );
-};
+  )
+}
 
 CfInputGroup.propTypes = {
   label: PropTypes.oneOfType([
@@ -98,6 +98,6 @@ CfInputGroup.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export default CfInputGroup;
+export default CfInputGroup

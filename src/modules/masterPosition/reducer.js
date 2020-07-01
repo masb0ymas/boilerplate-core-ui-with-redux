@@ -8,7 +8,7 @@ import {
   ADMIN_DELETE_POSITION_LOADING,
   ADMIN_DELETE_POSITION_SUCCESS,
   ADMIN_DELETE_POSITION_ERROR,
-} from './types';
+} from './types'
 
 const positionReducer = (state = {}, action) => {
   switch (action.type) {
@@ -17,58 +17,58 @@ const positionReducer = (state = {}, action) => {
       return {
         ...state,
         isLoading: action.isLoading,
-      };
+      }
     case ADMIN_CREATE_POSITION_SUCCESS:
       return {
         ...state,
         isLoading: action.isLoading,
-      };
+      }
     case ADMIN_CREATE_POSITION_ERROR:
       return {
         ...state,
         message: action.payload,
         isLoading: action.isLoading,
-      };
+      }
 
     // updated
     case ADMIN_UPDATE_POSITION_LOADING:
       return {
         ...state,
         isLoading: action.isLoading,
-      };
+      }
     case ADMIN_UPDATE_POSITION_SUCCESS:
       return {
         ...state,
         isLoading: action.isLoading,
-      };
+      }
     case ADMIN_UPDATE_POSITION_ERROR:
       return {
         ...state,
         message: action.payload,
         isLoading: action.isLoading,
-      };
+      }
 
     // deleted
     case ADMIN_DELETE_POSITION_LOADING:
       return {
         ...state,
         isLoading: action.isLoading,
-      };
+      }
     case ADMIN_DELETE_POSITION_SUCCESS:
       return {
         ...state,
         isLoading: action.isLoading,
-      };
+      }
     case ADMIN_DELETE_POSITION_ERROR:
       return {
         ...state,
         message: action.payload,
         isLoading: action.isLoading,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default positionReducer;
+export default positionReducer

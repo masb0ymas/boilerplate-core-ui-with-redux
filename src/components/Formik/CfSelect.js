@@ -1,10 +1,10 @@
-import React from 'react';
-import Select from 'react-select';
-import Async from 'react-select/async';
-import PropTypes from 'prop-types';
-import { Label } from 'reactstrap';
-import { requireLabel } from '../../helpers';
-import ErrorView from './ErrorView';
+import React from 'react'
+import Select from 'react-select'
+import Async from 'react-select/async'
+import PropTypes from 'prop-types'
+import { Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
 const CfSelect = ({
   label,
@@ -21,30 +21,30 @@ const CfSelect = ({
   const handleChangeSelect = option => {
     // Return Callback
     if (onSelectChange) {
-      onSelectChange(field.name, option.value);
+      onSelectChange(field.name, option.value)
     }
     // Handle Select
     if (isMulti) {
-      setFieldValue(field.name, option);
+      setFieldValue(field.name, option)
     } else {
-      setFieldValue(field.name, option.value);
+      setFieldValue(field.name, option.value)
     }
-  };
+  }
 
   // Handle Value Select Multi or Single
   const handleValues = options => {
     if (isMulti) {
-      return field.value;
+      return field.value
     }
 
     if (options) {
-      return options.find(option => option.value === field.value);
+      return options.find(option => option.value === field.value)
     }
 
-    return '';
-  };
+    return ''
+  }
 
-  const resultValue = handleValues(options);
+  const resultValue = handleValues(options)
 
   return (
     <>
@@ -67,8 +67,8 @@ const CfSelect = ({
       />
       <ErrorView name={field.name} />
     </>
-  );
-};
+  )
+}
 
 const CfAsyncSelect = ({
   label,
@@ -85,30 +85,30 @@ const CfAsyncSelect = ({
   const handleChangeSelect = option => {
     // Return Callback
     if (onSelectChange) {
-      onSelectChange(field.name, option.value);
+      onSelectChange(field.name, option.value)
     }
     // Handle Select
     if (isMulti) {
-      setFieldValue(field.name, option);
+      setFieldValue(field.name, option)
     } else {
-      setFieldValue(field.name, option.value);
+      setFieldValue(field.name, option.value)
     }
-  };
+  }
 
   // Handle Value Select Multi or Single
   const handleValues = options => {
     if (isMulti) {
-      return field.value;
+      return field.value
     }
 
     if (options) {
-      return options.find(option => option.value === field.value);
+      return options.find(option => option.value === field.value)
     }
 
-    return '';
-  };
+    return ''
+  }
 
-  const resultValue = handleValues(options);
+  const resultValue = handleValues(options)
 
   return (
     <>
@@ -131,8 +131,8 @@ const CfAsyncSelect = ({
       />
       <ErrorView name={field.name} />
     </>
-  );
-};
+  )
+}
 
 CfSelect.propTypes = {
   label: PropTypes.oneOfType([
@@ -191,7 +191,7 @@ CfSelect.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
 CfAsyncSelect.propTypes = {
   label: PropTypes.oneOfType([
@@ -250,6 +250,6 @@ CfAsyncSelect.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export { CfSelect, CfAsyncSelect };
+export { CfSelect, CfAsyncSelect }

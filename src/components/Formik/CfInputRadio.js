@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Input, Label } from 'reactstrap';
-import ErrorView from './ErrorView';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Input, Label } from 'reactstrap'
+import ErrorView from './ErrorView'
 
 const CfInputRadio = ({ label, onInputChange, id, field, form: { setFieldValue }, ...props }) => {
   const handleChangeInput = e => {
-    const { value } = e.currentTarget;
+    const { value } = e.currentTarget
 
     if (onInputChange) {
-      onInputChange(field.name, value);
+      onInputChange(field.name, value)
     }
 
-    setFieldValue(field.name, value);
-  };
+    setFieldValue(field.name, value)
+  }
 
   return (
     <>
@@ -33,8 +33,8 @@ const CfInputRadio = ({ label, onInputChange, id, field, form: { setFieldValue }
 
       <ErrorView name={field.name} />
     </>
-  );
-};
+  )
+}
 
 CfInputRadio.propTypes = {
   label: PropTypes.oneOfType([
@@ -72,6 +72,6 @@ CfInputRadio.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export default CfInputRadio;
+export default CfInputRadio

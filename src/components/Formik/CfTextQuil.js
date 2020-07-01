@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Label } from 'reactstrap';
-import { requireLabel } from '../../helpers';
-import ErrorView from './ErrorView';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+import { Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
 const CfTextQuil = ({
   label,
@@ -27,7 +27,7 @@ const CfTextQuil = ({
     'bullet',
     'indent',
     'script',
-  ];
+  ]
 
   const TextQuilModules = {
     toolbar: [
@@ -40,7 +40,7 @@ const CfTextQuil = ({
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
     },
-  };
+  }
 
   return (
     <>
@@ -60,8 +60,8 @@ const CfTextQuil = ({
 
       <ErrorView name={field.name} />
     </>
-  );
-};
+  )
+}
 
 CfTextQuil.propTypes = {
   label: PropTypes.oneOfType([
@@ -106,6 +106,6 @@ CfTextQuil.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export default CfTextQuil;
+export default CfTextQuil

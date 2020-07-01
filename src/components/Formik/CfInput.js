@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Input, Label } from 'reactstrap';
-import { requireLabel } from '../../helpers';
-import ErrorView from './ErrorView';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Input, Label } from 'reactstrap'
+import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
 const CfInput = ({
   label,
@@ -13,14 +13,14 @@ const CfInput = ({
   ...props
 }) => {
   const handleChangeInput = e => {
-    const { value } = e.currentTarget;
+    const { value } = e.currentTarget
 
     if (onInputChange) {
-      onInputChange(field.name, value);
+      onInputChange(field.name, value)
     }
 
-    setFieldValue(field.name, value);
-  };
+    setFieldValue(field.name, value)
+  }
 
   return (
     <>
@@ -32,8 +32,8 @@ const CfInput = ({
       <Input {...field} {...props} onChange={e => handleChangeInput(e)} />
       <ErrorView name={field.name} />
     </>
-  );
-};
+  )
+}
 
 CfInput.propTypes = {
   label: PropTypes.oneOfType([
@@ -71,6 +71,6 @@ CfInput.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export default CfInput;
+export default CfInput

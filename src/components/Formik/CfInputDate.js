@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { Input, Label, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
-import moment from 'moment';
-import 'moment/locale/id';
-import { id } from 'date-fns/locale';
-import { requireLabel } from '../../helpers';
-import ErrorView from './ErrorView';
+import React from 'react'
+import PropTypes from 'prop-types'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { Input, Label, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
+import moment from 'moment'
+import 'moment/locale/id'
+import { id } from 'date-fns/locale'
+import { requireLabel } from '../../helpers'
+import ErrorView from './ErrorView'
 
-moment.locale('id');
+moment.locale('id')
 
 const DateCustomInput = ({ classGroup, classIcon, value, onClick, ...props }) => (
   <InputGroup className={classGroup}>
@@ -24,7 +24,7 @@ const DateCustomInput = ({ classGroup, classIcon, value, onClick, ...props }) =>
       onClick={onClick}
     />
   </InputGroup>
-);
+)
 
 const CfInputDate = ({
   label,
@@ -61,8 +61,8 @@ const CfInputDate = ({
       />
       <ErrorView name={field.name} />
     </>
-  );
-};
+  )
+}
 
 CfInputDate.propTypes = {
   styleLabel: PropTypes.oneOfType([
@@ -114,7 +114,7 @@ CfInputDate.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
 DateCustomInput.propTypes = {
   value: PropTypes.oneOfType([
@@ -145,6 +145,6 @@ DateCustomInput.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export default CfInputDate;
+export default CfInputDate

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Card, CardBody, CardFooter } from 'reactstrap';
-import classNames from 'classnames';
-import { mapToCssModules } from 'reactstrap/lib/utils';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Card, CardBody, CardFooter } from 'reactstrap'
+import classNames from 'classnames'
+import { mapToCssModules } from 'reactstrap/lib/utils'
 
 const propTypes = {
   header: PropTypes.string,
@@ -15,7 +15,7 @@ const propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cssModule: PropTypes.object,
-};
+}
 
 const defaultProps = {
   header: '$1,999.50',
@@ -24,7 +24,7 @@ const defaultProps = {
   color: 'primary',
   variant: '0',
   link: '#',
-};
+}
 
 class Widget02 extends Component {
   render() {
@@ -40,7 +40,7 @@ class Widget02 extends Component {
       children,
       variant,
       ...attributes
-    } = this.props;
+    } = this.props
 
     // demo purposes only
     const padding =
@@ -52,23 +52,18 @@ class Widget02 extends Component {
             icon: 'p-4',
             lead: 'pt-3',
           }
-        : { card: 'p-0', icon: 'p-4 px-5', lead: 'pt-3' };
+        : { card: 'p-0', icon: 'p-4 px-5', lead: 'pt-3' }
 
-    const card = { style: 'clearfix', color, icon, classes: '' };
-    card.classes = mapToCssModules(classNames(className, card.style, padding.card), cssModule);
+    const card = { style: 'clearfix', color, icon, classes: '' }
+    card.classes = mapToCssModules(classNames(className, card.style, padding.card), cssModule)
 
-    const lead = { style: 'h5 mb-0', color, classes: '' };
-    lead.classes = classNames(lead.style, `text-${card.color}`, padding.lead);
+    const lead = { style: 'h5 mb-0', color, classes: '' }
+    lead.classes = classNames(lead.style, `text-${card.color}`, padding.lead)
 
     const blockIcon = function(icon) {
-      const classes = classNames(
-        icon,
-        `bg-${card.color}`,
-        padding.icon,
-        'font-2xl mr-3 float-left'
-      );
-      return <i className={classes} />;
-    };
+      const classes = classNames(icon, `bg-${card.color}`, padding.icon, 'font-2xl mr-3 float-left')
+      return <i className={classes} />
+    }
 
     const cardFooter = function() {
       if (footer) {
@@ -79,9 +74,9 @@ class Widget02 extends Component {
               <i className="fa fa-angle-right float-right font-lg" />
             </a>
           </CardFooter>
-        );
+        )
       }
-    };
+    }
 
     return (
       <Card>
@@ -92,11 +87,11 @@ class Widget02 extends Component {
         </CardBody>
         {cardFooter()}
       </Card>
-    );
+    )
   }
 }
 
-Widget02.propTypes = propTypes;
-Widget02.defaultProps = defaultProps;
+Widget02.propTypes = propTypes
+Widget02.defaultProps = defaultProps
 
-export default Widget02;
+export default Widget02

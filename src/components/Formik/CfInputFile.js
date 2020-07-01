@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Input, Label } from 'reactstrap';
-import { fileUploadPreview, checkFilePreview, requireLabel } from '../../helpers';
-import { API_FILE } from '../../config/apiConfig';
-import ErrorView from './ErrorView';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Input, Label } from 'reactstrap'
+import { fileUploadPreview, checkFilePreview, requireLabel } from '../../helpers'
+import { API_FILE } from '../../config/apiConfig'
+import ErrorView from './ErrorView'
 
-const invalidValues = [undefined, null, ''];
+const invalidValues = [undefined, null, '']
 
 const CfInputFile = ({
   label,
@@ -16,28 +16,28 @@ const CfInputFile = ({
   form: { setFieldValue, setFieldTouched },
   ...props
 }) => {
-  const [filePreview, setfilePreview] = useState();
-  const [fileType, setfileType] = useState();
-  const [fileSize, setfileSize] = useState();
+  const [filePreview, setfilePreview] = useState()
+  const [fileType, setfileType] = useState()
+  const [fileSize, setfileSize] = useState()
 
   const handleChangeImage = e => {
-    const reader = new FileReader();
-    const file = e.currentTarget.files[0];
+    const reader = new FileReader()
+    const file = e.currentTarget.files[0]
     if (file) {
       reader.onloadend = () => {
-        setfilePreview(file.name);
-        setfileType(file.type);
-        setfileSize(file.size);
-      };
-      reader.readAsDataURL(file);
+        setfilePreview(file.name)
+        setfileType(file.type)
+        setfileSize(file.size)
+      }
+      reader.readAsDataURL(file)
 
       if (onInputChange) {
-        onInputChange(field.name, file);
+        onInputChange(field.name, file)
       }
 
-      setFieldValue(field.name, file);
+      setFieldValue(field.name, file)
     }
-  };
+  }
   // console.log({ field })
 
   return (
@@ -68,8 +68,8 @@ const CfInputFile = ({
         )}
       </>
     </>
-  );
-};
+  )
+}
 
 CfInputFile.propTypes = {
   label: PropTypes.oneOfType([
@@ -114,6 +114,6 @@ CfInputFile.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]),
-};
+}
 
-export default CfInputFile;
+export default CfInputFile

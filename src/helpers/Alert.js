@@ -1,18 +1,18 @@
-import React from 'react';
-import { Alert } from 'reactstrap';
-import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss';
+import React from 'react'
+import { Alert } from 'reactstrap'
+import Swal from 'sweetalert2'
+import 'sweetalert2/src/sweetalert2.scss'
 
-const invalidValues = [undefined, null, ''];
+const invalidValues = [undefined, null, '']
 
 class AlertMessage {
   // Success Response
   static success(params = {}) {
-    const { title, text } = params;
+    const { title, text } = params
     const defaultMessage = {
       title: 'Success',
       text: 'Data berhasil ditambahkan!',
-    };
+    }
 
     return Swal.fire({
       title: !invalidValues.includes(title) ? title : defaultMessage.title,
@@ -21,7 +21,7 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    }).then(response => response);
+    }).then(response => response)
   }
 
   // Info Response
@@ -33,16 +33,16 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    }).then(response => response);
+    }).then(response => response)
   }
 
   // Error Response
   static error(err) {
-    let pesanError;
+    let pesanError
     if (err.response) {
-      pesanError = err.response.data.message;
+      pesanError = err.response.data.message
     } else {
-      pesanError = 'Internal server error';
+      pesanError = 'Internal server error'
     }
 
     return Swal.fire({
@@ -52,18 +52,18 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    }).then(response => response);
+    }).then(response => response)
   }
 
   // Deprecated: Warning Response (deleted data only)
   static warning(params = {}) {
-    const { title, text, confirmButtonText, cancelButtonText } = params;
+    const { title, text, confirmButtonText, cancelButtonText } = params
     const defaultMessage = {
       title: 'Apa kamu yakin?',
       text: 'Setelah dihapus, Kamu tidak dapat memulihkan data ini!',
       confirmButtonText: 'Ya, hapus!',
       cancelButtonText: 'Kembali',
-    };
+    }
 
     return Swal.fire({
       title: !invalidValues.includes(title) ? title : defaultMessage.title,
@@ -80,17 +80,17 @@ class AlertMessage {
       cancelButtonText: !invalidValues.includes(cancelButtonText)
         ? cancelButtonText
         : defaultMessage.cancelButtonText,
-    }).then(result => result);
+    }).then(result => result)
   }
 
   // Custom Response
   static custom(params = {}) {
-    const { title, text, icon } = params;
+    const { title, text, icon } = params
     const defaultMessage = {
       title: 'Success',
       text: 'Data berhasil ditambahkan!',
       icon: 'success',
-    };
+    }
 
     return Swal.fire({
       title: !invalidValues.includes(title) ? title : defaultMessage.title,
@@ -99,14 +99,14 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    });
+    })
   }
 }
 
 const ErrorMessage = message => {
   if (!invalidValues.includes(message)) {
-    return <Alert color="danger">{message}</Alert>;
+    return <Alert color="danger">{message}</Alert>
   }
-};
+}
 
-export { AlertMessage, ErrorMessage };
+export { AlertMessage, ErrorMessage }

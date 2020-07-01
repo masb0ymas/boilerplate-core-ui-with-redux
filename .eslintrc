@@ -8,7 +8,7 @@
   "parser": "babel-eslint",
   "rules": {
     "prettier/prettier": "error",
-    // "semi": "off",
+    "semi": "off",
     "no-shadow": "off",
     "react/no-danger": "off",
     "consistent-return": "off",

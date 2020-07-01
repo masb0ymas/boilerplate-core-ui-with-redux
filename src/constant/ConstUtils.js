@@ -1,5 +1,5 @@
 const ConstUtils = {
   JWT_SECRET: 'yoursecretkeyjwt',
-};
+}
 
-export default ConstUtils;
+export default ConstUtils

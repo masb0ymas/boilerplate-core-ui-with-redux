@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { CardGroup, Col, Row } from 'reactstrap';
-import { Line } from 'react-chartjs-2';
-import Widget01 from './Widget01';
-import Widget02 from './Widget02';
-import Widget03 from './Widget03';
-import Widget04 from './Widget04';
+import React, { Component } from 'react'
+import { CardGroup, Col, Row } from 'reactstrap'
+import { Line } from 'react-chartjs-2'
+import Widget01 from './Widget01'
+import Widget02 from './Widget02'
+import Widget03 from './Widget03'
+import Widget04 from './Widget04'
 
 // Brand Card Chart
 const makeSocialBoxData = dataSetNo => {
@@ -13,9 +13,9 @@ const makeSocialBoxData = dataSetNo => {
     { data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter' },
     { data: [78, 81, 80, 45, 34, 12, 40], label: 'linkedin' },
     { data: [35, 23, 56, 22, 97, 23, 64], label: 'google' },
-  ];
+  ]
 
-  const dataset = socialBoxData[dataSetNo];
+  const dataset = socialBoxData[dataSetNo]
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -28,9 +28,9 @@ const makeSocialBoxData = dataSetNo => {
         label: dataset.label,
       },
     ],
-  };
-  return () => data;
-};
+  }
+  return () => data
+}
 
 const socialChartOpts = {
   responsive: true,
@@ -58,7 +58,7 @@ const socialChartOpts = {
       hoverBorderWidth: 3,
     },
   },
-};
+}
 
 class Widgets extends Component {
   render() {
@@ -344,8 +344,8 @@ class Widgets extends Component {
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 
-export default Widgets;
+export default Widgets
