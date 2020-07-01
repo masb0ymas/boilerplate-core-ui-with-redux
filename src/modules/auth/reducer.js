@@ -1,4 +1,3 @@
-import { TramRounded } from '@material-ui/icons'
 import {
   AUTHENTICATED,
   UNAUTHENTICATED,

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react'
 import {
   Button,
@@ -25,6 +24,8 @@ import Service from '../../../config/services'
 import { CfInput } from '../../../components'
 import { AlertMessage, ErrorMessage } from '../../../helpers'
 import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
+import withTableFetchQuery, { WithTableFetchQueryProp } from '../../../HOC/withTableFetchQuery'
+import withToggle, { WithToggleProps } from '../../../HOC/withToggle'
 
 const invalidValues = [undefined, null, '', false]
 
@@ -33,70 +34,24 @@ const roleSchema = Yup.object().shape({
 })
 
 class Role extends Component {
-  state = {
-    modal: false,
-    listRole: [],
-    loading: true,
-    pages: null,
-    currentPage: 1,
-    perPage: 10,
-  }
-
   initialValues = {
     nama: '',
     id: '',
   }
 
-  fetchDataTable = state => {
-    const { page, pageSize, filtered, sorted } = state
-    const filterString = JSON.stringify(filtered)
-    const sortString = JSON.stringify(sorted)
-    const params = `?page=${page}&pageSize=${pageSize}&sorted=${sortString}&filtered=${filterString}`
-    const paramsEncode = encodeURI(params)
-
-    Service.getRoles(paramsEncode).then(res => {
-      this.setState({
-        listRole: res.data.data,
-        currentPage: page,
-        perPage: pageSize,
-        pages:
-          parseInt(res.data.totalRow / pageSize, 10) + (res.data.totalRow % pageSize > 0 ? 1 : 0),
-        loading: false,
-      })
-    })
-  }
-
-  handleShow = (e, state) => {
-    const { modal } = this.state
-    this.setState({
-      modal: !modal,
-    })
-
-    this.initialValues = {
-      nama: state.nama,
-      id: state.id,
-    }
-  }
-
-  toggle = () => {
-    const { modal } = this.state
-    this.setState({
-      modal: !modal,
-    })
-
-    this.initialValues = {
-      nama: '',
-      id: '',
-    }
+  doRefresh = () => {
+    const { fetchQueryProps, modalForm } = this.props
+    modalForm.hide()
+    fetchQueryProps.refresh()
   }
 
   handleSaveChanges = values => {
     const { id } = values
     const { createRole, updateRole } = this.props
     if (!invalidValues.includes(id)) {
-      updateRole(values, id)
+      updateRole(values, id, this.doRefresh)
     } else {
-      createRole(values)
+      createRole(values, this.doRefresh)
     }
   }
 
@@ -110,7 +65,7 @@ class Role extends Component {
       .then(result => {
         if (result.value) {
           console.log('delete object', id)
-          deleteRole(id)
+          deleteRole(id, this.doRefresh)
         } else {
           const paramsResponse = {
             title: 'Huff',
@@ -125,12 +80,17 @@ class Role extends Component {
   }
 
   render() {
+    const { message, isLoading, auth, className, fetchQueryProps, modalForm } = this.props
+    const { tableProps } = fetchQueryProps
+
+    const numbData = props => tableProps.pageSize * tableProps.page + props.index + 1
+
     const columns = [
       {
         Header: '#',
         width: 60,
         filterable: false,
-        Cell: props => <span>{props.index + 1}</span>,
+        Cell: props => <span>{numbData(props)}</span>,
       },
       {
         Header: 'Role',
@@ -143,7 +103,7 @@ class Role extends Component {
         Cell: props => (
           <Button
             color="success"
-            onClick={e => this.handleShow(e, props.original)}
+            onClick={() => modalForm.show({ data: props.original })}
             className="mr-1"
             title="Edit"
           >
@@ -169,8 +129,6 @@ class Role extends Component {
     ]
 
     const pageName = 'Role'
-    const { listRole, modal, pages, loading } = this.state
-    const { message, isLoading, auth, className } = this.props
     const isIcon = { paddingRight: '7px' }
 
     if (!auth) return <Redirect to="/login" />
@@ -189,7 +147,11 @@ class Role extends Component {
                   </Col>
                   <Col sm="6">
                     <div style={{ textAlign: 'right' }}>
-                      <Button color="primary" onClick={this.toggle} className="mr-1">
+                      <Button
+                        color="primary"
+                        onClick={() => modalForm.show({ data: this.initialValues })}
+                        className="mr-1"
+                      >
                         <i className="fa fa-plus" style={isIcon} />
                         &nbsp;Tambah
                       </Button>
@@ -199,22 +161,23 @@ class Role extends Component {
               </CardHeader>
               <CardBody>
                 <ReactTable
-                  manual
                   filterable
-                  data={listRole}
-                  pages={pages}
                   columns={columns}
-                  loading={loading}
                   defaultPageSize={10}
                   className="-highlight"
-                  onFetchData={this.fetchDataTable}
+                  {...tableProps}
                 />
               </CardBody>
             </Card>
 
-            <Modal isOpen={modal} toggle={this.toggle} backdrop="static" className={className}>
+            <Modal
+              isOpen={modalForm.isOpen}
+              toggle={modalForm.toggle}
+              backdrop="static"
+              className={className}
+            >
               <Formik
-                initialValues={this.initialValues}
+                initialValues={modalForm.prop.data}
                 validationSchema={roleSchema}
                 onSubmit={(values, actions) => {
                   setTimeout(() => {
@@ -225,7 +188,7 @@ class Role extends Component {
               >
                 {({ isSubmitting }) => (
                   <Form>
-                    <ModalHeader toggle={this.toggle}>Form Role</ModalHeader>
+                    <ModalHeader toggle={modalForm.toggle}>Form Role</ModalHeader>
                     <ModalBody>
                       <FormGroup>
                         <Field
@@ -240,7 +203,7 @@ class Role extends Component {
                       {ErrorMessage(message)}
                     </ModalBody>
                     <ModalFooter>
-                      <Button type="button" color="secondary" onClick={this.toggle}>
+                      <Button type="button" color="secondary" onClick={modalForm.toggle}>
                         Cancel
                       </Button>
                       &nbsp;
@@ -279,6 +242,8 @@ Role.propTypes = {
   createRole: PropTypes.func.isRequired,
   updateRole: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
+  fetchQueryProps: WithTableFetchQueryProp,
+  modalForm: WithToggleProps,
 }
 
 const mapStateToProps = state => ({
@@ -288,9 +253,22 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createRole: rowData => dispatch(createRole(rowData)),
-  updateRole: (rowData, id) => dispatch(updateRole(rowData, id)),
-  deleteRole: id => dispatch(deleteRole(id)),
+  createRole: (formData, refresh) => dispatch(createRole(formData, refresh)),
+  updateRole: (formData, id, refresh) => dispatch(updateRole(formData, id, refresh)),
+  deleteRole: (id, refresh) => dispatch(deleteRole(id, refresh)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Role)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  withTableFetchQuery({
+    API: p => Service.getRoles(p),
+    Component: withToggle({
+      Component: Role,
+      toggles: {
+        modalForm: false,
+      },
+    }),
+  })
+)

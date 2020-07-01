@@ -12,19 +12,25 @@ import {
   ADMIN_DELETE_ROLE_ERROR,
 } from './types'
 
-export const createRole = rowData => async dispatch => {
+export const createRole = (formData, refresh) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: ADMIN_CREATE_ROLE_LOADING, isLoading: true })
     // Call API
-    const res = await Service.createRole(rowData)
+    const res = await Service.createRole(formData)
     dispatch({ type: ADMIN_CREATE_ROLE_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Created'
     paramsResponse.text = res.data.message
-    AlertMessage.success(paramsResponse).then(() => window.location.reload())
+    AlertMessage.success(paramsResponse).then(() => {
+      if (refresh) {
+        refresh()
+      } else {
+        window.location.reload()
+      }
+    })
   } catch (err) {
     ObjError = err.response && err.response.data.message
 
@@ -37,19 +43,25 @@ export const createRole = rowData => async dispatch => {
   }
 }
 
-export const updateRole = (rowData, id) => async dispatch => {
+export const updateRole = (formData, id, refresh) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
   try {
     dispatch({ type: ADMIN_UPDATE_ROLE_LOADING, isLoading: true })
     // Call API
-    const res = await Service.updateRole(rowData, id)
+    const res = await Service.updateRole(formData, id)
     dispatch({ type: ADMIN_UPDATE_ROLE_SUCCESS, isLoading: false })
 
     paramsResponse.title = 'Success'
     paramsResponse.text = res.data.message
-    AlertMessage.success(paramsResponse).then(() => window.location.reload())
+    AlertMessage.success(paramsResponse).then(() => {
+      if (refresh) {
+        refresh()
+      } else {
+        window.location.reload()
+      }
+    })
   } catch (err) {
     ObjError = err.response && err.response.data.message
 
@@ -62,7 +74,7 @@ export const updateRole = (rowData, id) => async dispatch => {
   }
 }
 
-export const deleteRole = id => async dispatch => {
+export const deleteRole = (id, refresh) => async dispatch => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -74,7 +86,13 @@ export const deleteRole = id => async dispatch => {
 
     paramsResponse.title = 'Success'
     paramsResponse.text = res.data.message
-    AlertMessage.success(paramsResponse).then(() => window.location.reload())
+    AlertMessage.success(paramsResponse).then(() => {
+      if (refresh) {
+        refresh()
+      } else {
+        window.location.reload()
+      }
+    })
   } catch (err) {
     ObjError = err.response && err.response.data.message
 
