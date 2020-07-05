@@ -144,6 +144,7 @@ function WithTableFetchQuery(options = GET_CONFIG()) {
           getFilterByKey,
           isFilter,
           setFilteredByObject: this.queryManager.setFilteredByObject,
+          setQueryObject: this.queryManager.setQueryObject,
         },
       }
 

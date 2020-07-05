@@ -32,7 +32,7 @@ class QueryTableManager {
   }
 
   isValidFilterValue = val => {
-    return !isNil(val) && val !== ''
+    return !isNil(val) || val !== ''
   }
 
   getFilterByKey = key => {
@@ -58,7 +58,7 @@ class QueryTableManager {
         value: curVal,
       })
     } else if (!this.isValidFilterValue(curVal)) {
-      this.filtered = this.filtered.filter(x => x.id !== filter.id)
+      this.filtered = [this.filtered].filter(x => x.id !== filter.id)
     } else {
       filter.value = curVal
     }

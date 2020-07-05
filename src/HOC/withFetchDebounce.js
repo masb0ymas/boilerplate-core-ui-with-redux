@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import debounce from 'lodash/debounce'
+import isError from 'lodash/isError'
+import isFunction from 'lodash/isFunction'
 import queryString from 'query-string'
-import { isFunction, debounce, isError } from 'lodash'
 import QueryTableManager from '../helpers/QueryTableManager'
 
 const GET_CONFIG = () => ({
@@ -33,8 +35,16 @@ function WithFetchDebounce(options = GET_CONFIG()) {
         const rawFetchData = this.createFetchData(propsKey)
         const fetchData = debounce(rawFetchData, 800)
 
+        const setLoading = isLoading => {
+          this.setState(prevState => {
+            const curState = prevState[propsKey]
+            return { [propsKey]: { ...curState, loading: isLoading } }
+          })
+        }
+
         const doFilter = (id, value) => {
           return new Promise(resolve => {
+            setLoading(true)
             stateAPI.queryManager.setFilteredValue(id, value, () => {
               fetchData(undefined, data => {
                 resolve(data)
@@ -42,9 +52,10 @@ function WithFetchDebounce(options = GET_CONFIG()) {
             })
           })
         }
-        const doFetch = beforeFetch => {
+        const doFetch = args => {
           return new Promise(resolve => {
-            fetchData(beforeFetch, data => {
+            setLoading(true)
+            fetchData(args, data => {
               resolve(data)
             })
           })
@@ -70,8 +81,6 @@ function WithFetchDebounce(options = GET_CONFIG()) {
         }
         return curAcc
       }, {})
-
-      console.log(this.state, 'state')
     }
 
     createFetchData = key => {
@@ -94,6 +103,7 @@ function WithFetchDebounce(options = GET_CONFIG()) {
         const parameters = queryString.stringify({
           ...queryManager.getStringifyQuery(),
         })
+
         API(`?${parameters}`)
           .then(res => {
             if (fetchId !== stateAPI.lastFetchId) {
@@ -101,7 +111,7 @@ function WithFetchDebounce(options = GET_CONFIG()) {
               return undefined
             }
 
-            return res.data.data
+            return res.data
           })
           .catch(err => {
             return err
@@ -124,12 +134,11 @@ function WithFetchDebounce(options = GET_CONFIG()) {
             } else if (dataOrError !== undefined) {
               const { state } = this
               const stateData = state[key]
-
-              console.log({ stateData })
+              const { data, totalRow } = dataOrError
 
               this.setState(
                 {
-                  [key]: { ...stateData, data: dataOrError, loading: false },
+                  [key]: { ...stateData, data, totalRow, loading: false },
                 },
                 () => {
                   if (onFinish) {
@@ -151,7 +160,7 @@ function WithFetchDebounce(options = GET_CONFIG()) {
 const withFetchDebounce = WithFetchDebounce
 
 export const WithFetchDebounceProp = PropTypes.shape({
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.object]),
   loading: PropTypes.bool,
   fetchData: PropTypes.func,
   doFilter: PropTypes.func,

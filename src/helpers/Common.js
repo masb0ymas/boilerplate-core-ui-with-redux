@@ -2,7 +2,7 @@ import React from 'react'
 import jwt from 'jsonwebtoken'
 import { Button } from 'reactstrap'
 
-const invalidValues = [undefined, null, '']
+const invalidValues = [undefined, null, '', 0, false]
 
 const userData = () => {
   const token = localStorage.getItem('token')
@@ -130,4 +130,5 @@ export {
   badgeSizeDokumen,
   badgeTypeDokumen,
   checkFilePreview,
+  invalidValues,
 }

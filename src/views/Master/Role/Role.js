@@ -22,12 +22,10 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Service from '../../../config/services'
 import { CfInput } from '../../../components'
-import { AlertMessage, ErrorMessage } from '../../../helpers'
+import { AlertMessage, ErrorMessage, invalidValues } from '../../../helpers'
 import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
 import withTableFetchQuery, { WithTableFetchQueryProp } from '../../../HOC/withTableFetchQuery'
 import withToggle, { WithToggleProps } from '../../../HOC/withToggle'
-
-const invalidValues = [undefined, null, '', false]
 
 const roleSchema = Yup.object().shape({
   nama: Yup.string().required('nama role belum diisi'),
@@ -188,7 +186,7 @@ class Role extends Component {
               >
                 {({ isSubmitting }) => (
                   <Form>
-                    <ModalHeader toggle={modalForm.toggle}>Form Role</ModalHeader>
+                    <ModalHeader toggle={modalForm.hide}>Form Role</ModalHeader>
                     <ModalBody>
                       <FormGroup>
                         <Field
@@ -203,7 +201,7 @@ class Role extends Component {
                       {ErrorMessage(message)}
                     </ModalBody>
                     <ModalFooter>
-                      <Button type="button" color="secondary" onClick={modalForm.toggle}>
+                      <Button type="button" color="secondary" onClick={modalForm.hide}>
                         Cancel
                       </Button>
                       &nbsp;

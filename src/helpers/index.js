@@ -7,6 +7,7 @@ import {
   badgeSizeDokumen,
   badgeTypeDokumen,
   checkFilePreview,
+  invalidValues,
 } from './Common'
 
 export {
@@ -19,4 +20,5 @@ export {
   badgeSizeDokumen,
   badgeTypeDokumen,
   checkFilePreview,
+  invalidValues,
 }
