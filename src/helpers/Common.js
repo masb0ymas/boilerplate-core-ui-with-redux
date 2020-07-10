@@ -20,7 +20,7 @@ const userData = () => {
   return User
 }
 
-const formDataFilterByKeys = objFormData => {
+const formDataFilterByKeys = (objFormData) => {
   const formData = new FormData()
   const ObjKeys = Object.keys(objFormData)
 
@@ -65,7 +65,7 @@ const fileUploadPreview = (filePreviewUrl, fileType, fileSize) => {
   )
 }
 
-const badgeSizeDokumen = fileSize => {
+const badgeSizeDokumen = (fileSize) => {
   let filterFileSize = ''
   if (Math.ceil(fileSize / 1024) > 1024) {
     filterFileSize = `${Math.ceil(fileSize / 1048576)} Mb`
@@ -84,7 +84,7 @@ const badgeSizeDokumen = fileSize => {
   )
 }
 
-const badgeTypeDokumen = fileType => {
+const badgeTypeDokumen = (fileType) => {
   const typeImage = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/svg+xml']
   const typeDok = ['application/pdf']
 
@@ -105,7 +105,7 @@ const badgeTypeDokumen = fileType => {
   }
 }
 
-const checkFilePreview = paramsURL => (
+const checkFilePreview = (paramsURL) => (
   <a href={paramsURL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
     Lihat File
   </a>

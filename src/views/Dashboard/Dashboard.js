@@ -243,7 +243,7 @@ const socialBoxData = [
   { data: [35, 23, 56, 22, 97, 23, 64], label: 'google' },
 ]
 
-const makeSocialBoxData = dataSetNo => {
+const makeSocialBoxData = (dataSetNo) => {
   const dataset = socialBoxData[dataSetNo]
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -1289,7 +1289,7 @@ Dashboard.propTypes = {
   auth: PropTypes.bool,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth.authenticated,
 })
 

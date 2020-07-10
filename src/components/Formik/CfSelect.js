@@ -18,7 +18,7 @@ const CfSelect = ({
   ...props
 }) => {
   // Handle Select Multi or Single
-  const handleChangeSelect = option => {
+  const handleChangeSelect = (option) => {
     // Return Callback
     if (onSelectChange) {
       onSelectChange(field.name, option.value)
@@ -32,13 +32,13 @@ const CfSelect = ({
   }
 
   // Handle Value Select Multi or Single
-  const handleValues = options => {
+  const handleValues = (options) => {
     if (isMulti) {
       return field.value
     }
 
     if (options) {
-      return options.find(option => option.value === field.value)
+      return options.find((option) => option.value === field.value)
     }
 
     return ''
@@ -62,7 +62,7 @@ const CfSelect = ({
         classNamePrefix="select"
         value={resultValue}
         onBlur={() => setFieldTouched(field.name, true)}
-        onChange={option => handleChangeSelect(option)}
+        onChange={(option) => handleChangeSelect(option)}
         isDisabled={!(options && options.length > 0) || isDisabled}
       />
       <ErrorView name={field.name} />
@@ -82,7 +82,7 @@ const CfAsyncSelect = ({
   ...props
 }) => {
   // Handle Select Multi or Single
-  const handleChangeSelect = option => {
+  const handleChangeSelect = (option) => {
     // Return Callback
     if (onSelectChange) {
       onSelectChange(field.name, option.value)
@@ -96,13 +96,13 @@ const CfAsyncSelect = ({
   }
 
   // Handle Value Select Multi or Single
-  const handleValues = options => {
+  const handleValues = (options) => {
     if (isMulti) {
       return field.value
     }
 
     if (options) {
-      return options.find(option => option.value === field.value)
+      return options.find((option) => option.value === field.value)
     }
 
     return ''
@@ -126,7 +126,7 @@ const CfAsyncSelect = ({
         classNamePrefix="select"
         value={resultValue}
         onBlur={() => setFieldTouched(field.name, true)}
-        onChange={option => handleChangeSelect(option)}
+        onChange={(option) => handleChangeSelect(option)}
         // isDisabled={!(options && options.length > 0) || isDisabled}
       />
       <ErrorView name={field.name} />

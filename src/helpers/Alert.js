@@ -21,7 +21,7 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    }).then(response => response)
+    }).then((response) => response)
   }
 
   // Info Response
@@ -33,7 +33,7 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    }).then(response => response)
+    }).then((response) => response)
   }
 
   // Error Response
@@ -52,7 +52,7 @@ class AlertMessage {
       confirmButtonColor: '#20a8d8',
       allowOutsideClick: false,
       allowEscapeKey: false,
-    }).then(response => response)
+    }).then((response) => response)
   }
 
   // Deprecated: Warning Response (deleted data only)
@@ -80,7 +80,7 @@ class AlertMessage {
       cancelButtonText: !invalidValues.includes(cancelButtonText)
         ? cancelButtonText
         : defaultMessage.cancelButtonText,
-    }).then(result => result)
+    }).then((result) => result)
   }
 
   // Custom Response
@@ -103,7 +103,7 @@ class AlertMessage {
   }
 }
 
-const ErrorMessage = message => {
+const ErrorMessage = (message) => {
   if (!invalidValues.includes(message)) {
     return <Alert color="danger">{message}</Alert>
   }

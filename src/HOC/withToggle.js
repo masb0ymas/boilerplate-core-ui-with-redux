@@ -50,18 +50,18 @@ function withToggle(configs = CONFIG_TOGGLE()) {
           })
         }
 
-        const toggle = extraProp => {
+        const toggle = (extraProp) => {
           const { state } = this
           const curState = state[propsKey]
           const { isOpen } = curState
           handleToggle(!isOpen, extraProp)
         }
 
-        const hide = extraProp => {
+        const hide = (extraProp) => {
           handleToggle(false, extraProp)
         }
 
-        const show = extraProp => {
+        const show = (extraProp) => {
           handleToggle(true, extraProp)
         }
 

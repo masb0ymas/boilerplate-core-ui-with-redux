@@ -7,7 +7,7 @@ import Widget03 from './Widget03'
 import Widget04 from './Widget04'
 
 // Brand Card Chart
-const makeSocialBoxData = dataSetNo => {
+const makeSocialBoxData = (dataSetNo) => {
   const socialBoxData = [
     { data: [65, 59, 84, 84, 51, 55, 40], label: 'facebook' },
     { data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter' },

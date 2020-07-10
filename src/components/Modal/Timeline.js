@@ -25,7 +25,7 @@ function Timeline({ isModal, handleModal, classModal, HistoryPermohonan }) {
       <ModalBody className="has-background-light">
         <VerticalTimeline>
           {HistoryPermohonan &&
-            HistoryPermohonan.map(row => (
+            HistoryPermohonan.map((row) => (
               <React.Fragment key={row.id}>
                 <VerticalTimelineElement
                   className="vertical-timeline-element--work"

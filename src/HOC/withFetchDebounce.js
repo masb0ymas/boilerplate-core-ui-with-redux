@@ -35,27 +35,27 @@ function WithFetchDebounce(options = GET_CONFIG()) {
         const rawFetchData = this.createFetchData(propsKey)
         const fetchData = debounce(rawFetchData, 800)
 
-        const setLoading = isLoading => {
-          this.setState(prevState => {
+        const setLoading = (isLoading) => {
+          this.setState((prevState) => {
             const curState = prevState[propsKey]
             return { [propsKey]: { ...curState, loading: isLoading } }
           })
         }
 
         const doFilter = (id, value) => {
-          return new Promise(resolve => {
+          return new Promise((resolve) => {
             setLoading(true)
             stateAPI.queryManager.setFilteredValue(id, value, () => {
-              fetchData(undefined, data => {
+              fetchData(undefined, (data) => {
                 resolve(data)
               })
             })
           })
         }
-        const doFetch = args => {
-          return new Promise(resolve => {
+        const doFetch = (args) => {
+          return new Promise((resolve) => {
             setLoading(true)
-            fetchData(args, data => {
+            fetchData(args, (data) => {
               resolve(data)
             })
           })
@@ -83,7 +83,7 @@ function WithFetchDebounce(options = GET_CONFIG()) {
       }, {})
     }
 
-    createFetchData = key => {
+    createFetchData = (key) => {
       return (beforeFetch, onFinish) => {
         const { state } = this
         const stateData = state[key]
@@ -105,7 +105,7 @@ function WithFetchDebounce(options = GET_CONFIG()) {
         })
 
         API(`?${parameters}`)
-          .then(res => {
+          .then((res) => {
             if (fetchId !== stateAPI.lastFetchId) {
               // for fetch callback order
               return undefined
@@ -113,10 +113,10 @@ function WithFetchDebounce(options = GET_CONFIG()) {
 
             return res.data
           })
-          .catch(err => {
+          .catch((err) => {
             return err
           })
-          .then(dataOrError => {
+          .then((dataOrError) => {
             if (isError(dataOrError)) {
               const { state } = this
               const stateData = state[key]

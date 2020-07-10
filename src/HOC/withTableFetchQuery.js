@@ -54,13 +54,13 @@ function WithTableFetchQuery(options = GET_CONFIG()) {
           ...this.queryManager.getStringifyQuery(),
         })}`
       )
-        .then(res => {
+        .then((res) => {
           return res
         })
-        .catch(err => {
+        .catch((err) => {
           return err
         })
-        .then(resOrError => {
+        .then((resOrError) => {
           if (isError(resOrError)) {
             AlertMessage.error(resOrError)
 
@@ -92,10 +92,10 @@ function WithTableFetchQuery(options = GET_CONFIG()) {
     }
 
     doFilter = async (id, value) => {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         this.queryManager.setFilteredValue(id, value, () => {
           this.setState({ loading: true })
-          this.onFetchData(this.state, null, data => {
+          this.onFetchData(this.state, null, (data) => {
             resolve(data)
           })
         })
@@ -107,12 +107,12 @@ function WithTableFetchQuery(options = GET_CONFIG()) {
       this.onFetchData(this.state)
     }
 
-    isFilter = key => {
-      return this.queryManager.filtered.some(x => x.id === key)
+    isFilter = (key) => {
+      return this.queryManager.filtered.some((x) => x.id === key)
     }
 
-    getFilterByKey = key => {
-      return this.queryManager.filtered.find(x => x.id === key)
+    getFilterByKey = (key) => {
+      return this.queryManager.filtered.find((x) => x.id === key)
     }
 
     render() {
@@ -128,7 +128,7 @@ function WithTableFetchQuery(options = GET_CONFIG()) {
             onFetchData: this.onFetchData,
             onFilteredChange: (filtered, column) => {
               const { id } = column
-              const filter = filtered.find(x => x.id === id)
+              const filter = filtered.find((x) => x.id === id)
               if (filter) {
                 this.doFilter(id, filter.value)
               } else {

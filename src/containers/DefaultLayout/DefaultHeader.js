@@ -54,7 +54,7 @@ class DefaultHeader extends Component {
     })
   }
 
-  handleChangePassword = values => {
+  handleChangePassword = (values) => {
     const { changePass } = this.props
     const { _id } = userData()
     console.log('Change Password', values)
@@ -211,14 +211,14 @@ DefaultHeader.propTypes = {
   changePass: PropTypes.func,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth.authenticated,
   message: state.auth.message,
   success: state.auth.success,
   isLoading: state.auth.isLoading,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   changePass: (rowData, id) => dispatch(changePass(rowData, id)),
   signOut: () => dispatch(signOut()),
 })

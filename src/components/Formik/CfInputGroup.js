@@ -13,7 +13,7 @@ const CfInputGroup = ({
   form: { setFieldValue, touched, errors },
   ...props
 }) => {
-  const handleChangeInput = e => {
+  const handleChangeInput = (e) => {
     const { value } = e.currentTarget
 
     if (onInputChange) {
@@ -38,7 +38,7 @@ const CfInputGroup = ({
             <i className={classIcon} />
           </InputGroupText>
         </InputGroupAddon>
-        <Input {...field} {...props} onChange={e => handleChangeInput(e)} />
+        <Input {...field} {...props} onChange={(e) => handleChangeInput(e)} />
       </InputGroup>
 
       {touched[field.name] && errors[field.name] && (

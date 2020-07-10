@@ -20,7 +20,7 @@ const CfInputFile = ({
   const [fileType, setfileType] = useState()
   const [fileSize, setfileSize] = useState()
 
-  const handleChangeImage = e => {
+  const handleChangeImage = (e) => {
     const reader = new FileReader()
     const file = e.currentTarget.files[0]
     if (file) {
@@ -53,7 +53,7 @@ const CfInputFile = ({
         name={field.name}
         type="file"
         onBlur={() => setFieldTouched(field.name, true)}
-        onChange={e => handleChangeImage(e)}
+        onChange={(e) => handleChangeImage(e)}
         style={isHide ? { display: 'none' } : { marginBottom: '10px' }}
       />
       <ErrorView name={field.name} />

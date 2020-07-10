@@ -12,7 +12,7 @@ import {
   ADMIN_DELETE_POSITION_ERROR,
 } from './types'
 
-export const createPosition = rowData => async dispatch => {
+export const createPosition = (rowData) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -37,7 +37,7 @@ export const createPosition = rowData => async dispatch => {
   }
 }
 
-export const updatePosition = (rowData, id) => async dispatch => {
+export const updatePosition = (rowData, id) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -62,7 +62,7 @@ export const updatePosition = (rowData, id) => async dispatch => {
   }
 }
 
-export const deletePosition = id => async dispatch => {
+export const deletePosition = (id) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 

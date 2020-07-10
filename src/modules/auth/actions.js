@@ -20,7 +20,7 @@ import {
   RESET_PASSWORD_ERROR,
 } from './types'
 
-export const signIn = credentials => async dispatch => {
+export const signIn = (credentials) => async (dispatch) => {
   try {
     dispatch({ type: SIGNIN_LOADING, isLoading: true })
     // Call API
@@ -40,7 +40,7 @@ export const signIn = credentials => async dispatch => {
   }
 }
 
-export const signUp = rowData => async dispatch => {
+export const signUp = (rowData) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -61,7 +61,7 @@ export const signUp = rowData => async dispatch => {
   }
 }
 
-export const changePass = (rowData, id) => async dispatch => {
+export const changePass = (rowData, id) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -82,7 +82,7 @@ export const changePass = (rowData, id) => async dispatch => {
   }
 }
 
-export const forgotPass = rowData => async dispatch => {
+export const forgotPass = (rowData) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -107,7 +107,7 @@ export const forgotPass = rowData => async dispatch => {
   }
 }
 
-export const resetPass = (rowData, id) => async dispatch => {
+export const resetPass = (rowData, id) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -128,7 +128,7 @@ export const resetPass = (rowData, id) => async dispatch => {
   }
 }
 
-export const signOut = () => dispatch => {
+export const signOut = () => (dispatch) => {
   localStorage.removeItem('token')
   localStorage.removeItem('uid')
   localStorage.removeItem('rid')

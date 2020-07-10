@@ -54,7 +54,7 @@ const CfTextQuil = ({
         modules={TextQuilModules || QuilModules}
         formats={TextQuilFormats || QuilFormats}
         onBlur={() => setFieldTouched(field.name, true)}
-        onChange={value => setFieldValue(field.name, value)}
+        onChange={(value) => setFieldValue(field.name, value)}
         value={field.value ? field.value : ''}
       />
 

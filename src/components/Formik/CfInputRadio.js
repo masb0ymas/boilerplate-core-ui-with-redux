@@ -4,7 +4,7 @@ import { Input, Label } from 'reactstrap'
 import ErrorView from './ErrorView'
 
 const CfInputRadio = ({ label, onInputChange, id, field, form: { setFieldValue }, ...props }) => {
-  const handleChangeInput = e => {
+  const handleChangeInput = (e) => {
     const { value } = e.currentTarget
 
     if (onInputChange) {
@@ -22,7 +22,7 @@ const CfInputRadio = ({ label, onInputChange, id, field, form: { setFieldValue }
           id={id}
           name={field.name}
           type="radio"
-          onChange={e => handleChangeInput(e)}
+          onChange={(e) => handleChangeInput(e)}
           onBlur={field.onBlur}
           value={id}
           checked={id === field.value}

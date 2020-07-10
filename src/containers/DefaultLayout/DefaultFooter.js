@@ -5,7 +5,7 @@ import 'moment/locale/id'
 
 moment.locale('id')
 
-const DefaultFooter = props => {
+const DefaultFooter = (props) => {
   // eslint-disable-next-line
   const { children, ...attributes } = props
   const Year = moment().format('YYYY')

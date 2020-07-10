@@ -43,7 +43,7 @@ class Role extends Component {
     fetchQueryProps.refresh()
   }
 
-  handleSaveChanges = values => {
+  handleSaveChanges = (values) => {
     const { id } = values
     const { createRole, updateRole } = this.props
     if (!invalidValues.includes(id)) {
@@ -60,7 +60,7 @@ class Role extends Component {
     const { deleteRole } = this.props
 
     AlertMessage.warning()
-      .then(result => {
+      .then((result) => {
         if (result.value) {
           console.log('delete object', id)
           deleteRole(id, this.doRefresh)
@@ -72,7 +72,7 @@ class Role extends Component {
           AlertMessage.info(paramsResponse)
         }
       })
-      .catch(err => {
+      .catch((err) => {
         AlertMessage.error(err) // Internal Server Error
       })
   }
@@ -81,14 +81,14 @@ class Role extends Component {
     const { message, isLoading, auth, className, fetchQueryProps, modalForm } = this.props
     const { tableProps } = fetchQueryProps
 
-    const numbData = props => tableProps.pageSize * tableProps.page + props.index + 1
+    const numbData = (props) => tableProps.pageSize * tableProps.page + props.index + 1
 
     const columns = [
       {
         Header: '#',
         width: 60,
         filterable: false,
-        Cell: props => <span>{numbData(props)}</span>,
+        Cell: (props) => <span>{numbData(props)}</span>,
       },
       {
         Header: 'Role',
@@ -98,7 +98,7 @@ class Role extends Component {
         Header: 'Edit',
         width: 60,
         filterable: false,
-        Cell: props => (
+        Cell: (props) => (
           <Button
             color="success"
             onClick={() => modalForm.show({ data: props.original })}
@@ -113,10 +113,10 @@ class Role extends Component {
         Header: 'Delete',
         width: 60,
         filterable: false,
-        Cell: props => (
+        Cell: (props) => (
           <Button
             color="danger"
-            onClick={e => this.handleDelete(e, props.original)}
+            onClick={(e) => this.handleDelete(e, props.original)}
             className="mr-1"
             title="Delete"
           >
@@ -244,13 +244,13 @@ Role.propTypes = {
   modalForm: WithToggleProps,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth.authenticated,
   isLoading: state.role.isLoading,
   message: state.role.message,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   createRole: (formData, refresh) => dispatch(createRole(formData, refresh)),
   updateRole: (formData, id, refresh) => dispatch(updateRole(formData, id, refresh)),
   deleteRole: (id, refresh) => dispatch(deleteRole(id, refresh)),
@@ -261,7 +261,7 @@ export default connect(
   mapDispatchToProps
 )(
   withTableFetchQuery({
-    API: p => Service.getRoles(p),
+    API: (p) => Service.getRoles(p),
     Component: withToggle({
       Component: Role,
       toggles: {

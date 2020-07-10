@@ -50,7 +50,7 @@ class DefaultLayout extends Component {
       <div className="app">
         <AppHeader fixed>
           <Suspense fallback={this.loading()}>
-            <DefaultHeader onLogout={e => this.signOut(e)} />
+            <DefaultHeader onLogout={(e) => this.signOut(e)} />
           </Suspense>
         </AppHeader>
         <div className="app-body">
@@ -75,7 +75,7 @@ class DefaultLayout extends Component {
                         path={route.path}
                         exact={route.exact}
                         name={route.name}
-                        render={props => <route.component {...props} />}
+                        render={(props) => <route.component {...props} />}
                       />
                     ) : null
                   })}
@@ -108,7 +108,7 @@ DefaultLayout.propTypes = {
   auth: PropTypes.bool,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth.authenticated,
   isVerify: state.auth.isVerify,
 })

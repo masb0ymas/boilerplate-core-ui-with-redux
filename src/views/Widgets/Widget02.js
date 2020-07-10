@@ -60,12 +60,12 @@ class Widget02 extends Component {
     const lead = { style: 'h5 mb-0', color, classes: '' }
     lead.classes = classNames(lead.style, `text-${card.color}`, padding.lead)
 
-    const blockIcon = function(icon) {
+    const blockIcon = function (icon) {
       const classes = classNames(icon, `bg-${card.color}`, padding.icon, 'font-2xl mr-3 float-left')
       return <i className={classes} />
     }
 
-    const cardFooter = function() {
+    const cardFooter = function () {
       if (footer) {
         return (
           <CardFooter className="px-3 py-2">

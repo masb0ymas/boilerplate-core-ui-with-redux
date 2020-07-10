@@ -15,14 +15,12 @@ const initialValues = {
 }
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('gunakan email yang valid')
-    .required('email belum diisi'),
+  email: Yup.string().email('gunakan email yang valid').required('email belum diisi'),
   password: Yup.string().required('password belum diisi'),
 })
 
 class Login extends Component {
-  handleLogin = values => {
+  handleLogin = (values) => {
     const { signIn } = this.props
     signIn(values)
   }
@@ -142,14 +140,14 @@ Login.propTypes = {
   signIn: PropTypes.func,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth.authenticated,
   message: state.auth.message,
   isLoading: state.auth.isLoading,
 })
 
-const mapDispatchToProps = dispatch => ({
-  signIn: credentials => dispatch(signIn(credentials)),
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (credentials) => dispatch(signIn(credentials)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

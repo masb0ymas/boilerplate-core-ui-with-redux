@@ -12,7 +12,7 @@ import {
   ADMIN_DELETE_ROLE_ERROR,
 } from './types'
 
-export const createRole = (formData, refresh) => async dispatch => {
+export const createRole = (formData, refresh) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -43,7 +43,7 @@ export const createRole = (formData, refresh) => async dispatch => {
   }
 }
 
-export const updateRole = (formData, id, refresh) => async dispatch => {
+export const updateRole = (formData, id, refresh) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 
@@ -74,7 +74,7 @@ export const updateRole = (formData, id, refresh) => async dispatch => {
   }
 }
 
-export const deleteRole = (id, refresh) => async dispatch => {
+export const deleteRole = (id, refresh) => async (dispatch) => {
   let ObjError = ''
   const paramsResponse = {}
 

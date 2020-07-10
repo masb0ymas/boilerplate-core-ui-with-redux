@@ -12,7 +12,7 @@ const CfInput = ({
   form: { setFieldValue },
   ...props
 }) => {
-  const handleChangeInput = e => {
+  const handleChangeInput = (e) => {
     const { value } = e.currentTarget
 
     if (onInputChange) {
@@ -29,7 +29,7 @@ const CfInput = ({
         &nbsp;
         {isRequired && requireLabel()}
       </Label>
-      <Input {...field} {...props} onChange={e => handleChangeInput(e)} />
+      <Input {...field} {...props} onChange={(e) => handleChangeInput(e)} />
       <ErrorView name={field.name} />
     </>
   )

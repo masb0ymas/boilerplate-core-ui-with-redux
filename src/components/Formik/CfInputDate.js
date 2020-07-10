@@ -54,7 +54,7 @@ const CfInputDate = ({
         showYearDropdown
         showMonthDropdown
         selected={field.value ? new Date(field.value) : null}
-        onChange={date => setFieldValue(field.name, date)}
+        onChange={(date) => setFieldValue(field.name, date)}
         onBlur={() => setFieldTouched(field.name, true)}
         placeholderText={placeholder}
         customInput={<DateCustomInput {...field} {...props} />}

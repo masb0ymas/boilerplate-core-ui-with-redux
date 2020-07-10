@@ -109,7 +109,7 @@ function memoize(func, resolver) {
   if (typeof func !== 'function' || (resolver != null && typeof resolver !== 'function')) {
     throw new TypeError('Expected a function')
   }
-  const memoized = function(...args) {
+  const memoized = function (...args) {
     const key = resolver ? resolver.apply(this, args) : args[0]
     const { cache } = memoized
 
@@ -138,7 +138,7 @@ const MAX_MEMOIZE_SIZE = 500
  * @return {Function} Returns the new memoized function.
  */
 function memoizeCapped(func) {
-  const result = memoize(func, key => {
+  const result = memoize(func, (key) => {
     const { cache } = result
     if (cache.size === MAX_MEMOIZE_SIZE) {
       cache.clear()
@@ -176,7 +176,7 @@ const rePropName = RegExp(
  * @param {string} string The string to convert.
  * @returns {Array} Returns the property path array.
  */
-const stringToPath = memoizeCapped(string => {
+const stringToPath = memoizeCapped((string) => {
   const result = []
   if (string.charCodeAt(0) === charCodeOfDot) {
     result.push('')

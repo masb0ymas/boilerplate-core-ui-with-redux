@@ -27,16 +27,16 @@ class QueryTableManager {
     }
   }
 
-  setQueryObject = obj => {
+  setQueryObject = (obj) => {
     this.queryObject = obj
   }
 
-  isValidFilterValue = val => {
+  isValidFilterValue = (val) => {
     return !isNil(val) || val !== ''
   }
 
-  getFilterByKey = key => {
-    return this.filtered.find(x => x.id === key)
+  getFilterByKey = (key) => {
+    return this.filtered.find((x) => x.id === key)
   }
 
   setFilteredValue = async (id, value, callback) => {
@@ -51,14 +51,14 @@ class QueryTableManager {
       curVal = cloneDeep(defaultFilter[id])
     }
 
-    const filter = this.filtered.find(x => x.id === id)
+    const filter = this.filtered.find((x) => x.id === id)
     if (!filter && this.isValidFilterValue(curVal)) {
       this.filtered.push({
         id,
         value: curVal,
       })
     } else if (!this.isValidFilterValue(curVal)) {
-      this.filtered = [this.filtered].filter(x => x.id !== filter.id)
+      this.filtered = [this.filtered].filter((x) => x.id !== filter.id)
     } else {
       filter.value = curVal
     }
@@ -68,7 +68,7 @@ class QueryTableManager {
   }
 
   setSortedValue(id, desc, callback) {
-    const sorted = this.sorted.find(x => x.id === id)
+    const sorted = this.sorted.find((x) => x.id === id)
     if (!sorted) {
       this.sorted.push({
         id,
@@ -83,7 +83,7 @@ class QueryTableManager {
     }
   }
 
-  setFilteredByObject = obj => {
+  setFilteredByObject = (obj) => {
     const filterKeys = Object.keys(obj)
     for (let i = 0; i < filterKeys.length; i += 1) {
       const filterKey = filterKeys[i]
