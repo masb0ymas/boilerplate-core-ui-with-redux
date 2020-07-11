@@ -21,7 +21,7 @@ import { Redirect } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Service from '../../../config/services'
-import { CfInput } from '../../../components'
+import { CfInput, CfInputDate } from '../../../components'
 import { AlertMessage, ErrorMessage, invalidValues } from '../../../helpers'
 import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
 import withTableFetchQuery, { WithTableFetchQueryProp } from '../../../HOC/withTableFetchQuery'
@@ -198,6 +198,20 @@ class Role extends Component {
                           component={CfInput}
                         />
                       </FormGroup>
+
+                      <FormGroup>
+                        <Field
+                          label="Tanggal Kadaluarsa"
+                          name="tanggalKadaluarsa"
+                          classIcon="fa fa-calendar"
+                          blockLabel
+                          minDate={new Date()}
+                          isRequired
+                          placeholder="Tanggal Kadaluarsa"
+                          component={CfInputDate}
+                        />
+                      </FormGroup>
+
                       {ErrorMessage(message)}
                     </ModalBody>
                     <ModalFooter>

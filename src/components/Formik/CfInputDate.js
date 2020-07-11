@@ -30,6 +30,7 @@ const CfInputDate = ({
   label,
   minDate,
   isRequired,
+  blockLabel,
   styleLabel,
   field,
   form: { setFieldValue, setFieldTouched },
@@ -38,7 +39,7 @@ const CfInputDate = ({
 }) => {
   return (
     <>
-      <Label style={styleLabel}>
+      <Label style={blockLabel ? { display: 'block' } : styleLabel}>
         <b>{label}</b>
         &nbsp;
         {isRequired && requireLabel()}
@@ -65,6 +66,7 @@ const CfInputDate = ({
 }
 
 CfInputDate.propTypes = {
+  blockLabel: PropTypes.bool,
   styleLabel: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
