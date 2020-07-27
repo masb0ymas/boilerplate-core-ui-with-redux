@@ -54,7 +54,7 @@
     "redux-thunk": "^2.3.0",
     "simple-line-icons": "^2.4.1",
     "sweetalert2": "^9.17.0",
-    "yup": "^0.29.1"
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
