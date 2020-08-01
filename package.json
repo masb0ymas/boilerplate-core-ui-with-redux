@@ -52,9 +52,9 @@
     "reactstrap": "^8.0.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "yup": "^0.29.2",
     "sweetalert2": "^9.17.1",
-    "simple-line-icons": "^2.5.2",
-    "yup": "^0.29.1"
+    "simple-line-icons": "^2.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
