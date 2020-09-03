@@ -25,7 +25,7 @@
     "core-js": "^3.1.4",
     "date-fns": "^2.16.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.3",
+    "enzyme-adapter-react-16": "^1.15.4",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "^4.7.0",
     "formik": "^2.1.5",
