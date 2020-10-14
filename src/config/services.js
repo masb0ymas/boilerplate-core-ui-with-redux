@@ -31,7 +31,7 @@ class Service {
   }
 
   // Role
-  static getRoles(params) {
+  static getRole(params) {
     return axios.get(`role${params}`)
   }
 
@@ -51,25 +51,25 @@ class Service {
     return axios.delete(`role/${id}`)
   }
 
-  // Master Position
-  static getMasterPositions(params) {
-    return axios.get(`master-position${params}`)
+  // Master Profesi
+  static getMasterProfesi(params) {
+    return axios.get(`master-profesi${params}`)
   }
 
-  static getMasterPositionById(id) {
-    return axios.get(`master-position/${id}`)
+  static getMasterProfesiById(id) {
+    return axios.get(`master-profesi/${id}`)
   }
 
-  static createMasterPosition(values) {
-    return axios.post('master-position', values)
+  static createMasterProfesi(values) {
+    return axios.post('master-profesi', values)
   }
 
-  static updateMasterPosition(values, id) {
-    return axios.put(`master-position/${id}`, values)
+  static updateMasterProfesi(values, id) {
+    return axios.put(`master-profesi/${id}`, values)
   }
 
-  static deleteMasterPosition(id) {
-    return axios.delete(`master-position/${id}`)
+  static deleteMasterProfesi(id) {
+    return axios.delete(`master-profesi/${id}`)
   }
 }
 
