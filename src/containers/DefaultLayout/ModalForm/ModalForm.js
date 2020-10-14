@@ -7,6 +7,7 @@ import { CfInput } from '../../../components'
 import { changePassSchema } from '../../../validations/mvUser'
 import { userData } from '../../../helpers'
 import { changePass } from '../../../modules/auth/actions'
+import { WithToggleProps } from '../../../HOC/withToggle'
 
 const initialValues = {
   password: '',
@@ -16,7 +17,7 @@ const initialValues = {
 
 function ModalForm(props) {
   // eslint-disable-next-line react/prop-types
-  const { isOpen, toggle, hide, className } = props
+  const { modalForm, className } = props
 
   function handleChangePassword(values) {
     const { changePass } = props
@@ -27,7 +28,12 @@ function ModalForm(props) {
 
   return (
     <>
-      <Modal isOpen={isOpen} toggle={toggle} backdrop="static" className={className}>
+      <Modal
+        isOpen={modalForm.isOpen}
+        toggle={modalForm.toggle}
+        backdrop="static"
+        className={className}
+      >
         <Formik
           initialValues={initialValues}
           validationSchema={changePassSchema}
@@ -40,7 +46,7 @@ function ModalForm(props) {
         >
           {({ isSubmitting }) => (
             <Form>
-              <ModalHeader toggle={hide}>Form Change Password</ModalHeader>
+              <ModalHeader toggle={modalForm.hide}>Form Change Password</ModalHeader>
 
               <ModalBody>
                 <FormGroup>
@@ -78,7 +84,7 @@ function ModalForm(props) {
               </ModalBody>
 
               <ModalFooter>
-                <Button type="button" color="secondary" onClick={hide}>
+                <Button type="button" color="secondary" onClick={modalForm.hide}>
                   Cancel
                 </Button>
                 &nbsp;
@@ -104,13 +110,12 @@ function ModalForm(props) {
 ModalForm.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   changePass: PropTypes.func,
+  modalForm: WithToggleProps,
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth.authenticated,
   message: state.auth.message,
-  success: state.auth.success,
-  isLoading: state.auth.isLoading,
 })
 
 const mapDispatchToProps = (dispatch) => ({

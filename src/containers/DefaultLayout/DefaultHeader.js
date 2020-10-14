@@ -86,7 +86,7 @@ function DefaultHeader(props) {
       {/* <AppAsideToggler className="d-md-down-none" /> */}
       {/* <AppAsideToggler className="d-lg-none" mobile /> */}
 
-      <ModalForm {...modalForm} className={className} />
+      <ModalForm modalForm={modalForm} className={className} />
     </>
   )
 }
