@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import authReducer from './auth/reducer'
-import roleReducer from './masterRole/reducer'
-import positionReducer from './masterPosition/reducer'
+import roleReducer from './master/role/reducer'
+import profesiReducer from './master/profesi/reducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
   role: roleReducer,
-  position: positionReducer,
+  profesi: profesiReducer,
 })
 
 export default rootReducer

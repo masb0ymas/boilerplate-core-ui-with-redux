@@ -133,5 +133,5 @@ export const signOut = () => (dispatch) => {
   localStorage.removeItem('uid')
   localStorage.removeItem('rid')
   dispatch({ type: UNAUTHENTICATED })
-  window.location.href = '/#/login'
+  window.location.href = '/login'
 }
