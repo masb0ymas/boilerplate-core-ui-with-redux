@@ -39,8 +39,8 @@ class DefaultLayout extends Component {
 
   render() {
     const { isVerify, auth } = this.props
+
     if (isVerify) {
-      console.log('verifying')
       return 'verifying...'
     }
 
