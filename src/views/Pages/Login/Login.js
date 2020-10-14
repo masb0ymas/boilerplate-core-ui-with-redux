@@ -5,19 +5,14 @@ import { Button, Card, CardBody, CardGroup, Col, Container, Row, Spinner } from 
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
 import { signIn } from '../../../modules/auth/actions'
 import { CfInputGroup } from '../../../components'
+import { loginSchema } from '../../../validations/mvUser'
 
 const initialValues = {
   email: '',
   password: '',
 }
-
-const loginSchema = Yup.object().shape({
-  email: Yup.string().email('gunakan email yang valid').required('email belum diisi'),
-  password: Yup.string().required('password belum diisi'),
-})
 
 class Login extends Component {
   handleLogin = (values) => {
