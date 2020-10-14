@@ -1,249 +1,142 @@
-import React, { Component } from 'react'
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Row,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Spinner,
-  FormGroup,
-} from 'reactstrap'
+/* eslint-disable react/prop-types */
+import React from 'react'
+import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
 import Service from '../../../config/services'
-import { CfInput, CfInputDate } from '../../../components'
-import { AlertMessage, ErrorMessage, invalidValues } from '../../../helpers'
-import { createRole, updateRole, deleteRole } from '../../../modules/masterRole/actions'
+import { AlertMessage } from '../../../helpers'
+import { deleteRole } from '../../../modules/master/role/actions'
 import withTableFetchQuery, { WithTableFetchQueryProp } from '../../../HOC/withTableFetchQuery'
 import withToggle, { WithToggleProps } from '../../../HOC/withToggle'
+import ModalForm from './ModalForm/ModalForm'
 
-const roleSchema = Yup.object().shape({
-  nama: Yup.string().required('nama role belum diisi'),
-})
+const initialValues = {
+  nama: '',
+  id: '',
+}
+function Role(props) {
+  const { auth, className, fetchQueryProps, modalForm } = props
+  const { tableProps } = fetchQueryProps
 
-class Role extends Component {
-  initialValues = {
-    nama: '',
-    id: '',
-  }
-
-  doRefresh = () => {
-    const { fetchQueryProps, modalForm } = this.props
+  function doRefresh() {
+    const { fetchQueryProps, modalForm } = props
     modalForm.hide()
     fetchQueryProps.refresh()
   }
 
-  handleSaveChanges = (values) => {
-    const { id } = values
-    const { createRole, updateRole } = this.props
-    if (!invalidValues.includes(id)) {
-      updateRole(values, id, this.doRefresh)
-    } else {
-      createRole(values, this.doRefresh)
-    }
-  }
-
-  handleDelete = (e, state) => {
+  function handleDelete(e, state) {
     e.preventDefault()
 
     const { id } = state
-    const { deleteRole } = this.props
+    const { deleteRole } = props
 
     AlertMessage.warning()
       .then((result) => {
         if (result.value) {
-          console.log('delete object', id)
-          deleteRole(id, this.doRefresh)
-        } else {
-          const paramsResponse = {
-            title: 'Huff',
-            text: 'Hampir saja kamu kehilangan data ini',
-          }
-          AlertMessage.info(paramsResponse)
+          deleteRole(id, doRefresh)
         }
       })
       .catch((err) => {
-        AlertMessage.error(err) // Internal Server Error
+        // Internal Server Error
+        AlertMessage.error(err)
       })
   }
 
-  render() {
-    const { message, isLoading, auth, className, fetchQueryProps, modalForm } = this.props
-    const { tableProps } = fetchQueryProps
+  const numbData = (row) => tableProps.pageSize * tableProps.page + row.index + 1
 
-    const numbData = (props) => tableProps.pageSize * tableProps.page + props.index + 1
+  const columns = [
+    {
+      Header: '#',
+      width: 60,
+      filterable: false,
+      Cell: (row) => <span>{numbData(row)}</span>,
+    },
+    {
+      Header: 'Role',
+      accessor: 'nama',
+    },
+    {
+      Header: 'Edit',
+      width: 60,
+      filterable: false,
+      Cell: (row) => (
+        <Button
+          color="success"
+          onClick={() => modalForm.show({ data: row.original })}
+          className="mr-1"
+          title="Edit"
+        >
+          <i className="fa fa-pencil" />
+        </Button>
+      ),
+    },
+    {
+      Header: 'Delete',
+      width: 60,
+      filterable: false,
+      Cell: (row) => (
+        <Button
+          color="danger"
+          onClick={(e) => handleDelete(e, row.original)}
+          className="mr-1"
+          title="Delete"
+        >
+          <i className="fa fa-trash" />
+        </Button>
+      ),
+    },
+  ]
 
-    const columns = [
-      {
-        Header: '#',
-        width: 60,
-        filterable: false,
-        Cell: (props) => <span>{numbData(props)}</span>,
-      },
-      {
-        Header: 'Role',
-        accessor: 'nama',
-      },
-      {
-        Header: 'Edit',
-        width: 60,
-        filterable: false,
-        Cell: (props) => (
-          <Button
-            color="success"
-            onClick={() => modalForm.show({ data: props.original })}
-            className="mr-1"
-            title="Edit"
-          >
-            <i className="fa fa-pencil" />
-          </Button>
-        ),
-      },
-      {
-        Header: 'Delete',
-        width: 60,
-        filterable: false,
-        Cell: (props) => (
-          <Button
-            color="danger"
-            onClick={(e) => this.handleDelete(e, props.original)}
-            className="mr-1"
-            title="Delete"
-          >
-            <i className="fa fa-trash" />
-          </Button>
-        ),
-      },
-    ]
+  const pageName = 'Role'
+  const isIcon = { paddingRight: '7px' }
 
-    const pageName = 'Role'
-    const isIcon = { paddingRight: '7px' }
+  if (!auth) return <Redirect to="/login" />
 
-    if (!auth) return <Redirect to="/login" />
-
-    return (
-      <div className="animated fadeIn">
-        <Row>
-          <Col xs="12">
-            <Card>
-              <CardHeader>
-                <Row>
-                  <Col sm="6">
-                    <Button color="default" className="mr-1">
-                      {pageName}
+  return (
+    <div className="animated fadeIn">
+      <Row>
+        <Col xs="12">
+          <Card>
+            <CardHeader>
+              <Row>
+                <Col sm="6">
+                  <Button color="default" className="mr-1">
+                    {pageName}
+                  </Button>
+                </Col>
+                <Col sm="6">
+                  <div style={{ textAlign: 'right' }}>
+                    <Button
+                      color="primary"
+                      onClick={() => modalForm.show({ data: initialValues })}
+                      className="mr-1"
+                    >
+                      <i className="fa fa-plus" style={isIcon} />
+                      &nbsp;Tambah
                     </Button>
-                  </Col>
-                  <Col sm="6">
-                    <div style={{ textAlign: 'right' }}>
-                      <Button
-                        color="primary"
-                        onClick={() => modalForm.show({ data: this.initialValues })}
-                        className="mr-1"
-                      >
-                        <i className="fa fa-plus" style={isIcon} />
-                        &nbsp;Tambah
-                      </Button>
-                    </div>
-                  </Col>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                <ReactTable
-                  filterable
-                  columns={columns}
-                  defaultPageSize={10}
-                  className="-highlight"
-                  {...tableProps}
-                />
-              </CardBody>
-            </Card>
+                  </div>
+                </Col>
+              </Row>
+            </CardHeader>
+            <CardBody>
+              <ReactTable
+                filterable
+                columns={columns}
+                defaultPageSize={10}
+                className="-highlight"
+                {...tableProps}
+              />
+            </CardBody>
+          </Card>
 
-            <Modal
-              isOpen={modalForm.isOpen}
-              toggle={modalForm.toggle}
-              backdrop="static"
-              className={className}
-            >
-              <Formik
-                initialValues={modalForm.prop.data}
-                validationSchema={roleSchema}
-                onSubmit={(values, actions) => {
-                  setTimeout(() => {
-                    this.handleSaveChanges(values)
-                    actions.setSubmitting(false)
-                  }, 1000)
-                }}
-              >
-                {({ isSubmitting }) => (
-                  <Form>
-                    <ModalHeader toggle={modalForm.hide}>Form Role</ModalHeader>
-                    <ModalBody>
-                      <FormGroup>
-                        <Field
-                          label="Nama Role"
-                          type="text"
-                          name="nama"
-                          isRequired
-                          placeholder="Masukkan nama role"
-                          component={CfInput}
-                        />
-                      </FormGroup>
-
-                      <FormGroup>
-                        <Field
-                          label="Tanggal Kadaluarsa"
-                          name="tanggalKadaluarsa"
-                          classIcon="fa fa-calendar"
-                          blockLabel
-                          minDate={new Date()}
-                          isRequired
-                          placeholder="Tanggal Kadaluarsa"
-                          component={CfInputDate}
-                        />
-                      </FormGroup>
-
-                      {ErrorMessage(message)}
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button type="button" color="secondary" onClick={modalForm.hide}>
-                        Cancel
-                      </Button>
-                      &nbsp;
-                      <Button
-                        type="submit"
-                        color="primary"
-                        className="px-4"
-                        disabled={isSubmitting || isLoading}
-                      >
-                        {isSubmitting || isLoading ? (
-                          <>
-                            <Spinner size="sm" color="light" />
-                            &nbsp;Loading...
-                          </>
-                        ) : (
-                          'Save Changes'
-                        )}
-                      </Button>
-                    </ModalFooter>
-                  </Form>
-                )}
-              </Formik>
-            </Modal>
-          </Col>
-        </Row>
-      </div>
-    )
-  }
+          <ModalForm modalForm={modalForm} doRefresh={doRefresh} className={className} />
+        </Col>
+      </Row>
+    </div>
+  )
 }
 
 Role.propTypes = {
@@ -251,8 +144,6 @@ Role.propTypes = {
   isLoading: PropTypes.bool,
   message: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
-  createRole: PropTypes.func.isRequired,
-  updateRole: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
   fetchQueryProps: WithTableFetchQueryProp,
   modalForm: WithToggleProps,
@@ -265,8 +156,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  createRole: (formData, refresh) => dispatch(createRole(formData, refresh)),
-  updateRole: (formData, id, refresh) => dispatch(updateRole(formData, id, refresh)),
   deleteRole: (id, refresh) => dispatch(deleteRole(id, refresh)),
 })
 
@@ -275,7 +164,7 @@ export default connect(
   mapDispatchToProps
 )(
   withTableFetchQuery({
-    API: (p) => Service.getRoles(p),
+    API: (p) => Service.getRole(p),
     Component: withToggle({
       Component: Role,
       toggles: {
