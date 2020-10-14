@@ -1,21 +1,17 @@
 import React from 'react'
-import moment from 'moment'
 import PropTypes from 'prop-types'
-import 'moment/locale/id'
-
-moment.locale('id')
+import { formatYear } from '../../helpers/Date'
 
 const DefaultFooter = (props) => {
   // eslint-disable-next-line
   const { children, ...attributes } = props
-  const Year = moment().format('YYYY')
 
   return (
     <>
       <span>
         <a href="http://minangitcamp.com">Minang IT Camp</a>
         &nbsp;&copy;&nbsp;
-        {`2017 - ${Year}. `}
+        {`2017 - ${formatYear(new Date())}. `}
         All Right Reserved.&nbsp;
       </span>
       <span className="ml-auto">
