@@ -14,7 +14,6 @@ async function jwtVerify() {
     await Service.verifyToken()
     configStore.dispatch({ type: AUTHENTICATED })
   } catch (e) {
-    console.log(e)
     localStorage.removeItem('token')
     localStorage.removeItem('uid')
     localStorage.removeItem('rid')

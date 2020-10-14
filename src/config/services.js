@@ -7,15 +7,15 @@ axios.defaults.headers.common.Authorization = localStorage.getItem('token')
 class Service {
   // Authentication
   static signIn(values) {
-    return axios.post('/auth/signin', values)
+    return axios.post('/auth/sign-in', values)
   }
 
   static signUp(values) {
-    return axios.post('/auth/signup', values)
+    return axios.post('/auth/sign-up', values)
   }
 
   static verifyToken() {
-    return axios.get('/auth/verify')
+    return axios.get('/profile')
   }
 
   static changePassword(values, id) {
