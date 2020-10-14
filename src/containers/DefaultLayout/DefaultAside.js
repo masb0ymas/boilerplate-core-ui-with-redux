@@ -10,7 +10,7 @@ import {
   ListGroupItem,
 } from 'reactstrap'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import cx from 'classnames'
 import { AppSwitch } from '@coreui/react'
 
 const propTypes = {
@@ -48,7 +48,7 @@ class DefaultAside extends Component {
         <Nav tabs>
           <NavItem>
             <NavLink
-              className={classNames({ active: activeTab === '1' })}
+              className={cx({ active: activeTab === '1' })}
               onClick={() => {
                 this.toggle('1')
               }}
@@ -58,7 +58,7 @@ class DefaultAside extends Component {
           </NavItem>
           <NavItem>
             <NavLink
-              className={classNames({ active: activeTab === '2' })}
+              className={cx({ active: activeTab === '2' })}
               onClick={() => {
                 this.toggle('2')
               }}
@@ -68,7 +68,7 @@ class DefaultAside extends Component {
           </NavItem>
           <NavItem>
             <NavLink
-              className={classNames({ active: activeTab === '3' })}
+              className={cx({ active: activeTab === '3' })}
               onClick={() => {
                 this.toggle('3')
               }}
