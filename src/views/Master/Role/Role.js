@@ -17,6 +17,7 @@ const initialValues = {
   nama: '',
   id: '',
 }
+
 function Role(props) {
   const { auth, className, fetchQueryProps, modalForm } = props
   const { tableProps } = fetchQueryProps
