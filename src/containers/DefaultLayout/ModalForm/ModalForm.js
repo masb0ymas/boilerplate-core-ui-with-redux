@@ -16,7 +16,6 @@ const initialValues = {
 }
 
 function ModalForm(props) {
-  // eslint-disable-next-line react/prop-types
   const { modalForm, className } = props
 
   function handleChangePassword(values) {
@@ -46,7 +45,7 @@ function ModalForm(props) {
         >
           {({ isSubmitting }) => (
             <Form>
-              <ModalHeader toggle={modalForm.hide}>Form Change Password</ModalHeader>
+              <ModalHeader toggle={modalForm.hide}>Ganti Password</ModalHeader>
 
               <ModalBody>
                 <FormGroup>
@@ -62,7 +61,7 @@ function ModalForm(props) {
 
                 <FormGroup>
                   <Field
-                    label="Password"
+                    label="Password baru"
                     isRequired
                     type="password"
                     name="newPassword"
@@ -73,7 +72,7 @@ function ModalForm(props) {
 
                 <FormGroup>
                   <Field
-                    label="Ulangi Password"
+                    label="Ulangi password baru"
                     isRequired
                     type="password"
                     name="confirmNewPassword"
