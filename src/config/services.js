@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { API_URL } from './apiConfig'
 
+const token = localStorage.getItem('token')
+
 axios.defaults.baseURL = `${API_URL}`
-axios.defaults.headers.common.Authorization = localStorage.getItem('token')
+axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
 class Service {
   // Authentication
