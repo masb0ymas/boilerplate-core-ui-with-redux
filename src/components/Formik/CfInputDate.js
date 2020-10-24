@@ -3,13 +3,10 @@ import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Input, Label, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap'
-import moment from 'moment'
-import 'moment/locale/id'
 import { id } from 'date-fns/locale'
 import { requireLabel } from '../../helpers'
 import ErrorView from './ErrorView'
-
-moment.locale('id')
+import { formatDate } from '../../helpers/Date'
 
 const DateCustomInput = ({ classGroup, classIcon, value, onClick, ...props }) => (
   <InputGroup className={classGroup}>
@@ -18,11 +15,7 @@ const DateCustomInput = ({ classGroup, classIcon, value, onClick, ...props }) =>
         <i className={classIcon} />
       </InputGroupText>
     </InputGroupAddon>
-    <Input
-      {...props}
-      value={value ? moment(value).format('DD MMMM YYYY') : undefined}
-      onClick={onClick}
-    />
+    <Input {...props} value={value ? formatDate(new Date(value)) : undefined} onClick={onClick} />
   </InputGroup>
 )
 

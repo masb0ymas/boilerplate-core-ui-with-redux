@@ -1,13 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { Done } from '@material-ui/icons'
-import 'moment/locale/id'
+import { formatMonthStandAlone } from '../../helpers/Date'
 import './style.css'
-
-moment.locale('id')
 
 function Timeline({ isModal, handleModal, classModal, HistoryPermohonan }) {
   return (
@@ -29,7 +26,7 @@ function Timeline({ isModal, handleModal, classModal, HistoryPermohonan }) {
               <React.Fragment key={row.id}>
                 <VerticalTimelineElement
                   className="vertical-timeline-element--work"
-                  date={moment(row.createdAt).format('LLLL')}
+                  date={formatMonthStandAlone(new Date(row.createdAt))}
                   iconStyle={{
                     background: '#209cee',
                     color: '#fff',
