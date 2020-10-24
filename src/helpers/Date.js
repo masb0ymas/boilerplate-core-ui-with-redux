@@ -31,6 +31,10 @@ const formatTime = (date) => {
   return format(new Date(date), 'HH:mm:ss', timezoneIndonesia)
 }
 
+const formatMonthStandAlone = (date) => {
+  return format(new Date(date), 'LLLL', timezoneIndonesia)
+}
+
 export {
   formatDate,
   formatDateSystem,
@@ -39,4 +43,5 @@ export {
   formatMonth,
   formatYear,
   formatTime,
+  formatMonthStandAlone,
 }
