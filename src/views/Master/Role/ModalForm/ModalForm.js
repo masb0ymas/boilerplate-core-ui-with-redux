@@ -7,7 +7,7 @@ import { CfInput } from '../../../../components'
 import { invalidValues } from '../../../../helpers'
 import { WithToggleProps } from '../../../../HOC/withToggle'
 import { createRole, updateRole } from '../../../../modules/master/role/actions'
-import roleSchema from '../../../../validations/mvRole'
+import mvRole from '../../../../validations/mvRole'
 
 function ModalForm(props) {
   const { modalForm, doRefresh, className } = props
@@ -32,7 +32,7 @@ function ModalForm(props) {
       >
         <Formik
           initialValues={modalForm.prop.data}
-          validationSchema={roleSchema}
+          validationSchema={mvRole.create}
           onSubmit={(values, actions) => {
             setTimeout(() => {
               handleSaveChanges(values)
