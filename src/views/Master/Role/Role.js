@@ -12,6 +12,7 @@ import { deleteRole } from '../../../modules/master/role/actions'
 import withTableFetchQuery, { WithTableFetchQueryProp } from '../../../HOC/withTableFetchQuery'
 import withToggle, { WithToggleProps } from '../../../HOC/withToggle'
 import ModalForm from './ModalForm/ModalForm'
+import Paginations from '../../../helpers/Paginations'
 
 const initialValues = {
   nama: '',
@@ -46,14 +47,14 @@ function Role(props) {
       })
   }
 
-  const numbData = (row) => tableProps.pageSize * tableProps.page + row.index + 1
-
   const columns = [
     {
       Header: '#',
       width: 60,
       filterable: false,
-      Cell: (row) => <span>{numbData(row)}</span>,
+      Cell: (row) => (
+        <span>{Paginations.getCurrentNumber(row.index, tableProps.page, tableProps.pageSize)}</span>
+      ),
     },
     {
       Header: 'Role',
