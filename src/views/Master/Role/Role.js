@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap'
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+import ReactTable from 'react-table-6'
+import 'react-table-6/react-table.css'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
