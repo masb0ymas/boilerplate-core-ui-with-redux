@@ -15,10 +15,18 @@ import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import withToggle, { WithToggleProps } from '../../HOC/withToggle'
 import ModalForm from './ModalForm/ModalForm'
+import Service from '../../config/services'
 
 function DefaultHeader(props) {
   // eslint-disable-next-line
-  const { modalForm, isLoading, signOut, className, children, ...attributes } = props
+  const { modalForm, isLoading, className, children, ...attributes } = props
+
+  function signOut() {
+    Service.logout().then(() => {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+    })
+  }
 
   return (
     <>
@@ -55,7 +63,7 @@ function DefaultHeader(props) {
 
         <NavItem className="d-md-down-none">
           <NavLink to="#" className="nav-link">
-            Hallo, Admin
+            &nbsp; Hallo, Admin
           </NavLink>
         </NavItem>
 
@@ -75,7 +83,7 @@ function DefaultHeader(props) {
               <i className="fa fa-user" />
               &nbsp; Change Password
             </DropdownItem>
-            <DropdownItem onClick={signOut}>
+            <DropdownItem onClick={() => signOut()} onMouseDown={() => signOut()}>
               <i className="fa fa-lock" />
               &nbsp; Logout
             </DropdownItem>
