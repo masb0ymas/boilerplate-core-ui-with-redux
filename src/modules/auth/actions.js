@@ -26,8 +26,6 @@ export const signIn = (credentials) => async (dispatch) => {
     // Call API
     const res = await Service.signIn(credentials)
     localStorage.setItem('token', res.data.token)
-    localStorage.setItem('uid', res.data.uid)
-    localStorage.setItem('rid', res.data.rid)
     dispatch({ type: AUTHENTICATED, isLoading: false })
   } catch (err) {
     const errMsg = err.response ? err.response.data.message : 'Internal Server Error'
