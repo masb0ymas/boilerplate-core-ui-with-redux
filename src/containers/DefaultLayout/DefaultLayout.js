@@ -23,19 +23,20 @@ import {
 import navigation from '../../_nav'
 // routes config
 import routes from '../../routes'
+import Loading from '../../components/Loading/Loading'
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'))
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'))
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'))
 
 class DefaultLayout extends Component {
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+  loading = () => <Loading />
 
   render() {
     const { isVerify, auth } = this.props
 
     if (isVerify) {
-      return 'verifying...'
+      return <Loading />
     }
 
     if (!auth) return <Redirect to="/login" />

@@ -2,8 +2,9 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import { renderRoutes } from 'react-router-config';
 import './App.scss'
+import Loading from './components/Loading/Loading'
 
-const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>
+const loading = () => <Loading />
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./containers/DefaultLayout'))
