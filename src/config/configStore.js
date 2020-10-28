@@ -11,12 +11,10 @@ async function jwtVerify() {
   configStore.dispatch({ type: VERIFYING })
 
   try {
-    await Service.verifyToken()
+    await Service.profile()
     configStore.dispatch({ type: AUTHENTICATED })
   } catch (e) {
     localStorage.removeItem('token')
-    localStorage.removeItem('uid')
-    localStorage.removeItem('rid')
     configStore.dispatch({ type: UNAUTHENTICATED })
   }
 }

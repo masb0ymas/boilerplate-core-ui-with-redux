@@ -16,7 +16,7 @@ class Service {
     return axios.post('/auth/sign-up', values)
   }
 
-  static verifyToken() {
+  static profile() {
     return axios.get('/profile')
   }
 
