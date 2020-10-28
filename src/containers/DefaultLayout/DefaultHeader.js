@@ -11,22 +11,16 @@ import {
 } from 'reactstrap'
 import PropTypes from 'prop-types'
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react'
+import { connect } from 'react-redux'
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import withToggle, { WithToggleProps } from '../../HOC/withToggle'
 import ModalForm from './ModalForm/ModalForm'
-import Service from '../../config/services'
+import { signOut } from '../../modules/auth/actions'
 
 function DefaultHeader(props) {
   // eslint-disable-next-line
-  const { modalForm, isLoading, className, children, ...attributes } = props
-
-  function signOut() {
-    Service.logout().then(() => {
-      localStorage.removeItem('token')
-      window.location.href = '/login'
-    })
-  }
+  const { modalForm, isLoading, signOut, className, children, ...attributes } = props
 
   return (
     <>
@@ -83,7 +77,7 @@ function DefaultHeader(props) {
               <i className="fa fa-user" />
               &nbsp; Change Password
             </DropdownItem>
-            <DropdownItem onClick={() => signOut()} onMouseDown={() => signOut()}>
+            <DropdownItem onClick={signOut}>
               <i className="fa fa-lock" />
               &nbsp; Logout
             </DropdownItem>
@@ -104,8 +98,12 @@ DefaultHeader.propTypes = {
   modalForm: WithToggleProps,
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(signOut()),
+})
+
 export default withToggle({
-  Component: DefaultHeader,
+  Component: connect(null, mapDispatchToProps)(DefaultHeader),
   toggles: {
     modalForm: false,
   },
