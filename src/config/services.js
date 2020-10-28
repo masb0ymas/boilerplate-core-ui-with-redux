@@ -20,6 +20,10 @@ class Service {
     return axios.get('/profile')
   }
 
+  static logout() {
+    return axios.get('/logout')
+  }
+
   static changePassword(values, id) {
     return axios.put(`/auth/change-password/${id}`, values)
   }
