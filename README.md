@@ -28,7 +28,7 @@
 ## Feature
 
 - [CoreUI React](https://github.com/coreui/coreui-free-react-admin-template) `v2`
-- Build Form with [Formik](https://github.com/jaredpalmer/formik)
+- Build Form with [Formik](https://github.com/jaredpalmer/formik) `v2`
 - [Yup](https://github.com/jquense/yup) for validation schema
 - JavaScript Style [Airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
 - Formating code using [Prettier](https://github.com/prettier/prettier) Integration [Eslint](https://github.com/prettier/eslint-config-prettier)
@@ -77,10 +77,10 @@ yarn run build
 
 👤 **masb0ymas**
 
-- Website: http://minangitcamp.com
-- Twitter: [@fajriajjha1](https://twitter.com/fajriajjha1)
+- Website: https://resume.masb0ymas.vercel.app
+- Twitter: [@masb0ymas](https://twitter.com/masb0ymas)
 - Github: [@masb0ymas](https://github.com/masb0ymas)
-- LinkedIn: [@aji-ajjha](https://www.linkedin.com/in/aji-ajjha-58a248b7/)
+- LinkedIn: [@masb0ymas](https://www.linkedin.com/in/masb0ymas/)
 
 ## 🤝 Contributing
 
