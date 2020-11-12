@@ -66,7 +66,8 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.1.2",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "standard-version": "^9.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -80,7 +81,8 @@
     "test": "react-scripts test",
     "test:cov": "npm test -- --coverage --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "standard-version"
   },
   "bugs": {
     "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
