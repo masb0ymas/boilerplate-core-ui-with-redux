@@ -1,3 +1,57 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## 2.7.0 (2020-11-12)
+
+
+### Features
+
+* add component loading ([df62050](https://github.com/coreui/coreui-free-react-admin-template/commit/df62050242cca035e8f33e50edc7e7fc7cd0c962))
+* add lib standard version ([f833997](https://github.com/coreui/coreui-free-react-admin-template/commit/f833997fe6104ab87e5a7c7a570069e6c2ec0d35))
+* add validation role ([e9d9c6a](https://github.com/coreui/coreui-free-react-admin-template/commit/e9d9c6a8bc35c83e868c3a8ee24519f1c5d16e54))
+* api logout ([06f8492](https://github.com/coreui/coreui-free-react-admin-template/commit/06f84924f91e7a3ea60c853ce15271ff5513d67c))
+* helper date ([420cab0](https://github.com/coreui/coreui-free-react-admin-template/commit/420cab0cadeb75fdd3bcbfabf386a9d2d8b5ee97))
+* lists helper ([2d26f3c](https://github.com/coreui/coreui-free-react-admin-template/commit/2d26f3c8bb31d92f2e05d1cae505bc472cf9abe2))
+* modal form header ([a6b5145](https://github.com/coreui/coreui-free-react-admin-template/commit/a6b5145ecd79365a41b6589c177349548b89436b))
+* modal form role ([7854bc2](https://github.com/coreui/coreui-free-react-admin-template/commit/7854bc24650e63e7bb8d4217b1a8bc4139d2469a))
+* paginations helper ([aa1d237](https://github.com/coreui/coreui-free-react-admin-template/commit/aa1d237c522c3e6c8ff8dee31ce6c1f835dd63bd))
+* redux profesi ([caa0910](https://github.com/coreui/coreui-free-react-admin-template/commit/caa09103f632311f11ddf5336c67afbf7503e15b))
+* validation user ([f4ab9ca](https://github.com/coreui/coreui-free-react-admin-template/commit/f4ab9ca25a61c37d8d7ccfbdeb1a81cfd80b56fb))
+
+
+### Bug Fixes
+
+* actions logout ([62a1971](https://github.com/coreui/coreui-free-react-admin-template/commit/62a197182c460065d01bf3c863222a4351dbccfb))
+* add format stand alone ([163c67d](https://github.com/coreui/coreui-free-react-admin-template/commit/163c67da9d0430a41bfae01ba5957410a25af426))
+* authenticated redux ([9db17af](https://github.com/coreui/coreui-free-react-admin-template/commit/9db17af4f4ba2cfbd9572137c1b7547f0c24cff0))
+* button sign out ([3123f12](https://github.com/coreui/coreui-free-react-admin-template/commit/3123f1257759bc9b8d29a97c285d4f025b9dc80d))
+* call api logout ([555d90d](https://github.com/coreui/coreui-free-react-admin-template/commit/555d90dcf17560bb18bc0df45f7d2fc49593477c))
+* config service ([4729d2b](https://github.com/coreui/coreui-free-react-admin-template/commit/4729d2b62b8449be9fe079089d9243556018362e))
+* cx default aside ([1894599](https://github.com/coreui/coreui-free-react-admin-template/commit/189459906b824579953d45684bd14e07190cafcb))
+* default footer ([de4db7b](https://github.com/coreui/coreui-free-react-admin-template/commit/de4db7b2ed314d46f9f3afa999d09cf9bd5d621d))
+* default layout ([4ef0ddb](https://github.com/coreui/coreui-free-react-admin-template/commit/4ef0ddb176fa62ab1c11460cb87de3f9cd2c48b2))
+* format date ([b5e426b](https://github.com/coreui/coreui-free-react-admin-template/commit/b5e426b4f00677501e5becd7c3fe64d0d65abbba))
+* get current page ([2775fcc](https://github.com/coreui/coreui-free-react-admin-template/commit/2775fccc0cd1736642dfde6a4bc44c07d007b81a))
+* HOC fetch debounce ([831a14b](https://github.com/coreui/coreui-free-react-admin-template/commit/831a14b778dbdba2ae2cbb2e415874a1cbb25141))
+* linter ([0eba670](https://github.com/coreui/coreui-free-react-admin-template/commit/0eba670edc3221051df5ffa0ccb5002b0a4e1662))
+* loading ([d00a6f6](https://github.com/coreui/coreui-free-react-admin-template/commit/d00a6f62cad0b6d2c84d563157e48b81463abbcf))
+* login page ([d2b5ecc](https://github.com/coreui/coreui-free-react-admin-template/commit/d2b5eccb6ce29477dc1d115291537903f5313acd))
+* modal form change pass ([174d276](https://github.com/coreui/coreui-free-react-admin-template/commit/174d276f1d4b50d3f8a4fde299ba1ce3e2c47da9))
+* page role ([3397ff8](https://github.com/coreui/coreui-free-react-admin-template/commit/3397ff8c2540e054b6eab69168a02e61d74dcbce))
+* react table v6 ([2886818](https://github.com/coreui/coreui-free-react-admin-template/commit/28868183660dc5c5f333d04dd9bf66db23de60dc))
+* redux auth login ([a45c927](https://github.com/coreui/coreui-free-react-admin-template/commit/a45c92730f074eaa6b081af76b9205bdfa1508ab))
+* rename api profile ([df41397](https://github.com/coreui/coreui-free-react-admin-template/commit/df413978a5bd79a4f73abdde0f60e193d1d92d38))
+* role redux ([53e3e35](https://github.com/coreui/coreui-free-react-admin-template/commit/53e3e3577598748310c7c97f9f86f62ddc282fb3))
+* root redux ([e80596b](https://github.com/coreui/coreui-free-react-admin-template/commit/e80596b947cd152ff606dbb53e41c7c1f008ff84))
+* router app ([c53bf28](https://github.com/coreui/coreui-free-react-admin-template/commit/c53bf285475e5419a1394906b75dd266293f145b))
+* service profesi ([0ca0e46](https://github.com/coreui/coreui-free-react-admin-template/commit/0ca0e46dd812ddc2779402a546c311b1adb43dda))
+* setting vscode ([b472c3a](https://github.com/coreui/coreui-free-react-admin-template/commit/b472c3ad80595521949587cbdec468defd2d8448))
+* token header ([5046433](https://github.com/coreui/coreui-free-react-admin-template/commit/50464334141df0fe5880ff00f5860319bd14c62b))
+* update react-datepicker ([51a0086](https://github.com/coreui/coreui-free-react-admin-template/commit/51a008673c0a9341e36a94a385fada7bc362d2a7))
+* upgrade dependencies ([22fd9f7](https://github.com/coreui/coreui-free-react-admin-template/commit/22fd9f7f45982a56e9f93a7cea38db6933ecbc99))
+* validation role ([845a3ac](https://github.com/coreui/coreui-free-react-admin-template/commit/845a3ac737239af045a182f47efba4a090f3a8c7))
+
 ## [CoreUI](https://coreui.io/) for [react](./REACT.md) changelog
 
 ##### `v2.6.0`
