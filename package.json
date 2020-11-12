@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "npm run start",
     "start": "react-scripts start",
     "lint": "npx eslint '*/**/*.{js,jsx,ts,tsx}' --quiet --fix",
     "build:staging": "GENERATE_SOURCEMAP=false REACT_APP_BUILD_ENV=staging react-scripts build",
