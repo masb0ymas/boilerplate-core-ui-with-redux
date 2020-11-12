@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to boilerplate-core-ui-with-redux 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.6.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.7.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.10.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D12.13.0-blue.svg" />
   <a href="https://github.com/masb0ymas/boilerplate-core-ui-with-redux#readme" target="_blank">
@@ -20,14 +20,14 @@
 
 ## Prerequisites
 
-- npm >= 6.10.0
-- node >= 12.13.0
-- eslint >= 6.7.2
+- npm >= `v6.x`
+- node >= `v10.x`
+- eslint >= `v7.x`
 - bootstrap ([reactstrap](https://github.com/reactstrap/reactstrap))
 
 ## Feature
 
-- [CoreUI React](https://github.com/coreui/coreui-free-react-admin-template) v2
+- [CoreUI React](https://github.com/coreui/coreui-free-react-admin-template) `v2`
 - Build Form with [Formik](https://github.com/jaredpalmer/formik)
 - [Yup](https://github.com/jquense/yup) for validation schema
 - JavaScript Style [Airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
