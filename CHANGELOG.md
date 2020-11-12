@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/coreui/coreui-free-react-admin-template/compare/v2.7.0...v2.7.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* readme ([193021f](https://github.com/coreui/coreui-free-react-admin-template/commit/193021f97e785f17e9f4f5840cb8feeebd20b78f))
+* update min engine node ([9466d1a](https://github.com/coreui/coreui-free-react-admin-template/commit/9466d1a1d01ade7ec415cfe8429fa17d51f2eb69))
+* update package json ([e2dd77a](https://github.com/coreui/coreui-free-react-admin-template/commit/e2dd77a2d57d76c0593f088a3876ed1504567a69))
+* update script dev ([3742032](https://github.com/coreui/coreui-free-react-admin-template/commit/3742032b63f8d5cb6f5f4c5d5b32576b558af6e1))
+
 ## 2.7.0 (2020-11-12)
 
 
